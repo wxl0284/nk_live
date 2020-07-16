@@ -1,0 +1,75 @@
+﻿.cN-pagination {
+    font-size: 0.92em;
+    margin-top: 30px;
+    padding: 0.75em 2em;
+    text-align: right;
+}
+
+.cN-pagination a,
+.cN-pagination li.selected {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    color: #666666;
+}
+
+.cN-pagination li.selected {
+    background: #7a186a;
+    border-color: #7a186a;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cN-pagination a {
+    text-decoration: none;
+}
+
+* html .cN-pagination a:hover,
+* html .cN-pagination a:active {
+    text-decoration: none;
+}
+
+.cN-pagination li {
+    display: inline;
+    list-style: none outside none;
+    margin: 0;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.cN-pagination a,
+.cN-pagination li.selected {
+    padding: 5px 10px;
+}
+
+*+html .cN-pagination li.selected {
+    margin-right: 0.4em;
+}
+
+* html .cN-pagination li.selected {
+    margin-right: 0.4em;
+}
+
+.cN-pagination .lastpage,
+.cN-pagination .firstpage {
+    font-size: 15px;
+    padding: 5px 15px;
+}
+
+.cN-pagination .nextpage,
+.cN-pagination .prevpage {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.cN-pagination .page_total {
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.cN-pagination .page_total>b {
+    color: #333;
+    font-weight: normal;
+    padding: 0 5px;
+    vertical-align: baseline;
+}

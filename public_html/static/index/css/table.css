@@ -1,0 +1,240 @@
+﻿#searchSection {
+    height:34px;
+    width: 100%;
+    text-align:left;
+    margin-bottom:15px;
+}
+
+#searchSection .s-input, #searchSection .s-select {
+    border:1px solid #D6D6D6;
+    border-right:none;
+    background:#FDFDFD;
+    height: 32px;
+    line-height:34px;
+    float:left;
+    padding-left: 10px;
+    text-indent: 0;
+    width:auto;
+}
+
+#searchSection .s-input.short {
+    width:100px;
+}
+
+#searchSection .s-select {
+    height: 34px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    line-height: inherit;
+}
+
+#searchSection .max-width-select {
+    max-width: 120px;
+}
+
+#searchSection .ss-label {
+    color: #333;
+    font-size: 15px;
+    line-height: 32px;
+}
+
+#searchSection .separate {
+    margin-right:15px;
+    border-right:1px solid #d6d6d6;
+}
+
+#searchSection .s-btn {
+    border:1px solid #D6D6D6;
+    background:#F7F7F7;
+    height:34px;
+    line-height:34px;
+    text-align:center;
+    color:#333;
+    float:left;
+    padding: 0px 12px;
+    cursor: pointer;
+}
+
+#searchSection .add-btn, #searchSection .import-btn, #searchSection .csv-btn, #searchSection .prize-btn {
+    float: right;
+    border:1px solid #018484;
+    background:#009999;
+    color:#FFF;
+    cursor: pointer;
+    margin-left: 15px;
+    line-height: 32px;
+    height: 32px;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+#searchSection .import-btn, #searchSection .csv-btn {
+    background: #8f8f8f none repeat scroll 0 0;
+    border: 1px solid #8f8f8f;
+}
+
+#list table, .list table {
+    text-align: center;
+    border-collapse: collapse;
+    background:#FFFFFF;
+    width:100%;
+}
+
+#list .l_header th, .list .l_header th {
+    line-height: 44px;
+    border: 1px solid #D6D6D6;
+    font-weight: lighter;
+    vertical-align: middle;
+}
+
+#list .action, .list .action {
+    min-width:120px;
+}
+
+#list td, .list td {
+    /*line-height: 44px;*/
+    line-height:22px;
+    padding:15px 2px;
+    border-right:1px solid #d6d6d6;
+    vertical-align: middle;
+}
+
+#list tr, .list tr {
+    border: 1px solid #D6D6D6;
+}
+
+#list tr:hover, .list tr:hover {
+    background: #F0F9F9;
+}
+
+#list tr.l_header:hover, .list tr.l_header:hover {
+    background: #F7F7F7;
+}
+
+#list tr.l_header, .list tr.l_header {
+    border: 1px solid #D6D6D6;
+    background: #F7F7F7;
+    border:none;
+}
+
+#list td a, .list td a {
+    color:#175eb4;
+}
+
+#list td a:hover, .list td a:hover {
+    color: #266dc7;
+}
+
+#list .itemTitle > img, .list .itemTitle > img {
+    margin: 0;
+}
+
+#list .status_0, .list .status_0 {
+    color:#333333;
+}
+
+#list .status_1, .list .status_1 {
+    color: #009999;
+}
+
+#list .status_2, .list .status_2 {
+    color:#FF9000;
+}
+
+#list .status_3, .list .status_3 {
+    color: #266dc7;
+}
+
+#list .status_4, .list .status_4 {
+    color: #cb5c5c;
+}
+
+#list .status_5, .list .status_5 {
+    color:#FE2323;
+}
+
+#list .other1, .list .other1 {
+    color:#333333;
+    text-decoration: underline;
+    padding:0 10px;
+    cursor:pointer;
+    display: inline-block;
+}
+
+#list .edit, .list .edit {
+    color:#266DC7;
+    text-decoration: underline;
+    padding:0 10px;
+    cursor:pointer;
+}
+
+#list .delete, .list .delete {
+    color:#FF2424;
+    text-decoration: underline;
+    padding:0 10px;
+    cursor:pointer;
+}
+
+.set-btns {
+    position: relative;
+}
+
+.set-title {
+    color: #266dc7;
+    display:none;
+}
+
+.set-menu {
+    /*background: #f9f9f9 none repeat scroll 0 0;*/
+    /*border: 1px solid #ddd;*/
+    /*display: none;*/
+    /*right: 50%;*/
+    /*margin-right: -60px;*/
+    /*position: absolute;*/
+    max-width: 180px;
+    /*z-index: 999;*/
+    /*top:0;*/
+}
+
+#list .set-menu a, .list1 .set-menu a {
+    /*border-bottom: 1px solid #ddd;*/
+    /*padding: 10px;*/
+    /*float:left;*/
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    padding: 0;
+}
+
+.t_img {
+    display: block;
+    position: relative;
+    /*height: 0;*/
+    height:35px;
+}
+
+.t_img img {
+    height:35px;
+    max-width: 70px;
+}
+
+.t_img img:hover {
+    position: absolute;
+    height:100px;
+    left: 10px;
+    top: 0;
+    border: 4px solid #D1D1D1;
+    z-index:1000;
+    max-width: inherit;
+}
+
+/*批量操作按钮*/
+.bottom-btns > span {
+    background: #cc0000 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right:10px;
+    padding: 5px 10px;
+    cursor:pointer;
+}

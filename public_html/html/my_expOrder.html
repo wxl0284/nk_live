@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!--SoftTouchIT SiteC, version:1.0.686-->
+<html>
+
+<head>
+    <title>我的预约</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="format-detction" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="private, no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords">
+    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="shortcut icon" href="/images/favicon2.ico" type="image/x-icon">
+    <script src="js/core.js"></script>
+    <script src="js/sha256.js"></script>
+    <script src="js/json3.js"></script>
+    <script src="js/qs.js"></script>
+    <script src="js/ie8.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/dialog.js"></script>
+    <link rel="stylesheet" href="css/dialog.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/common_3.css">
+    <script src="js/jquery-v1.12.4.min.js"></script>
+    <script src="js/jquery.easing.js"></script>
+    <script src="js/move-top.js"></script>
+    <script src="js/define.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/jquery.enplaceholder.js"></script>
+    <link rel="stylesheet" href="css/header_v4.css">
+    <script src="js/subjects.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/header_v4.js"></script>
+    <link rel="stylesheet" href="css/footer_v4.css">
+    <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="css/common_1.css">
+    <script src="js/common.js"></script>
+    <script src="js/paginationsamepage.js"></script>
+    <link rel="stylesheet" href="css/session.css">
+    <!-- <script src="js/session.js"></script> -->
+    <!-- <link rel="stylesheet" href="css/my-collection.css"> -->
+    <link rel="stylesheet" href="css/exporder.css">
+    <script src="js/my-collection.js"></script>
+</head>
+
+<body>
+    <div id="layout" style="visibility: visible;">
+        <div id="north">
+            <div class="header">
+                <div class="header-bg"></div>
+                <div class="header_container">
+                    <a href="index.html">
+                        <div class="logo">
+                            <img src="pic/nankai_logo.png">
+                            <span>南开大学虚拟仿真申报平台</span>
+                        </div>
+                    </a>
+                    <div class="nav clearfix">
+                        <ul class="clearfix" id="menu">
+                            <li class="nav_item"><a href="/">首页</a></li>
+                            <li class="nav_item" id="subsLink"><a href="/list?sid=all">学科分类</a>
+                                <ul class="subjects-box">
+                                    <div class="bubbleTail"></div>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','01')">生物科学类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','02')">机械类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','03')">电子信息类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','04')">化工与制药类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','05')">交通运输类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','06')">核工程类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','07')">临床医学类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','08')">药学类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','09')">化学类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','10')">心理学类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','11')">能源动力类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','12')">土木类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','13')">测绘类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','14')">地质类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','15')">航空航天类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','16')">环境科学与工程类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','17')">食品科学与工程类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','18')">植物类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','19')">动物类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','20')">基础医学类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','21')">中医类</a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','22')">护理学类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','23')">教育学类<span class="line"></span></a></li>
+                                    <li><a href="javascript:void(0);" onclick="X.pub('getMenuSubject','24')">文学类<span class="line"></span></a></li>
+                                </ul>
+                            </li>
+                            <li class="nav_item"><a href="/intro">项目介绍</a></li>
+                            <li class="nav_item"><a href="/cloud">实验云</a></li>
+                            <li class="nav_item"><a href="http://nvse.ilab-x.com/" target="_blank">创新联盟</a>
+                                <ul class="subjects-box">
+                                    <div class="bubbleTail"></div>
+                                    <li><a href="http://nvse.ilab-x.com/introduction/intro" target="_blank">联盟介绍</a></li>
+                                    <li><a href="http://nvse.ilab-x.com/organization/chairman" target="_blank">组织机构</a></li>
+                                    <li><a href="http://nvse.ilab-x.com/vip" target="_blank">会员单位</a></li>
+                                    <li><a href="http://nvse.ilab-x.com/vip/apply" target="_blank">会员申请<span class="line"></span></a></li>
+                                    <li><a href="http://nvse.ilab-x.com/activity" target="_blank">联盟活动<span class="line"></span></a></li>
+                                    <li><a href="http://nvse.ilab-x.com/activity/detail?id=6" target="_blank">建设指南<span class="line"></span></a></li>
+                                </ul>
+                            </li>
+                            <li class="nav_item"><a href="/about">关于我们</a></li>
+                        </ul>
+                        <div class="dropdown_more">
+                            <div class="more">更多</div>
+                            <ul class="dropdown_menu" id="dropdown"></ul>
+                        </div>
+                        <div class="nav-right">
+                            <div class="changeLang before"><a href="javascript:;" data-lang="EN" id="changeLang">English</a></div>
+                            <div id="user-info">
+                                <div class="people"><a href="index.html" id="signOff">退出</a><a href="my_profile.html" id="username">耶耶耶</a><img class="pic" src="pic/uerhead.jpg" onerror="this.src='pic/guo.png'"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="center" class="clearfix">
+            <div id="left-menu" class="pull-left">
+                <div class="menu-wrap">
+                    <div class="t-user"><img src="pic/uerhead.jpg" width="36" height="36" onerror="this.src='pic/uerhead.jpg'"><span style="margin-top:5px;display:inline-block;">耶耶耶</span></div>
+                    <ul class="my-left">
+                        <li class="m-li1 "><i class="iconfont icon-wode"></i><a href="my_profile.html">我的信息</a></li>
+                        <li class="m-li2"><i class="iconfont icon-chugui2"></i><a href="change_password.html">修改密码</a></li>
+                        <li class="m-li3 "><i class="iconfont icon-star-hollow"></i><a href="my_collection.html">我的收藏</a></li>
+                        <li class="m-li4"><i class="iconfont icon-555"></i><a href="my_evaluate.html">历史评价</a></li>
+                        <li class="m-li8"><i class="iconfont icon-555"></i><a href="project_learn.html">我的项目</a></li>
+                        <li class="m-li12"><i class="iconfont icon-555"></i><a href="order_notice.html">预约通知</a></li>
+                        <li class="m-li13 cur"><i class="iconfont icon-555"></i><a href="my_expOrder.html">我的预约</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content" class="pull-right">
+                <div class="center_content" style="min-height: 363px;">
+                    <form id="searchSection" onsubmit="return false;">
+                        <div class="search-line clearfix">
+                            <a href="javascript:void(0);" class="isDone on" data-isdone="2">新预约</a>
+                            <a href="javascript:void(0);" class="isDone" data-isdone="1">历史预约</a>
+                        </div>
+                    </form>
+                    <ul class="project-list list" id="list">
+                        <li class="noitems">暂无数据</li>
+                    </ul>
+                    <!-- <ul id="pagination" class="cN-pagination"><span class="page_total">共<b>0</b>条</span></ul> -->
+                </div>
+
+                <div class="c-panel" id="c-panel01">
+                    <div class="c-panel-bg"></div>
+                    <div class="c-content">
+                        <form id="search01" class="search" onsubmit="return false;">
+                            <h3 class="pull-left stuInfo">
+                                <span class="stuName"></span>
+                                <span class="stuScoreTotal">成绩记录：<i></i> 条</span>
+                                <span class="stuScore">实验得分：<i></i> 分</span>
+                            </h3>
+                            <span class="close-cpanel"></span>
+                        </form>
+                        <div id="sList" class="uList"></div>
+                        <ul class="cN-pagination" id="pagination1"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="south">
+            <div id="footer">
+                <div class="bottom">
+                    <p>
+                        <span>主办单位：天津瀚海星云数字科技股份有限公司</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>电话：022-23757972 服务热线：136 6207 0868 公司邮箱：hanisun@hanisun.com</span>
+                        <span style="display:block">地址：天津市华苑产业区兰苑路5号A座4层412-2室 津ICP备17001123号-1 Copyright ©2017版权所有 天津瀚海星云数字科技股份有限公司</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="/js/bdhm.js"></script>
+    </div>
+    <div id="dialog_overlay" style="visibility: hidden;">
+        <div id="dialog_bg"></div>
+        <div id="dialog_panel">
+            <div id="dialog_panel_bg"></div>
+            <div id="dialog_title">提示</div>
+            <div id="dialog_content"> </div>
+            <div id="dialog_control"><a href="javascript:void(0)" id="dialog_close" class="button" style="display:none;">取消</a><a href="javascript:void(0)" id="dialog_ok" class="button">确认</a></div>
+        </div>
+    </div>
+    <div id="page-loading" style="display: none;"></div><a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><i class="move-to-up iconfont"></i></a></body>
+
+</html>

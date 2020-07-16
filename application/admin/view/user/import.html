@@ -1,0 +1,82 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <div id="tab_upload" class="HuiTab">
+        <!--<div class="tabBar cl">-->
+            <!--<span>本地上传(xlsx,zip)</span>-->
+        <!--</div>-->
+        <div class="tabCon">
+            <div>
+                <a class="btn btn-primary radius mr-5" href="javascript:;" onclick="location.href='/admin/user/export'"><i class="Hui-iconfont"></i>下载导入模板</a>
+                <div id="drag" class="mt-30" title="将文件拖拽到此处上传">
+                    <label for="fileupload" title="点击上传">
+                        <img src="__STATIC__/images/upload99.png" style="height: 100px;width: 100px;margin: 20px" alt="">
+                    </label>
+                </div>
+                <input id="fileupload" type="file" name="file" data-url="{:\\think\\Url::build('import')}">
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__LIB__/lightbox2/css/lightbox.min.css">
+{/block}
+{block name="script"}
+<script src="__LIB__/laypage/1.3/laypage.js"></script>
+<script src="__LIB__/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="__LIB__/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+<script src="__LIB__/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+<script src="__LIB__/lightbox2/js/lightbox.min.js"></script>
+<script>
+    $(function () {
+        var callbackId = $("#callbackId").val();
+        // Tab 切换
+        $.tpTab("#tab_upload .tabBar span", "#tab_upload .tabCon", "current", "click", "0", function (index, tabCon, tabBar) {
+            if (index == 2 && tabCon.eq(index).find('.photo-list').html() == '') {
+                getListImage({p:p,'count':'1'});
+            }
+        }, function (i) {
+
+        });
+        //
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            singleFileUploads: false,
+            dropZone: $('#drag'),
+            start: function () {
+                // layer_msg = layer.msg('正在导入中……', {time: 100000000});
+            },
+            success:function(e, status){
+                if (e.code == 500) {
+                    parent.layer.msg('导入失败!');
+                    parent.layer.closeAll('iframe');
+                }
+                if (e.code == 200){
+                    // parent.layer.msg('导入成功!');
+                    parent.location.reload();
+                    parent.layer.closeAll('iframe');
+                }
+                parent.layer.msg('导入失败!');
+                parent.layer.closeAll('iframe');
+                // parent.refresh();
+                // parent.layer.closeAll('iframe');
+            },
+            error:function(){
+                parent.layer.msg('文件出错,上传失败！');
+                // parent.layer.closeAll('iframe');
+            }
+        });
+        $('#drag').bind('drop dragover', function (e) {
+            e.preventDefault();
+        }).on('dragenter', function (e) {
+            $(this).addClass('dragenter');
+        }).on('drop', function (e) {
+            $(this).removeClass('dragenter');
+        }).on('dragleave', function (e) {
+            $(this).removeClass('dragenter');
+        });;
+    });
+
+</script>
+{/block}

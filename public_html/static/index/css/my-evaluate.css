@@ -1,0 +1,25 @@
+﻿/*评论*/
+
+#list .item {
+    padding:30px 0;
+    border-bottom:1px solid #ECECEC;
+    font-size:14px;
+}
+
+#list .item .info {
+    color:#949494;
+    margin-bottom:30px;
+    font-size:13px;
+}
+
+#list .item .info span {
+    margin-right:20px;
+}
+
+#list .item .info a {
+    color:#557EA1;
+}
+
+#list .item .cont {
+    line-height:20px;
+} 

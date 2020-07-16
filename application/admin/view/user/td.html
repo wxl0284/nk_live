@@ -1,0 +1,6 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.email}</td>
+<!--<td>{$vo.password}</td>-->
+<td>{$vo.phone}</td>
+<td>{$vo.name|high_light=$Request.param.name}</td>
+<td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>

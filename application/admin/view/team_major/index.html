@@ -1,0 +1,49 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            <a class="btn btn-primary radius mr-5" href="javascript:;" onclick="layer_open('添加','/admin/team_major/add/subject_id/{$subject_id}.html')"><i class="Hui-iconfont"></i> 添加</a>
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="">姓名</th>
+            <th width="">所在单位</th>
+            <th width="">专业技术职务</th>
+            <th width="">行政职务</th>
+            <th width="">承担任务</th>
+            <th width="">备注</th>
+            <th width="">团队成员类型</th>
+            <th width="">人员类型</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td>{$vo.name}</td>
+            <td>{$vo.unit}</td>
+            <td>{$vo.skill_work}</td>
+            <td>{$vo.administration_work}</td>
+            <td>{$vo.ready_task}</td>
+            <td>{$vo.mark}</td>
+            <td>{if $vo.type == 1}其他成员{else}主要成员{/if}</td>
+            <td>{if $vo.personnel == 1}高校人员{else}企业人员{/if}</td>
+            <td class="f-14">
+                <a class="btn btn-primary radius mr-5" href="javascript:;" onclick="layer_open('添加','/admin/team_major/edit/subject_id/{$subject_id}/id/{$vo.id}.html')">编辑</a>
+                {tp:menu menu='sdeleteforever' /}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+

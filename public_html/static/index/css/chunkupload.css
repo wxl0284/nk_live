@@ -1,0 +1,140 @@
+﻿#file-upload-overlay {
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:1001;
+    display:none;
+}
+
+.file-upload-bg {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:0;
+    background:#000;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}
+
+.file-upload {
+    position: absolute;
+    width: 500px;
+    height: 120px;
+    left: 50%;
+    margin-left: -260px;
+    top: 50%;
+    margin-top: -120px;
+    background: #fff;
+    padding: 20px 20px 20px;
+}
+
+.file-upload-type {
+    color: #333;
+    display: block;
+    margin-right: 50px;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+.file-upload-close {
+    position:absolute;
+    width:30px;
+    height:30px;
+    color:#cc0000;
+    font-size:22px;
+    right:10px;
+    top:10px;
+    cursor:pointer;
+}
+
+.file_uploadBtn {
+    background: #777 none repeat scroll 0 0;
+    border-radius: 21px;
+    color: #fff;
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    width: 140px;
+    float:left;
+    margin-right:40px;
+    cursor:pointer;
+}
+
+#file_fileInput {
+    opacity: 0;
+    filter:alpha(opacity=0);
+    height: 42px;
+    position: absolute;
+    left: 0;
+    top:60px;
+    cursor:pointer;
+}
+
+.fileBox {
+    float: left;
+    width: 450px;
+    height: 42px;
+    display: block;
+}
+
+.filename {
+    color:#666;
+    font-size:14px;
+}
+
+.pbar {
+    height: 10px;
+    border-radius: 10px;
+    width: 420px;
+    background: #dedede;
+    position: relative;
+    margin-top: 10px;
+    display:none;
+}
+
+#file-upload-overlay .progress {
+    height:10px;
+    border-radius:10px;
+    width:0;
+    background:#979797;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#file_percent {
+    color:#666;
+    position:absolute;
+    width:60px;
+    height:20px;
+    right:-80px;
+    top:-5px;
+}
+
+.pauseBtn {
+    display: block;
+    width: 50px;
+    text-align: center;
+    padding: 5px;
+    background: #8f8f8f;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.goBtn {
+    display: block;
+    width: 50px;
+    text-align: center;
+    padding: 5px;
+    background: #009900;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}

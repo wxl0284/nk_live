@@ -1,0 +1,91 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <input type="hidden" name="id" value="{$vo.id ?? ''}">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>分类标题：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="分类标题" name="cat_name" value="{$vo.cat_name ?? ''}"  datatype="*" nullmsg="请填写分类标题">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">选择分类：</label>
+            <?php $cat_list = model('category')->cat_list(0,$vo['parent_id'],true); ?>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="parent_id" class="select">
+                        <option value="0">请选择分类</option>
+                        {$cat_list}
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">缩略图：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" name="equip_pic" id="upload" placeholder="请点击后面的上传按钮" style="width: 70%" value="{$vo.equip_pic ?? ''}">
+                <button type="button" class="btn btn-primary radius" onclick="layer_open('文件上传','{:\\think\\Url::build(\'Upload/index\', [\'id\' => \'upload\'])}')">上传</button>
+                
+                <a onclick="show_img();" type="button" class="btn btn-success radius">预览</a>
+
+               <!--  <a onclick="$(this).attr('href', $('#upload').val())" type="button" class="btn btn-success radius" data-lightbox="preview">预览</a> -->
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype: 2,
+            ajaxPost: true,
+            showAllError: true,
+            callback: function (ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+
+    function show_img(){
+        var img_url = $('#upload').val();
+        if (img_url.indexOf(',') == -1) {
+            layer.photos({photos: { 'data': [{'src': $('#upload').val()}] },closeBtn:1,area: '450px'});
+        }else{
+            var img_arr = img_url.split(',');
+            var data = [];
+            for (var i = img_arr.length - 1; i >= 0; i--) {
+                data.push({'src':img_arr[i]});
+            }
+            console.log(data);
+            layer.photos({
+                photos: { 
+                    'data': data 
+                },
+                closeBtn:1,
+                area: '450px'
+            })
+        }
+    }
+</script>
+{/block}

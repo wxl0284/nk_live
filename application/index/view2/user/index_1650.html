@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--SoftTouchIT SiteC, version:1.0.686-->
+<html>
+
+<head>
+    <title>个人信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="format-detction" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="private, no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords">
+    <link rel="icon" type="__STATIC__/image/x-icon" href="#">
+    <link rel="shortcut icon" href="__STATIC__/image/favicon2.ico" type="image/x-icon">
+    <script src="__STATIC__/js/core.js"></script>
+    <script src="__STATIC__/js/sha256.js"></script>
+    <script src="__STATIC__/js/json3.js"></script>
+    <script src="__STATIC__/js/qs.js"></script>
+    <script src="__STATIC__/js/ie8.js"></script>
+    <script src="__STATIC__/js/md5.js"></script>
+    <script src="__STATIC__/js/dialog.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/dialog.css">
+    <link rel="stylesheet" href="__STATIC__/css/common.css">
+    <link rel="stylesheet" href="__STATIC__/css/common_3.css">
+    <script src="__STATIC__/js/jquery-v1.12.4.min.js"></script>
+    <script src="__STATIC__/js/jquery.easing.js"></script>
+    <script src="__STATIC__/js/move-top.js"></script>
+    <script src="__STATIC__/js/define.js"></script>
+    <script src="__STATIC__/js/moment.min.js"></script>
+    <script src="__STATIC__/js/moment-with-locales.min.js"></script>
+    <script src="__STATIC__/js/jquery.enplaceholder.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/header_v4.css">
+    <script src="__STATIC__/js/subjects.js"></script>
+    <script src="__STATIC__/js/lang.js"></script>
+    <script src="__STATIC__/js/header_v4.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/footer_v4.css">
+    <link rel="stylesheet" href="__STATIC__/css/pagination.css">
+    <link rel="stylesheet" href="__STATIC__/css/common_1.css">
+    <script src="__STATIC__/js/common.js"></script>
+    <script src="__STATIC__/js/paginationsamepage.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/session.css">
+    <!--<script src="__STATIC__/js/session.js"></script>-->
+    <script src="__STATIC__/js/jquery.ui.position.js"></script>
+    <script src="__STATIC__/js/swfobject.js"></script>
+    <script src="__STATIC__/js/jquery.filereader.js"></script>
+    <script src="__STATIC__/js/imgselector.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/form.css">
+    <script src="__STATIC__/js/resizepanel.js"></script>
+    <script src="__STATIC__/js/resizepanel2.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/my-profile.css">
+    <script src="__STATIC__/js/my-profile.js"></script>
+    <style>
+        #dialog_control #dialog_ok {
+            color: #802258
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layout" style="visibility: visible;">
+        {include file="public/header" /}
+
+        <div id="center" class="clearfix">
+            <div id="left-menu" class="pull-left">
+                <!--<div class="menu-wrap" style="min-height: 409px;">-->
+                <div class="menu-wrap">
+                    <div class="t-user"><img src="" width="36" height="36" onerror="this.src='__STATIC__/pic/uphead.jpg'"><span style="margin-top:5px;display:inline-block;">{$info.name}</span></div>
+                    <ul class="my-left">
+                        <li class="m-li1 cur"><i class="iconfont icon-wode"></i><a href="{:url('user/index')}">我的信息</a></li>
+                        <li class="m-li2"><i class="iconfont icon-chugui2"></i><a href="{:url('user/change_password')}">修改密码</a></li>
+                        <li class="m-li3"><i class="iconfont icon-star-hollow"></i><a href="{:url('user/my_collection')}">我的收藏</a></li>
+                        <li class="m-li4"><i class="iconfont icon-555"></i><a href="{:url('user/my_evaluate')}">历史评价</a></li>
+                        <li class="m-li8"><i class="iconfont icon-555"></i><a href="{:url('user/project_learn')}">我的项目</a></li>
+                        <!--<li class="m-li12"><i class="iconfont icon-555"></i><a href="{:url('user/order_notice')}">预约通知</a></li>-->
+                        <!--<li class="m-li13"><i class="iconfont icon-555"></i><a href="{:url('user/my_expOrder')}">我的预约</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div id="content" class="pull-right">
+
+                <div class="center_content" style="min-height: 371px;">
+                    <div class="person clearfix">
+                        <ul id="elList">
+                            <li>
+                                <div class="info">姓名：<span>{$info.name}</span><a href="javascript:;" onclick="X.pub('editName','mj_803045')" class="change-email">修改</a></div>
+                            </li>
+                            <li>
+                                <div class="info">身份：<span>{$info.identity}</span></div>
+                            </li>
+                            <li>
+                                <div class="info">性别：<span>{$info.sex}</span><a href="javascript:;" onclick="X.pub('editGender','mj_803045')" class="change-email">修改</a></div>
+                            </li>
+                            <li>
+                                <div class="info">省份：<span>{$info.province}</span></div>
+                            </li>
+                            {if $info.identity!='社会人士' }
+                            <li>
+                                <div class="info">学校：<span>{$info.position}</span></div>
+                            </li>
+                            {/if}
+                            <li>
+                                <div class="info">手机号：<span>{$info.phone}</span><a href="/index/user/change_phone.html" class="change-phone">修改</a></div>
+                            </li>
+                        </ul>
+                        <div class="head">
+                            <div class="userhead"><img src="" onerror="this.src='__STATIC__/pic/uphead.jpg'"></div>
+                            <div class="upload" id="uploadimg">修改头像</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form_overlay" id="form_overlay">
+                    <div class="form_overlay_bg"></div>
+                    <div class="form_panel">
+                        <div class="form_title">修改性别</div>
+                        <div class="form_content">
+                            <form id="itemForm">
+                                <div class="item hide">
+                                    <span class="label"><i class="require">*</i>用户名</span>
+                                    <input type="text" class="form-control" disabled="disabled" name="username">
+                                </div>
+                                <div class="item">
+                                    <span class="label"><i class="require">*</i>性别</span>
+                                    <select name="gender">
+                                    <option value="">选择性别</option>
+                                    <option value="M">男</option>
+                                    <option value="F">女</option>
+                                </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form_control">
+                            <a href="javascript:;" class="button close" id="form_close">取消</a>
+                            <a href="javascript:;" class="button" id="form_submit">保存</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form_overlay" id="name_overlay">
+                    <div class="form_overlay_bg"></div>
+                    <div class="form_panel">
+                        <div class="form_title">修改姓名</div>
+                        <div class="form_content">
+                            <form id="nameForm">
+                                <div class="item">
+                                    <span class="label"><i class="require">*</i>姓名</span>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form_control">
+                            <a href="javascript:;" class="button close" id="name_close">取消</a>
+                            <a href="javascript:;" class="button" id="name_submit">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {include file="public/footer" /}
+        <script src="__STATIC__/js/bdhm.js"></script>
+    </div>
+    <div id="dialog_overlay" style="visibility: hidden;" class="">
+        <div id="dialog_bg"></div>
+        <div id="dialog_panel">
+            <div id="dialog_panel_bg"></div>
+            <div id="dialog_title">选择图片</div>
+            <div id="dialog_content">
+                <div class="imageSelector clearfix">
+                    <div id="thumbPreview"><img src="__STATIC__/pic/uphead.jpg"></div>
+                    <div class="image-file-content">
+                        <span class="image-file-btn" style="display:inline-block">
+                        <span class="image-file-txt" style="display:none;">选择图片</span>
+                        <input id="imageFile" type="file" name="imageFile" accept="image/*">
+                        </span>
+                        <div class="image-file-tip" style="padding: 10px 0px; font-size: 13px; color: rgb(153, 153, 153);">推荐图片尺寸：200px*200px，JPG/PNG格式。图片大小在100KB以内。</div>
+                        <div class="image-file-error" style="display:none;padding:10px 0;font-size:13px;color:#ff0000;"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="dialog_control" style="display: flex;"><a href="javascript:void(0)" id="dialog_close" class="button" style="display:block;">取消上传</a><a href="javascript:void(0)" id="dialog_ok" class="button">确认上传</a></div>
+        </div>
+    </div>
+    <div id="page-loading" style="display: none;"></div>
+    <a href="#" id="toTop" style="display: none;">
+        <span id="toTopHover"></span>
+        <i class="move-to-up iconfont"></i>
+    </a>
+    <script>
+        $(function() {
+            $(".upload").on('click', function() {
+                $("#dialog_overlay").css("visibility", "visible");
+            });
+            $("#dialog_close").on('click', function() {
+                $("#dialog_overlay").css("visibility", "hidden");
+            });
+        })
+    </script>
+</body>
+
+</html>

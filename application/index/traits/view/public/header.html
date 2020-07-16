@@ -1,0 +1,36 @@
+﻿<style>.changeLang{display:none;}</style>
+<div id="north">
+    <div class="header">
+        <div class="header-bg"></div>
+        <div class="header_container">
+            <a href="/index/index.html">
+                <div class="logo">
+                    <img src="{$system.logo}">
+                    <span>{$system.title}</span>
+                </div>
+            </a>
+            <div class="nav clearfix">
+                <ul class="clearfix" id="menu"></ul>
+                <div class="dropdown_more">
+                    <div class="more">更多</div>
+                    <ul class="dropdown_menu" id="dropdown"></ul>
+                </div>
+                <div class="nav-right">
+                    <!--<div class="changeLang before"><a href="javascript:;" data-lang="EN" id="changeLang">English</a></div>-->
+                    <div id="user-info">
+                        <div class="people">
+                            {if $info}
+                            <a href="{:url('login/logout')}" id="signOff">退出</a>
+                            <a href="{:url('user/index')}" id="username">{$info.name}</a>
+                            <img class="pic" src="__STATIC__/{$info.img}" onerror="this.src='__STATIC__/pic/uphead.jpg'" style="margin-top: 65%">
+                            {else/}
+                            <!-- <a href="/index/login/index" class="to-login">登录</a><span class="line">|</span><a href="/index/register/index" class="to-register">注册</a> -->
+                            <a href="/index/login/index" class="to-login">登录</a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

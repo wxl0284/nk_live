@@ -1,0 +1,111 @@
+﻿/*底部样式*/
+
+.bottom {
+    width: 100%;
+    background: #e3e3e3;
+    min-height: 285px;
+}
+
+.en-lang .bottom {
+    line-height: 20px;
+}
+
+.bottom p {
+    color: #999;
+    text-align: center;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 125px 60px;
+    box-sizing: border-box;
+}
+
+.en-lang .bottom p {
+    padding-top: 30px;
+}
+
+.bottom p>span,
+.contactUs {
+    margin-right: 15px;
+}
+
+.bottom p span a {
+    color: #717171;
+}
+
+.bottom p span a:hover {
+    color: #2095ff;
+}
+
+
+/*2018-11-23*/
+
+.wechat {
+    font-size: 14px;
+    -webkit-text-stroke-width: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.wechat i {
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+}
+
+.wechat-img {
+    /*width:280px;*/
+    /*height:300px;*/
+    padding: 16px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin: 0 0 15px -90px;
+    z-index: 1;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    display: none;
+}
+
+.en-lang .wechat-img {
+    bottom: 20px;
+}
+
+.wechat-img:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fff;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+}
+
+.wechat-img img {
+    width: 180px;
+    height: auto;
+    display: block;
+    /*margin:10px auto;*/
+}
+
+.bottom p span.wechat-img span {
+    display: block;
+    margin: 0;
+    line-height: normal;
+}
+
+.bottom p span.wechat-img span.img-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contactUs {
+    color: inherit;
+}

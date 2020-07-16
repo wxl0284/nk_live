@@ -1,0 +1,45 @@
+﻿#list {
+    margin:0;
+}
+
+.noticeList>li {
+    width:45%;
+    color:#333;
+    padding:15px;
+    background-color: #f5f5f5;
+}
+
+.noticeTitle {
+    padding:0 0 0 15px;
+    position:relative;
+}
+
+.noticeTitle:before {
+    content:"";
+    width:3px;
+    height:1em;
+    position:absolute;
+    left:0;
+    top:3px;
+    background-color:#4976e8;
+}
+
+.noticeTitle>span{
+    margin-top: 3px;
+}
+
+.noticeContent {
+    margin:15px 0;
+    padding:0 15px;
+    line-height:1.6em;
+}
+
+.noticeContent>span{
+    display: block;
+    
+}
+
+.a-link{
+    color:#4976e8;
+    text-decoration: underline;
+}

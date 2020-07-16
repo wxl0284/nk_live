@@ -1,0 +1,53 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <!-- 
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+            {tp:menu menu="add" /}
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div> -->
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="">名称</th>
+            <th width="">logo</th>
+            <th width="">主办单位</th>
+            <th width="">电话</th>
+            <th width="">服务热线</th>
+            <th width="">公司邮箱</th>
+            <th width="">地址</th>
+            <th width="">备案号</th>
+            <th width="">版权</th>
+            <th width="">公司名称</th>
+            <th width="70">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td>{$vo.title}</td>
+            <td><img src="{$vo.logo}" style="width:45px;height:45px;"></td>
+            <td>{$vo.organize}</td>
+            <td>{$vo.phone}</td>
+            <td>{$vo.service_hot_line}</td>
+            <td>{$vo.email}</td>
+            <td>{$vo.address}</td>
+            <td>{$vo.record_no}</td>
+            <td>{$vo.copyright}</td>
+            <td>{$vo.company_name}</td>
+            <td class="f-14">
+                {tp:menu menu='sedit' /}
+             <!--    {tp:menu menu='sdeleteforever' /} -->
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+

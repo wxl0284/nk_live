@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<!--SoftTouchIT SiteC, version:1.0.686-->
+<html>
+
+<head>
+    <title>修改手机号</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="format-detction" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="private, no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords">
+    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="shortcut icon" href="__STATIC__/images/favicon2.ico" type="image/x-icon">
+    <script src="__STATIC__/js/core.js"></script>
+    <script src="__STATIC__/js/sha256.js"></script>
+    <script src="__STATIC__/js/json3.js"></script>
+    <script src="__STATIC__/js/qs.js"></script>
+    <script src="__STATIC__/js/ie8.js"></script>
+    <script src="__STATIC__/js/md5.js"></script>
+    <script src="__STATIC__/js/dialog.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/dialog.css">
+    <link rel="stylesheet" href="__STATIC__/css/common.css">
+    <script src="__STATIC__/js/jquery-v1.12.4.min.js"></script>
+    <script src="__STATIC__/js/jquery.easing.js"></script>
+    <script src="__STATIC__/js/move-top.js"></script>
+    <script src="__STATIC__/js/define.js"></script>
+    <script src="__STATIC__/js/moment.min.js"></script>
+    <script src="__STATIC__/js/moment-with-locales.min.js"></script>
+    <script src="__STATIC__/js/jquery.enplaceholder.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/header_v4.css">
+    <script src="__STATIC__/js/subjects.js"></script>
+    <script src="__STATIC__/js/lang.js"></script>
+    <script src="__STATIC__/js/header_v4.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/footer_v4.css">
+    <!--<link rel="stylesheet" href="__STATIC__/css/session.css">-->
+    <!--<script src="__STATIC__/js/session.js"></script>-->
+    <link rel="stylesheet" href="__STATIC__/css/find-password.css">
+    <script src="__STATIC__/js/change-phone.js"></script>
+</head>
+
+<body>
+    <div id="layout">
+        {include file="public/header" /}
+        <div id="menu"></div>
+        <div id="center">
+            <div id="content" class="content">
+                <div class="center_content">
+                    <div class="word"> <i></i>
+
+                        <span>修改手机号</span>
+                    </div>
+                    <div class="container">
+                        <div class="main">
+                            <p class="tip">请先验证原手机号</p>
+                            <form class="form-signin" id="itemForm">
+                                <div class="step1">
+                                    <div class="item">
+                                        <input name="phone" type="num" class="form-control" placeholder="手机号">
+                                    </div>
+                                    <div class="item">
+                                        <input name="code" type="text" class="form-control short" placeholder="填写验证码">
+                                        <span class="sendCode sendCode1">获取验证码</span>
+                                    </div>
+                                    <input type="button" class="btn" id="submitBtn" value="下一步">
+                                </div>
+                                <div class="step2">
+                                    <div class="item">
+                                        <input name="phone2" type="num" class="form-control" placeholder="填写新手机号">
+                                    </div>
+                                    <div class="item">
+                                        <input name="code2" type="text" class="form-control short" placeholder="填写验证码">
+                                        <span class="sendCode sendCode2">获取验证码</span>
+                                    </div>
+                                    <input type="button" class="btn" id="submitBtn2" value="确认修改">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {include file="public/footer" /}
+        <script src="__STATIC__/js/bdhm.js"></script>
+    </div>
+</body>
+
+</html>

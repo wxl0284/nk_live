@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<!--SoftTouchIT SiteC, version:1.0.686-->
+<html>
+
+<head>
+    <title>注册</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="format-detction" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="private, no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords">
+    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="shortcut icon" href="/images/favicon2.ico" type="image/x-icon">
+    <script src="js/core.js"></script>
+    <script src="js/sha256.js"></script>
+    <script src="js/json3.js"></script>
+    <script src="js/qs.js"></script>
+    <script src="js/ie8.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/dialog.js"></script>
+    <link rel="stylesheet" href="css/dialog.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery-v1.12.4.min.js"></script>
+    <script src="js/jquery.easing.js"></script>
+    <script src="js/move-top.js"></script>
+    <script src="js/define.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/jquery.enplaceholder.js"></script>
+    <link rel="stylesheet" href="css/header_v4.css">
+    <script src="js/subjects.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/header_v4.js"></script>
+    <link rel="stylesheet" href="css/footer_v4.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <script src="js/session2.js"></script>
+    <script src="js/signup.js"></script>
+</head>
+
+<body>
+    <div id="layout">
+        <div id="north">
+            <div class="header">
+                <div class="header-bg"></div>
+                <div class="header_container">
+                    <a href="index.html">
+                        <div class="logo">
+                            <img src="pic/nankai_logo.png">
+                            <span>南开大学虚拟仿真申报平台</span>
+                        </div>
+                    </a>
+                    <div class="nav clearfix">
+                        <ul class="clearfix" id="menu"></ul>
+                        <div class="dropdown_more">
+                            <div class="more">更多</div>
+                            <ul class="dropdown_menu" id="dropdown"></ul>
+                        </div>
+                        <div class="nav-right">
+                            <div id="user-info"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu"></div>
+        <div id="center">
+            <div id="content" class="content">
+                <div class="register" id="state_login">
+                    <div class="register_title clearfix">
+                        <div class="pull-left">
+                            <span class="r-title">用户注册</span>
+                            <span class="r-tip">我已经注册，立即
+                    <a href="/login">登录</a>
+                </span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="on s1">添加手机号</span>
+                            <span class="s2">填写账号信息</span>
+                            <span class="s3">设置密码</span>
+                            <span class="s4">注册完成</span>
+                        </div>
+                    </div>
+                    <form class="register_form" id="itemForm">
+                        <div class="reg-tab hide">
+                            <span class="tab tab1 on">手机号注册</span>
+                            <span class="tab tab2">邮箱注册</span>
+                        </div>
+                        <div id="step1" class="step step_active">
+                            <div class="register_item phone-reg">
+                                <input class="ipt" type="text" name="phone" placeholder="请输入手机号">
+                            </div>
+                            <div class="register_item email-reg hide">
+                                <input class="ipt" type="text" name="regEmail" placeholder="请输入邮箱地址">
+                            </div>
+                            <div class="register_item">
+                                <input class="ipt" type="text" name="code" placeholder="输入验证码">
+                                <span class="code" id="testcode">获取验证码</span>
+                            </div>
+                            <div class="register_item">
+                                <div class="next-btn btn1">下一步</div>
+                            </div>
+                        </div>
+                        <div id="step2" class="step">
+                            <div class="register_item ">
+                                <input class="ipt" type="text" name="name" placeholder="请输入昵称（2-10位）">
+                                <span class="required">*</span>
+                            </div>
+                            <div class="register_item phone-reg">
+                                <input class="ipt" type="text" name="email" placeholder="请输入邮箱">
+                            </div>
+                            <div class="register_item ">
+                                <select class="ipt" name="role">
+                        
+                        <option value="">选择身份</option>
+                        <option value="2">学生</option>
+                        <option value="3">教师</option>
+                        <option value="4">社会人士</option>
+                    </select>
+                                <span class="required">*</span>
+                            </div>
+                            <div class="ts-unit">
+                                <div class="register_item ">
+                                    <select class="ipt" name="province" id="sheng">
+                            <option value="">选择省份</option>
+                            <option value="0">北京市</option>
+                            <option value="1">天津市</option>
+                            <option value="2">河北省</option>
+                            <option value="3">山西省</option>
+                            <option value="4">内蒙古自治区</option>
+                            <option value="5">辽宁省</option>
+                            <option value="6">吉林省</option>
+                            <option value="7">黑龙江省</option>
+                            <option value="8">上海市</option>
+                            <option value="9">江苏省</option>
+                            <option value="10">浙江省</option>
+                            <option value="11">安徽省</option>
+                            <option value="12">福建省</option>
+                            <option value="13">江西省</option>
+                            <option value="14">山东省</option>
+                            <option value="15">河南省</option>
+                            <option value="16">湖北省</option>
+                            <option value="17">湖南省</option>
+                            <option value="18">广东省</option>
+                            <option value="19">广西壮族自治区</option>
+                            <option value="20">海南省</option>
+                            <option value="21">重庆市</option>
+                            <option value="22">四川省</option>
+                            <option value="23">贵州省</option>
+                            <option value="24">云南省</option>
+                            <option value="25">西藏自治区</option>
+                            <option value="26">陕西省</option>
+                            <option value="27">甘肃省</option>
+                            <option value="28">青海省</option>
+                            <option value="29">宁夏回族自治区</option>
+                            <option value="30">新疆维吾尔自治区</option>
+                            <option value="31">新疆生产建设兵团</option>
+                            <option value="32">香港特别行政区</option>
+                            <option value="33">澳门特别行政区</option>
+                            <option value="34">台湾省</option>
+                            <option value="35">军队本科高校</option>
+                        </select>
+                                    <span class="required">*</span>
+                                </div>
+                                <div class="register_item ">
+                                    <select class="ipt" name="school" id="school">
+                            <option value="">选择学校</option>
+                        </select>
+                                    <span class="required">*</span>
+                                </div>
+                            </div>
+                            <div class="so-unit">
+                                <div class="register_item ">
+                                    <select class="ipt" name="industry" id="industry">
+                            <option value="">选择行业</option>
+                            <option value="1">农、林、木、渔业</option>
+                            <option value="2">采矿业</option>
+                            <option value="3">制造业</option>
+                            <option value="4">电力、热力、燃气及水生产和供应</option>
+                            <option value="5">建筑业</option>
+                            <option value="6">批发和零售业</option>
+                            <option value="7">交通运输、仓储和邮政业</option>
+                            <option value="8">住宿和餐饮业</option>
+                            <option value="9">信息传输、软件和信息技术服务业</option>
+                            <option value="10">金融业</option>
+                            <option value="11">房地产业</option>
+                            <option value="12">租赁和商务服务业</option>
+                            <option value="13">科学研究和技术服务业</option>
+                            <option value="14">水利、环境和公共设施管理业</option>
+                            <option value="15">居民服务、修理和其他服务业</option>
+                            <option value="16">教育</option>
+                            <option value="17">卫生和社会工作</option>
+                            <option value="18">文化、体育和娱乐业</option>
+                            <option value="19">公共管理、社会保障和社会组织</option>
+                            <option value="20">国际组织</option>
+                        </select>
+                                    <span class="required">*</span>
+                                </div>
+                                <div class="register_item hide">
+                                    <input class="ipt" type="text" name="unit" placeholder="请输入单位">
+                                </div>
+                            </div>
+                            <div class="register_item">
+                                <div class="pre-btn btn2">上一步</div>
+                            </div>
+                            <div class="register_item">
+                                <div class="next-btn btn3">下一步</div>
+                            </div>
+                        </div>
+                        <div id="step3" class="step">
+                            <div class="register_item">
+                                <input class="ipt" type="password" name="password" placeholder="请输入密码（8-64位）">
+                                <span class="required">*</span>
+                            </div>
+                            <div class="register_item">
+                                <input class="ipt" type="password" name="password2" placeholder="再次输入密码">
+                                <span class="required">*</span>
+                            </div>
+                            <div class="register_item">
+                                <div class="pre-btn btn4">上一步</div>
+                            </div>
+                            <div class="register_item">
+                                <div class="next-btn btn5" id="submitBtn">提交注册</div>
+                            </div>
+                        </div>
+                        <div id="step4"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="south">
+            <div id="footer">
+                <div class="bottom">
+                    <p>
+                        <span>主办单位：天津瀚海星云数字科技股份有限公司</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>电话：022-23757972 服务热线：136 6207 0868 公司邮箱：hanisun@hanisun.com</span>
+                        <span style="display:block">地址：天津市华苑产业区兰苑路5号A座4层412-2室 津ICP备17001123号-1 Copyright ©2017版权所有 天津瀚海星云数字科技股份有限公司</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="js/bdhm.js"></script>
+        <script>
+            /**
+             * 注册方式的切换
+             */
+            $(".reg-tab .tab").on("click", function() {
+                if (step !== 1) {
+                    return;
+                }
+                $(this).addClass("on").siblings().removeClass("on");
+                // changeRegisterType($(this).index());
+            });
+            /*手机号下一步*/
+            let idnum = 0
+            $(".next-btn").on("click", function() {
+                    idnum += 1;
+                    $(".s2").addClass("on").siblings().removeClass("on");
+                    $(this).parents('#step' + idnum).addClass("step_active").siblings().removeClass("step_active");
+                })
+                //账户信息上一步
+            $(".pre-btn").on("click", function() {
+                idnum -= 1;
+                $(".s2").removeClass("on").siblings().addClass("on");
+                $(this).parents('#step' + idnum).removeClass("step_active").siblings().addClass("step_active");
+            })
+        </script>
+    </div>
+</body>
+
+</html>

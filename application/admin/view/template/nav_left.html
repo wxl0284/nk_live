@@ -1,0 +1,11 @@
+<nav class="nav navbar-nav">
+    <ul class="cl">
+        <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 清除缓存及清理数据 <i class="Hui-iconfont">&#xe6d5;</i></a>
+            <ul class="dropDown-menu menu radius box-shadow">
+                <li><a href="javascript:;" onclick="layer_open('初始化数据表', '{:\\think\\Url::build(\'tableclear\')}');"><i class="Hui-iconfont">&#xe616;</i> 初始化数据表</a></li>
+                <li><a href="javascript:;" onclick="$.get('{:\\think\\Url::build(\'sessionclear\')}', function(e){if(e.code == 0){layer.msg(e.msg, {icon:1});refresh();}})"><i class="Hui-iconfont">&#xe620;</i> 清理缓存数据</a></li>
+                <li><a href="javascript:;" onclick="layer.prompt(function(value, index, elem){$.post('{:\\think\\Url::build(\'tableclear\')}',{key:value},function(e){if(e.code == 0){layer.msg(e.msg, {icon:1});layer.close(index);}});});"><i class="Hui-iconfont">&#xe616;</i> 清理缓存数据</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>

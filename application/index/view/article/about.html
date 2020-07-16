@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<!--SoftTouchIT SiteC, version:1.0.686-->
+<html>
+
+<head>
+    <title>关于我们</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta name="format-detction" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="private, no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords">
+    <meta itemprop="image" content="/favicon.ico">
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon">
+    <script src="__STATIC__/js/core.js"></script>
+    <script src="__STATIC__/js/sha256.js"></script>
+    <script src="__STATIC__/js/json3.js"></script>
+    <script src="__STATIC__/js/qs.js"></script>
+    <script src="__STATIC__/js/ie8.js"></script>
+    <script src="__STATIC__/js/md5.js"></script>
+    <script src="__STATIC__/js/dialog.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/dialog.css">
+    <link rel="stylesheet" href="__STATIC__/css/common.css">
+    <script src="__STATIC__/js/jquery-v1.12.4.min.js"></script>
+    <script src="__STATIC__/js/jquery.easing.js"></script>
+    <script src="__STATIC__/js/move-top.js"></script>
+    <script src="__STATIC__/js/define.js"></script>
+    <script src="__STATIC__/js/moment.min.js"></script>
+    <script src="__STATIC__/js/moment-with-locales.min.js"></script>
+    <script src="__STATIC__/js/jquery.enplaceholder.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/header_v4.css">
+    <script src="__STATIC__/js/subjects.js"></script>
+    <script src="__STATIC__/js/lang.js"></script>
+    <script src="__STATIC__/js/header_v4.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/footer_v4.css">
+    <link rel="stylesheet" href="__STATIC__/css/about.css">
+    <script src="__STATIC__/js/session2.js"></script>
+    <script src="__STATIC__/js/about.js"></script>
+    <style>
+        #text {
+            height:0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layout">
+        {include file="public/header" /}
+        <div id="menu"></div>
+        <div id="center">
+            <div id="content" class="content">
+                <div class="center_content">
+                    <div class="top" style="background-image: url('{$equip_pic}') ">
+                        <div class="cover">
+
+                        </div>
+                    </div>
+                    <div class="intro">
+                        <div class="about-bottom-ctn1">
+                            <div class="content">
+                                <p>实验空间是根据教育部发布的“2017-2020年示范性虚拟仿真实验教学项目建设规划”，由教育部支持建设的国家虚拟仿真实验教学项目集中展示共享的平台。</p>
+                                <p><b>实验空间——国家虚拟仿真实验教学项目共享平台：</b>
+
+                                </p>
+                                <p>以学校为基础，支持各高校积极探索个性化、智能化、泛在化实验教学的新模式，为各高校虚拟仿真实验教学项目提供一个展示与共享应用的窗口。</p>
+                                <p>以用户为主，服务于学生与社会。</p>
+                                <p>每个虚拟仿真实验教学项目都会呈现：完整的宣传片、详尽的实验项目说明、无缝对接的实验跳转，力求给参与者提供一个简洁便利的实验通道。</p>
+                                <div class="img-ctn">
+                                    <img src="__STATIC__/pic/about_chart.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-bottom-ctn2">
+                            <div class="content">
+                                <p>1、无门槛的跨学校跨专业跨平台地体验更精准、更炫酷、更安全的虚拟仿真实验。</p>
+                                <p>2、零距离接触人工智能、人机交互、超级计算、虚拟现实、增强现实、云计算等网络化、数字化、智能化的尖端技术手段。</p>
+                                <p>3、轻松自如的参与共享。平台以开放共享的形式服务于用户，设置了评分、收藏、点赞以及评论的公众评审功能，真正做到重共享重应用重社会影响力，切实服务于教学。</p>
+                                <p>在这里随着信息技术的快速迭代、实验内容的快速更新，将会有越来越多的示范性虚拟仿真实验教学项目走出实验室、走出学校，走向社会。</p>
+                                <div class="about-bottom-images clearfix">
+                                    {volist name="banner" id="vo"}
+                                    <div class="about-bimg-item">
+                                        <img src="{$vo.equip_pic}">
+                                    </div>
+                                    {/volist}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="south">
+    <div id="footer">
+        <div class="bottom">
+            <p>
+                <span style="display:block">{$system.address} {$system.record_no} {$system.copyright} {$system.company_name}</span>
+            </p>
+        </div>
+    </div>
+</div>
+        <script src="__STATIC__/js/bdhm.js"></script>
+    </div>
+</body>
+
+</html>

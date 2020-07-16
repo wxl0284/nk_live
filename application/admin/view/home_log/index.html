@@ -1,0 +1,53 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    <form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+        <!--<input type="text" class="input-text" style="width:250px" placeholder="id" name="id" value="{$Request.param.id}" >-->
+        <input type="text" class="input-text" style="width:250px" placeholder="用户名" name="admin" value="{$Request.param.admin}" >
+        <input type="text" class="input-text" style="width:250px" placeholder="用户ID" name="admin_id" value="{$Request.param.admin_id}" >
+        <!--<input type="text" class="input-text" style="width:250px" placeholder="描述" name="describe" value="{$Request.param.describe}" >-->
+        <input type="text" class="input-text" style="width:250px" placeholder="ip" name="ip" value="{$Request.param.ip}" >
+        <!--<input type="text" class="input-text" style="width:250px" placeholder="操作时间" name="time" value="{$Request.param.time}" >-->
+        <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+    </form>
+    <div class="cl pd-5 bg-1 bk-gray">
+
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count ?? '0'}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            <th width="25"><input type="checkbox"></th>
+            <th width="">id</th>
+            <th width="">用户名</th>
+            <th width="">用户ID</th>
+            <th width="">描述</th>
+            <th width="">ip</th>
+            <th width="">操作时间</th>
+            <!--<th width="70">操作</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+            <td>{$vo.id|high_light=$Request.param.id}</td>
+            <td>{$vo.admin|high_light=$Request.param.admin}</td>
+            <td>{$vo.admin_id|high_light=$Request.param.admin_id}</td>
+            <td>{$vo.describe|high_light=$Request.param.describe}</td>
+            <td>{$vo.ip|high_light=$Request.param.ip}</td>
+            <td>{$vo.time|high_light=$Request.param.time}</td>
+            <!--<td class="f-14">-->
+                <!--{tp:menu menu='sedit' /}-->
+                <!--{tp:menu menu='sdeleteforever' /}-->
+            <!--</td>-->
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page ?? ''}</div>
+</div>
+{/block}
+

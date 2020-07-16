@@ -1,0 +1,55 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container" style="padding-top: 38px;">
+    <form class="form form-horizontal" id="form" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>状态：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                {foreach name='tables' item='table'}
+                <div class="checkbox-box">
+                    <input type="checkbox" name="tables[]" id="checkbox-{$key}" value="{$table}" {if condition="in_array($table,$allowList)"}disabled{/if}>
+                    <label for="checkbox-{$key}">{$table}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{if condition="in_array($table,$allowList)"}系统表，不可清理{/if}</label>
+                </div>
+                {/foreach}
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </form>
+    <button style="margin-left: 160px;margin-top: 20px;" class="btn btn-primary radius" onclick="tableclear();">&nbsp;&nbsp;确定清理数据表&nbsp;&nbsp;</button><br>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    //确定提交
+    function tableclear(){
+        layer.confirm('是否确定清理数据表?', {icon: 3, title:'提示'}, function(index)
+        {
+            console.log($('#form').serialize());
+            $.ajax({
+                url:"{:url('tableclear')}",
+                type:"post",
+                data:$('#form').serialize(),
+                success:function(data){
+                    if(data.code == 0){
+                        parent.layer.msg(data.msg, {icon:1});
+                        parent.refresh();
+                        parent.layer.closeAll('iframe');
+                    }else{
+                        parent.layer.msg('清理数据表失败！', {icon:2});
+                        parent.layer.closeAll('iframe');
+                    }              
+                },
+                error:function(){
+                    parent.layer.msg('清理数据表失败！', {icon:2});
+                    parent.layer.closeAll('iframe');
+                }
+            });
+        },function(index)
+        {
+            layer_close();
+            layer.close(index);
+            parent.layer.closeAll('iframe');
+        })
+    }
+</script>
+{/block}

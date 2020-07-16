@@ -1,0 +1,8 @@
+.idea
+composer.lock
+*.log
+runtime
+public_html/data
+public_html/file
+public_html/tmp
+public_html/uploads

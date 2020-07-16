@@ -1,0 +1,37 @@
+{
+    "name": "yuan1994/tpadmin",
+    "description": "a web admin based ThinkPHP5",
+    "type": "project",
+    "keywords": [
+        "tpadmin",
+        "thinkphp",
+        "admin",
+        "rbac",
+        "generate",
+        "generator"
+    ],
+    "homepage": "http://tpadmin.yuan1994.com/",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "tianpian",
+            "email": "tianpian0805@gmail.com",
+            "homepage": "http://tpadmin.yuan1994.com/",
+            "role": "Owner"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "topthink/framework": "^5.0",
+        "topthink/think-captcha": "^1.0",
+        "qiniu/php-sdk": "^7.0",
+        "yuan1994/tp-mailer": "^0.2.3",
+        "endroid/qr-code": "^3.9"
+    },
+    "extra": {
+        "think-path": "thinkphp"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

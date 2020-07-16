@@ -1,0 +1,153 @@
+﻿.center_content .top {
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+    width: 100%;
+    height: 400px;
+}
+
+.center_content .top .cover {
+    width: 100%;
+    height: 400px;
+}
+
+.center_content .top .toptxt {
+    text-align: center;
+    color: #fff;
+    /*padding:50px 0;*/
+    padding: 100px 0;
+}
+
+.center_content .top .toptxt p {
+    text-align: center;
+    color: #fff;
+}
+
+.center_content .top .toptxt p.title {
+    font-size: 30px;
+}
+
+.center_content .top .toptxt p.txt {
+    font-size: 26px;
+    line-height: 30px;
+    margin-top: 70px;
+}
+
+.center_content .intro {
+    width: 1200px;
+    /*margin: 50px auto 40px;*/
+    margin: 80px auto;
+    text-align: center;
+}
+
+.center_content .intro .goal .txt {
+    color: #404040;
+    font-size: 25px;
+    position: relative;
+}
+
+.center_content .intro p {
+    color: #999;
+    line-height: 25px;
+    margin-top: 40px;
+    font-size: 15px;
+    text-align: left;
+}
+
+.center_content .picbox {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.center2 {
+    background: #fff;
+    padding: 80px 0;
+}
+
+.center_content .picbox .bg {
+    margin-right: 15px;
+    float: left;
+    /* cursor: pointer; */
+}
+
+.center3 {
+    background: #f4f4f4;
+    padding: 80px 0;
+}
+
+.center3 .picbox {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.center3 .picbox .bg {
+    margin-right: 12px;
+    float: left;
+    /* cursor: pointer; */
+    position: relative;
+}
+
+.center3 .picbox .bg img {
+    width: 290px;
+    height: 410px;
+}
+
+.center3 .picbox .bg .text {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    color: #fff;
+    top: 150px;
+    left: 0px;
+    padding: 0px 24px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.center3 .picbox .bg .text p:first-child {
+    text-align: center;
+    font-size: 20px;
+}
+
+.center3 .picbox .bg .text p:last-child {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.center3 .picbox .bg:last-child {
+    margin-right: 0;
+}
+
+#previewPlayer {
+    width: 1024px;
+    height: 618px;
+    background: #000;
+    background-image: url("../pic/video_bg.png");
+    background-repeat: no-repeat;
+    background-size: 1024px 618px;
+    margin: 0 auto;
+}
+
+
+/*2018-11-09新加*/
+
+.Lwire,
+.Rwire {
+    position: absolute;
+    background: #81255a;
+    width: 20px;
+    height: 4px;
+    top: 50%;
+    margin-top: -2px;
+}
+
+.Lwire {
+    right: 100%;
+    margin-right: 10px;
+}
+
+.Rwire {
+    left: 100%;
+    margin-left: 10px;
+}

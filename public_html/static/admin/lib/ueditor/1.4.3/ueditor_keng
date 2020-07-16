@@ -1,0 +1,18 @@
+编辑器不自动转换div->p
+'allowDivTransToP':true   改为  false
+
+保存时不自动添加p标签
+将里面的"<p>"+(browser.ie?"":"<br/>")+"</p>"  全部替换为 ""
+这样就再也不自动添加p标签了
+
+修改时不追加p标签
+
+在html中
+var editor = UE.getEditor('editor',{   
+   enterTag : 'br'
+});
+
+图片浮动不保存时
+
+img: ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
+中加入'style'

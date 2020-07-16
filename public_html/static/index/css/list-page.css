@@ -1,0 +1,386 @@
+﻿/*列表页*/
+ .center_content .menu {
+    background:#f6f7f8;
+}
+
+.center_content .menu .menubox {
+    width:1200px;
+    margin:0 auto;
+    padding:20px 0;
+}
+
+.center_content .menu .menubox .title {
+    float:left;
+    color:#a5a5bc;
+    padding:5px 0;
+    width:95px;
+}
+
+.center_content .menu .menubox .sort.hide1 {
+    display:none;
+}
+/*专业大类*/
+ .center_content .menu .menubox .list {
+    float: left;
+    width: 1070px;
+}
+
+.center_content .menu .menubox .list li {
+    /*float:left;*/
+    display:inline-block;
+    margin-right:20px;
+    padding:5px 0;
+    cursor:pointer;
+}
+
+.center_content .menu .menubox .list li.on {
+    color:#fff;
+    background:#50abf2;
+    border-radius:3px;
+    padding:5px 20px;
+}
+/*专业分类*/
+ .center_content .menu .menubox .type {
+    float: left;
+    width: 1070px;
+}
+
+.center_content .menu .menubox .type li {
+    float:left;
+    margin-right:20px;
+    padding:5px 0;
+    cursor:pointer;
+}
+
+.center_content .menu .menubox .type li.on {
+    color:#fff;
+    background:#50abf2;
+    border-radius:3px;
+    padding:5px 20px;
+}
+/*专业*/
+ .center_content .menu .menubox .classify {
+    float: left;
+    width: 1100px;
+}
+
+.center_content .menu .menubox .classify li {
+    float:left;
+    margin-right:20px;
+    padding:5px 0;
+    cursor:pointer;
+}
+
+.center_content .menu .menubox .classify li.on {
+    color:#fff;
+    background:#50abf2;
+    border-radius:3px;
+    padding:5px 20px;
+}
+
+.center_content .menu .menubox .sort {
+    margin-bottom:20px;
+}
+
+.center_content .menu .menubox .sort:last-child {
+    margin-bottom:0;
+}
+
+/*项目级别等*/
+
+.sub-sort {
+    float:left;
+    margin-right:20px;
+}
+
+.center_content .menu .menubox .proLevel, .center_content .menu .menubox .prizeYear, .center_content .menu .menubox .declareYear {
+    float: left;
+    /*width: 1100px;*/
+}
+
+.center_content .menu .menubox .sub-sort li {
+    float:left;
+    margin-right:20px;
+    padding:5px 0;
+    cursor:pointer;
+}
+
+.center_content .menu .menubox .sub-sort li.on {
+    color:#fff;
+    background:#50abf2;
+    border-radius:3px;
+    padding:5px 20px;
+}
+
+.center_content .menu .menubox .sort .edit {
+    float:left;
+    /*border:1px solid #c1c1c1;*/
+    /*border-radius:3px;*/
+    /*width:200px;*/
+    height:30px;
+    /*background:#fff;*/
+}
+
+.center_content .menu .menubox .sort .edit input {
+    background: #fff;
+    border: 1px solid #c1c1c1;
+    width: 165px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    /* float: left; */
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+/*.center_content .menu .menubox .sort .edit .school-title {*/
+    /*margin-right:0;*/
+    /*border-right:0;*/
+    /*border-radius:3px 0 0 3px;*/
+/*}*/
+
+/*.center_content .menu .menubox .sort .edit .search {*/
+/*    background: url(../images/sprites.png) no-repeat;*/
+/*    background-position: 8px -149px;*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    display: inline-block;*/
+/*    cursor: pointer;*/
+/*    float: right;*/
+/*    background-color: #fff;*/
+/*    margin-left: -1px;*/
+/*    border: 1px solid #c1c1c1;*/
+/*    border-radius: 0 3px 3px 0;*/
+/*}*/
+#searchSection .s-btn {
+    border: 1px solid #50abf2;
+    background: #50abf2;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+    padding: 0px 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.center_content .course {
+    width:1200px;
+    margin:20px auto 0;
+}
+
+.center_content .course li {
+    float:left;
+    width: 32.5%;
+    height:248px;
+    margin:0 15px 30px 0;
+    position:relative;
+    box-shadow: 0px 4px 5px #999999;
+}
+
+.center_content .course li.nth3 {
+    margin-right:0;
+}
+
+.center_content .course li .cover {
+    background:none;
+    position: absolute;
+    cursor:pointer;
+    width:100%;
+    height:100%;
+    transition: 0.5s;
+    filter:alpha(opacity=0);
+    opacity:0;
+    /*display:none;*/
+    visibility:hidden;
+}
+
+.cover-bg {
+    background:#000;
+    position: absolute;
+    width:100%;
+    height:100%;
+    opacity:0.5;
+    filter:alpha(opacity=50);
+}
+
+.center_content .course li .cover .editbox {
+    padding:20px;
+    position:relative;
+}
+
+.center_content .course li .cover .editbox div {
+    margin-top:10px;
+}
+
+.center_content .course li .cover .editbox .word {
+    font-size:16px;
+    color:#fff;
+}
+
+.center_content .course li .cover .editbox .txt {
+}
+
+.center_content .course li .cover .editbox .txt span {
+    margin-right:10px;
+    color:#7dbdff;
+}
+
+.center_content .course li .cover .editbox .txt em {
+    /*color:#ff7010;*/
+    color:#fe7e38;
+}
+
+.center_content .course li .cover .editbox .intro {
+    color:#ddd;
+}
+
+.center_content .course li .cbox {
+    cursor:pointer;
+}
+
+.center_content .course li .cbox .pic {
+    overflow:hidden;
+    height:162px;
+}
+
+.center_content .course li .cbox .pic img {
+    width:100%;
+    height:224px;
+    margin-top:-31px;
+    transition: 0.5s;
+}
+
+.center_content .course li .cbox .text {
+    margin-top:10px;
+    position: relative;
+}
+
+.center_content .course li .cbox .text .infor {
+    float:left;
+    width:100%;
+    padding:0px 10px;
+    box-sizing:border-box;
+}
+
+.center_content .course li .cbox .text .infor p.p1 {
+    color:#444;
+    height:40px;
+    overflow:hidden;
+    width:85%;
+}
+
+.center_content .course li .cbox .text .infor p.p2 {
+    /*margin-top:5px;*/
+    color:#999;
+    padding-right: 34px;
+}
+
+.center_content .course li .cbox .text .infor p.p2 span {
+    margin-right: 10px;
+}
+
+.center_content .course li .cbox .text .score {
+    color:#fe7e38;
+    /*color:#ff8d40;*/
+    /*float:right;*/
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.center_content .course li .cbox .text .infor p.p2 .proLevel-1 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url(../images/g-icon.png) no-repeat center;
+    bottom: 0;
+    right: 0;
+    margin-right: 0;
+    
+    /*float: right;*/
+    /*margin-right: 0;*/
+    /*color: #ff0c0c;*/
+}
+
+/*排序*/
+.sort-container {
+    width:1170px;
+    margin:20px auto 0;
+    background:#f6f7f8;
+    padding:8px 15px;
+    color:#a5a5bc;
+}
+
+.sort-title, .sort-list {
+    float:left;
+}
+
+.sort-title {
+    margin-right:10px;
+    padding:5px 0;
+}
+
+.sort-list span {
+    float:left;
+    margin-right:5px;
+    padding:5px 15px;
+    cursor:pointer;
+    position:relative;
+    line-height:20px;
+}
+
+.sort-list .on {
+    background:#50abf2;
+    border-radius:3px;
+    color:#fff;
+}
+
+.sort-list span:before {
+    content: " ";
+    position: absolute;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #cccccc;
+    right: 5px;
+    top: 10px;
+}
+
+.sort-list .on.desc:before {
+    border-bottom: 5px solid #bbb;
+}
+
+.sort-list .on.aesc:before {
+    border-bottom: 5px solid #fff;
+}
+
+.sort-list span:after {
+    content: " ";
+    position: absolute;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #cccccc;
+    right: 5px;
+    bottom: 8px;
+}
+
+.sort-list .on.desc:after {
+    border-top: 5px solid #fff;
+}
+
+.sort-list .on.aesc:after {
+    border-top: 5px solid #bbb;
+}
+
+.getMore {
+    display:none;
+}
+
+.header{
+    position: static;
+}
+.subjects-box{
+    z-index:1;
+}

@@ -1,0 +1,124 @@
+﻿/*个人信息*/
+
+.center_content .person ul {
+    float: left;
+}
+
+.center_content .person li {
+    padding: 15px 0;
+}
+
+.center_content .person li:last-child {
+    width: 100%;
+}
+
+.center_content .person li:nth-child(2n) {}
+
+.center_content .person li .info {
+    font-size: 16px;
+}
+
+.center_content .person li .info span {
+    font-size: 14px;
+}
+
+.center_content .person .head {
+    float: right;
+}
+
+.center_content .person .userhead {
+    text-align: center;
+}
+
+.center_content .person .userhead img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.center_content .person .upload {
+    background: #802258;
+    color: #FFF;
+    cursor: pointer;
+    line-height: 36px;
+    height: 36px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 15px;
+}
+
+.center_content .person .upload:hover {
+    background: #447fd0;
+    color: #fff;
+}
+
+.en-lang .center_content .person .upload {
+    padding: 0 15px;
+}
+
+.change-phone,
+.change-email {
+    color: #50abf2;
+    margin-left: 20px;
+}
+
+.imageSelector {
+    width: 560px;
+    padding: 20px;
+}
+
+#thumbPreview,
+#thumbPreview img {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    background: #999;
+}
+
+#thumbPreview {
+    float: left;
+}
+
+.image-file-content {
+    float: right;
+    width: 320px;
+}
+
+.image-file-btn {
+    background: #802258;
+    position: relative;
+    height: 42px;
+    line-height: 42px;
+    width: 120px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.image-file-btn:hover {
+    background: #447fd0;
+}
+
+.image-file-btn .image-file-txt {
+    display: block!important;
+    height: 100%;
+    width: 100%;
+    line-height: 42px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.image-file-btn input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+    z-index: 1;
+}

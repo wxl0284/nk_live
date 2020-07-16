@@ -1,0 +1,1067 @@
+{extend name="template/base" /}
+{block name="content"}
+
+<div class="page-container">
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
+      <li class="li1 active"><a href="#general" role="tab" data-toggle="tab">通用信息</a></li>
+      <li class="li2"><a href="#detail" role="tab" data-toggle="tab">项目团队</a></li>
+      <li class="li3"><a href="#message" role="tab" data-toggle="tab">项目描述</a></li>
+      <li class="li4"><a href="#property" role="tab" data-toggle="tab">网络要求</a></li>
+      <li class="li5"><a href="#album" role="tab" data-toggle="tab">技术架构</a></li>
+      <li class="li6"><a href="#link" role="tab" data-toggle="tab">项目特色</a></li>
+      <li class="li7"><a href="#parts" role="tab" data-toggle="tab">服务计划</a></li>
+      <li class="li8"><a href="#project" role="tab" data-toggle="tab">项目申报</a></li>
+    </ul>
+    <style>
+        .nav {
+            display: inline-block;
+        }
+        .nav li {
+            float:left;
+            padding:10px 10px;
+            border:1px solid #f5f5f5;
+        }
+        .form {
+            display:none;
+        }
+        .myform {
+            display:block;
+        }
+        .row {
+            margin-top:20px;
+        }
+    </style>
+
+    
+    <form method="post" id="form" action="{:\\think\\Request::instance()->baseUrl()}">
+    <!-- //通用信息 -->
+    <div class="form form-horizontal form1 myform"  >
+        
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>专业分类：</label>
+            <?php $cat_list = model('category')->cat_list(0); ?>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="cat_id" class="select" datatype="*" nullmsg="请选择专业分类">
+                        <option value="0">请选择分类</option>
+                        {$cat_list}
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>项目级别：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="subject_level" class="select" datatype="*" nullmsg="请选择项目级别">
+                        <option value="0">请选择项目级别</option>
+                        <option value="1">认定项目</option>
+                        <option value="2">其他项目</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">获奖年份：</label>
+            <?php $get_award = model('subject')->get_award_win(1); ?>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="award_year" class="select" nullmsg="请选择申报年份">
+                        <option value="">请选择获奖年份</option>
+                        {foreach name="get_award" item="item"}
+                        <option value="{$item.year}">{$item.year}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">申报年份：</label>
+            <?php $get_declare = model('subject')->get_award_win(2); ?>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="declare_year" class="select" nullmsg="请选择申报年份">
+                        <option value="">请选择申报年份</option>
+                        {foreach name="get_declare" item="item"}
+                        <option value="{$item.year}">{$item.year}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+      
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="项目名称" name="subject_name" datatype="*" nullmsg="请填写项目名称">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>学校名称：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学校名称" name="school_name" datatype="*" nullmsg="请填写学校名称">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>负责人姓名：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="负责人姓名" name="person_charge" datatype="*" nullmsg="请填写负责人姓名">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">试用账号：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="试用账号" name="trial_account" nullmsg="请填写试用账号">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">试用密码：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="试用密码" name="trial_pass" nullmsg="请填写试用密码">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目简介：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <textarea class="textarea" placeholder="" name="subject_brief" onKeyUp="textarealength(this, 100)"></textarea>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">缩略图：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" name="equip_pic" id="upload" placeholder="请点击后面的上传按钮" style="width: 70%" value="{$vo.equip_pic ?? ''}">
+                <button type="button" class="btn btn-primary radius" onclick="layer_open('文件上传','{:\\think\\Url::build(\'Upload/index\', [\'id\' => \'upload\'])}')">上传</button>
+                
+                <a onclick="show_img();" type="button" class="btn btn-success radius">预览</a>
+
+               <!--  <a onclick="$(this).attr('href', $('#upload').val())" type="button" class="btn btn-success radius" data-lightbox="preview">预览</a> -->
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+      
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目简介视频：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div type="button" class="btn btn-primary radius" style="position: relative;">
+                    上传视频
+                    <input id="fileupload_video" type="file" name="brief_video" accept="video/mp4,video/avi" style="position: absolute;top:0px;left: 0px;right: 0px;bottom: 0px;width: 90px;opacity: 0">
+                </div>
+                <span class="video_file_name" id="video_file_brief"></span>
+                <input id="video" type="hidden" name="subject_brief_video" value="">
+                <input type="hidden" name="subject_brief_img">
+                <div class="ved"></div>
+                <canvas id="canvas"></canvas>
+                <button type="button" class="btn btn-default radius ml-20 screen" onclick="screen(1)">请截取项目简介封面</button>
+               
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目引导视频：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div type="button" class="btn btn-primary radius" style="position: relative;">
+                    上传视频
+                    <input id="fileupload_lead" type="file" name="lead_video" accept="video/mp4,video/avi" style="position: absolute;top:0px;left: 0px;right: 0px;bottom: 0px;width: 90px;opacity: 0">
+                </div>
+                <span class="video_file_name" id="video_file_lead"></span>
+                <input id="video_lead" type="hidden" name="subject_lead_video" value="">
+                <input type="hidden" name="subject_lead_img" value="">
+                <div class="ved_lead"></div>
+                <canvas id="canvas_lead"></canvas>
+                <button type="button" class="btn btn-default radius ml-20 screen" onclick="screen(2)">请截取项目引导封面</button>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl" style="display:none;">
+            <label class="form-label col-xs-3 col-sm-3">项目申报表：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div type="button" class="btn btn-primary radius" style="position: relative;">
+                    上传申报表
+                    <input id="fileupload_report" type="file" name="report_video" accept="doc/docx" style="position: absolute;top:0px;left: 0px;right: 0px;bottom: 0px;width: 90px;opacity: 0">
+                </div>
+                <span class="video_file_name" id="video_file_report"></span>
+                <input id="video_report" type="hidden" name="subject_report" value="">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">虚拟仿真项目：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="虚拟仿真项目" name="emulate_subject" nullmsg="虚拟仿真项目">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+    
+    </div>
+    
+    <!-- //项目团队 -->
+    <div class="form form-horizontal form2">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">性别：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="sex" class="select" datatype="*" nullmsg="请选择性别">
+                        <option value="0">请选择性别</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">出生年月：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="出生年月（例：1992-02-02）" name="birth_day" nullmsg="请填写出生年月">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学历：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学历" name="educate" nullmsg="请填写学历">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学位：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学位" name="junior_college" nullmsg="请填写学位">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">专业技术职务：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="专业技术职务" name="skill_work" nullmsg="请填写专业技术职务">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">行政职务：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="行政职务" name="administration_work" nullmsg="请填写行政职务">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">院系：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="院系" name="college"  nullmsg="请填写院系">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">邮编：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="邮编" name="postal_code" nullmsg="请填写邮编">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">地址：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="地址" name="address" nullmsg="请填写地址">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {if $Think.session.type <> 2}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目发布：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="status" class="select" datatype="*" nullmsg="">
+                        <option value="-1">请选择项目发布</option>
+                        <option value="0">未发布</option>
+                        <option value="1">已发布</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {/if}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">电话：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="电话" name="phone" nullmsg="请填写电话">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">手机：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="手机" name="mobile" nullmsg="请填写手机">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">邮箱：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="邮箱" name="email" nullmsg="请填写邮箱">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">教学研究情况：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="teach_reseatch" name="teach_reseatch" type="text/plain" style="height:400px"><?php if(!empty($vo['teach_reseatch'])) {echo htmlspecialchars_decode($vo['teach_reseatch']);} ;?></script>
+                    </div>
+                    <div id="markdown_teach_reseatch" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学术研究情况：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="academic_research" name="academic_research" type="text/plain" style="height:400px"><?php if(!empty($vo['academic_research'])) {echo htmlspecialchars_decode($vo['academic_research']);} ;?></script>
+                    </div>
+                    <div id="markdown_academic_research" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+       
+    </div>
+    
+    <!-- //项目描述 -->
+    <div class="form form-horizontal form3">
+       <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验目的：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_purpose" name="desc_purpose" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_purpose'])) {echo htmlspecialchars_decode($vo['desc_purpose']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_purpose" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验原理：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_principle" name="desc_principle" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_principle'])) {echo htmlspecialchars_decode($vo['desc_principle']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_principle" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验仪器设备：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_experiment" name="desc_experiment" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_experiment'])) {echo htmlspecialchars_decode($vo['desc_experiment']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_experiment" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验材料：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_material" name="desc_material" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_material'])) {echo htmlspecialchars_decode($vo['desc_material']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_material" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验教学方法：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_lead_teach" name="desc_lead_teach" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_lead_teach'])) {echo htmlspecialchars_decode($vo['desc_lead_teach']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_lead_teach" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验方法与步骤要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_method_step" name="desc_method_step" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_method_step'])) {echo htmlspecialchars_decode($vo['desc_method_step']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_method_step" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验结果与结论要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_result" name="desc_result" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_result'])) {echo htmlspecialchars_decode($vo['desc_result']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_result" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">考核要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_assessment" name="desc_assessment" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_assessment'])) {echo htmlspecialchars_decode($vo['desc_assessment']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_assessment" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">面向学生要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_face_student" name="desc_face_student" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_face_student'])) {echo htmlspecialchars_decode($vo['desc_face_student']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_face_student" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验项目应用情况：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="desc_project_orientie" name="desc_project_orientie" type="text/plain" style="height:400px"><?php if(!empty($vo['desc_project_orientie'])) {echo htmlspecialchars_decode($vo['desc_project_orientie']);} ;?></script>
+                    </div>
+                    <div id="markdown_desc_project_orientie" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+    
+    <!-- //网络要求 -->
+    <div class="form form-horizontal form4">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">网络条件要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="net_require" name="net_require" type="text/plain" style="height:400px"><?php if(!empty($vo['net_require'])) {echo htmlspecialchars_decode($vo['net_require']);} ;?></script>
+                    </div>
+                    <div id="markdown_net_require" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">用户操作系统要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="net_system_require" name="net_system_require" type="text/plain" style="height:400px"><?php if(!empty($vo['net_system_require'])) {echo htmlspecialchars_decode($vo['net_system_require']);} ;?></script>
+                    </div>
+                    <div id="markdown_net_system_require" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">用户非操作系统软件配置要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="net_non_operate" name="net_non_operate" type="text/plain" style="height:400px"><?php if(!empty($vo['net_non_operate'])) {echo htmlspecialchars_decode($vo['net_non_operate']);} ;?></script>
+                    </div>
+                    <div id="markdown_net_non_operate" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">用户硬件配置要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="net_user_hardware" name="net_user_hardware" type="text/plain" style="height:400px"><?php if(!empty($vo['net_user_hardware'])) {echo htmlspecialchars_decode($vo['net_user_hardware']);} ;?></script>
+                    </div>
+                    <div id="markdown_net_user_hardware" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">用户特殊外置硬件配置要求：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="net_special_hardware" name="net_special_hardware" type="text/plain" style="height:400px"><?php if(!empty($vo['net_special_hardware'])) {echo htmlspecialchars_decode($vo['net_special_hardware']);} ;?></script>
+                    </div>
+                    <div id="markdown_net_special_hardware" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+    
+    <!-- //技术架构 -->
+    <div class="form form-horizontal form5">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">系统架构图及简要说明：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="skill_explain" name="skill_explain" type="text/plain" style="height:400px"><?php if(!empty($vo['skill_explain'])) {echo htmlspecialchars_decode($vo['skill_explain']);} ;?></script>
+                    </div>
+                    <div id="markdown_skill_explain" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验教学项目：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="skill_teach_project" name="skill_teach_project" type="text/plain" style="height:400px"><?php if(!empty($vo['skill_teach_project'])) {echo htmlspecialchars_decode($vo['skill_teach_project']);} ;?></script>
+                    </div>
+                    <div id="markdown_skill_teach_project" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">管理平台：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="skill_simp" name="skill_simp" type="text/plain" style="height:400px"><?php if(!empty($vo['skill_simp'])) {echo htmlspecialchars_decode($vo['skill_simp']);} ;?></script>
+                    </div>
+                    <div id="markdown_skill_simp" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+    
+    <!-- //项目特色 -->
+    <div class="form form-horizontal form6">
+       <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验教学项目特色：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="project_features" name="project_features" type="text/plain" style="height:400px"><?php if(!empty($vo['project_features'])) {echo htmlspecialchars_decode($vo['project_features']);} ;?></script>
+                    </div>
+                    <div id="markdown_project_features" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+    
+    <!-- //服务计划 -->
+    <div class="form form-horizontal form7" >
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">实验教学项目持续建设与共享服务计划：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="service_plan" name="service_plan" type="text/plain" style="height:400px"><?php if(!empty($vo['service_plan'])) {echo htmlspecialchars_decode($vo['service_plan']);} ;?></script>
+                    </div>
+                    <div id="markdown_service_plan" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+
+    <!-- //项目申报 -->
+    <div class="form form-horizontal form8" >
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目申报表：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="subject_report" name="subject_report" type="text/plain" style="height:400px"><?php if(!empty($vo['subject_report'])) {echo htmlspecialchars_decode($vo['subject_report']);} ;?></script>
+                    </div>
+                    <div id="markdown_subject_report" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+    </div>
+
+
+    <div class="row cl">
+        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+            <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+            <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+        </div>
+    </div>
+   </form> 
+
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/showdown/1.4.2/showdown.min.js"></script>
+<script>window.UEDITOR_HOME_URL = '__LIB__/ueditor/1.4.3/'</script>
+<script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__LIB__/uploads/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="__LIB__/uploads/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="__LIB__/uploads/jquery.fileupload.js"></script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('teach_reseatch',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_teach_reseatch").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('academic_research',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_academic_research").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_purpose',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_purpose").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_principle',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_principle").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_experiment',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_experiment").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_material',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_material").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_lead_teach',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_lead_teach").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_method_step',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_method_step").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_result',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_result").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_assessment',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_assessment").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_face_student',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_face_student").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('desc_project_orientie',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_desc_project_orientie").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('net_require',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_net_require").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('net_system_require',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_net_system_require").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('net_non_operate',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_net_non_operate").html(converter.makeHtml(text));
+    })
+</script>
+
+<script>
+    $(function () {
+        var ue = UE.getEditor('net_user_hardware',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_net_user_hardware").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('net_special_hardware',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_net_special_hardware").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('skill_explain',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_skill_explain").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('skill_teach_project',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_skill_teach_project").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('skill_simp',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_skill_simp").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('project_features',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_project_features").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('service_plan',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_service_plan").html(converter.makeHtml(text));
+    })
+</script>
+<script>
+    $(function () {
+        var ue = UE.getEditor('subject_report',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+                text      = $("#markdown_tpl").html();
+        $("#markdown_subject_report").html(converter.makeHtml(text));
+    })
+</script>
+
+<script>
+    $(function () {
+        $("[name='subject_level']").find("[value='{$vo.subject_level ?? ''}']").attr("selected", true);
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype: 2,
+            ajaxPost: true,
+            showAllError: true,
+            callback: function (ret){
+                ajax_progress(ret);
+            }
+        });
+        
+        $(".li1").on('click', function() {
+            $(".form1").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li2").on('click', function() {
+            $(".form2").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li3").on('click', function() {
+            $(".form3").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li4").on('click', function() {
+            $(".form4").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li5").on('click', function() {
+            $(".form5").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li6").on('click', function() {
+            $(".form6").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li7").on('click', function() {
+            $(".form7").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li8").on('click', function() {
+            $(".form8").addClass("myform").siblings().removeClass("myform");
+        })
+        
+    })
+
+    function show_img(){
+        var img_url = $('#upload').val();
+        if (img_url.indexOf(',') == -1) {
+            layer.photos({photos: { 'data': [{'src': $('#upload').val()}] },closeBtn:1,area: '450px'});
+        }else{
+            var img_arr = img_url.split(',');
+            var data = [];
+            for (var i = img_arr.length - 1; i >= 0; i--) {
+                data.push({'src':img_arr[i]});
+            }
+            console.log(data);
+            layer.photos({
+                photos: { 
+                    'data': data 
+                },
+                closeBtn:1,
+                area: '450px'
+            })
+        }
+    }
+</script>
+<script type="text/javascript">
+    $("#fileupload_video").fileupload({
+        url:"{:url('uploadVideo')}",
+        dataType:"json",
+        singleFileUploads: false,
+        dropZone: $('#drag'),
+        start: function () {
+            layer_msg = layer.msg('正在上传中…', {time: 100000000});
+        },
+        progressall: function (e, data) {
+            $('.layui-layer-msg .layui-layer-content').html('已上传' + (data.loaded / data.total * 100).toFixed(2) + '%');
+        },
+        done:function(e,data){
+            console.log(data);
+            layer.close(layer_msg);
+            if(data.result.code == 0){
+                layer.msg(data.result.msg);
+                $("#video_file_brief").text(data.result.data.primary_name);
+                $("#video").val(data.result.data.file_name);
+                $(".ved").append("<video id=\"videos\" controls=\"controls\" src=\""+data.result.data.file_name+"\"><source src=\""+data.result.data.file_name+"\" /></video>");
+            }
+            if(data.result.code != 0){
+                layer.msg(data.result.msg);
+            }
+        }
+    });
+
+    $("#fileupload_lead").fileupload({
+        url:"{:url('uploadVideoLead')}",
+        dataType:"json",
+        singleFileUploads: false,
+        start: function () {
+            layer_msg = layer.msg('正在上传中…', {time: 100000000});
+        },
+        progressall: function (e, data) {
+            $('.layui-layer-msg .layui-layer-content').html('已上传' + (data.loaded / data.total * 100).toFixed(2) + '%');
+        },
+        done:function(e,data){
+            console.log(data);
+            layer.close(layer_msg);
+            if(data.result.code == 0){
+                layer.msg(data.result.msg);
+                $("#video_file_lead").text(data.result.data.primary_name);
+                $("#video_lead").val(data.result.data.file_name);
+                $(".ved_lead").append("<video id=\"videos_lead\" controls=\"controls\" src=\""+data.result.data.file_name+"\"><source src=\""+data.result.data.file_name+"\" /></video>");
+            }
+            if(data.result.code != 0){
+                layer.msg(data.result.msg);
+            }
+        }
+    });
+    $("#fileupload_report").fileupload({
+        url:"{:url('uploadVideoReport')}",
+        dataType:"json",
+        singleFileUploads: false,
+        start: function () {
+            layer_msg = layer.msg('正在上传中…', {time: 100000000});
+        },
+        progressall: function (e, data) {
+            $('.layui-layer-msg .layui-layer-content').html('已上传' + (data.loaded / data.total * 100).toFixed(2) + '%');
+        },
+        done:function(e,data){
+            console.log(data);
+            layer.close(layer_msg);
+            if(data.result.code == 0){
+                layer.msg(data.result.msg);
+                $("#video_file_report").text(data.result.data.primary_name);
+                $("#video_report").val(data.result.data.file_name);
+            }
+            if(data.result.code != 0){
+                layer.msg(data.result.msg);
+            }
+        }
+    });
+
+</script>
+
+<script>
+function screen(status){
+    if(status == 1){
+        $("#subject_brief_img").hide();
+        var video = document.getElementById('videos');
+        var canvas = document.getElementById('canvas');
+        var ext = canvas.getContext('2d');
+        var width = $(video).width();
+        var height = $(video).height();
+           
+        $(canvas).attr('height', height).attr('width', width);
+        ext.drawImage(video, 0, 0,width,height, 0, 0,width,height);
+        var imgSrc = document.getElementById("canvas").toDataURL("image/png"); 
+    }else{
+        $("#subject_lead_img").hide();
+        var video = document.getElementById('videos_lead');
+        var canvas = document.getElementById('canvas_lead');
+        var ext = canvas.getContext('2d');
+        var width = $(video).width();
+        var height = $(video).height();
+           
+        $(canvas).attr('height', height).attr('width', width);
+        ext.drawImage(video, 0, 0,width,height, 0, 0,width,height);
+        var imgSrc = document.getElementById("canvas_lead").toDataURL("image/png"); 
+    }
+    $.ajax({
+        type:"POST",
+        url:"{:url('capture')}",
+        dataType:"json",
+        data:{
+          img:imgSrc,
+          status:status
+        },
+        success:function(r){
+            console.log(r);
+            if(status == 1){
+                $("[name='subject_brief_img']").val(r);
+            }else{
+                $("[name='subject_lead_img']").val(r);
+            }
+          
+        },
+        error:function(){
+          console.log("error");
+        }
+    })
+}
+</script>
+
+{/block}

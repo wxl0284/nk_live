@@ -1,0 +1,321 @@
+﻿body {
+    background: #f4f4f4;
+}
+
+.register {
+    width: 1198px;
+    margin: 30px auto;
+    background: #fff;
+    border: 1px solid #efefef;
+    min-height: 800px;
+}
+
+.register_form {
+    margin: 0 auto;
+    padding: 15px 30px;
+    width: 350px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.single span {
+    margin-right: 20px;
+}
+
+.register_title {
+    padding: 45px 0 25px;
+    border-bottom: 1px solid #eee;
+    margin: 0 40px;
+}
+
+span.r-title {
+    font-size: 30px;
+    background: url(../pic/register_peopel.png) no-repeat;
+    padding-left: 36px;
+    line-height: 30px;
+    display: inline-block;
+}
+
+span.r-tip {
+    color: #999;
+    margin-left: 10px;
+}
+
+span.r-tip a {
+    color: #802258;
+}
+
+.register_title .pull-right span {
+    color: #999;
+    margin-left: 16px;
+    padding-left: 30px;
+    position: relative;
+    max-width: 120px;
+    display: inline-block;
+}
+
+.en-lang .register_title .pull-right span.s1 {
+    max-width: 130px;
+    vertical-align: top;
+}
+
+.register_title .pull-right .on {
+    color: #333;
+}
+
+.register_title .pull-right span:before {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    left: 0;
+}
+
+.register_title .pull-right .on:before {
+    background: #802258;
+}
+
+.register_title .pull-right span.s1:before {
+    content: "1";
+}
+
+.register_title .pull-right span.s2:before {
+    content: "2";
+}
+
+.register_title .pull-right span.s3:before {
+    content: "3";
+}
+
+.register_title .pull-right span.s4:before {
+    content: "4";
+}
+
+.register_item {
+    margin: 15px 0;
+    position: relative;
+}
+
+.register_item .code {
+    background: #246acb;
+    width: 85px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.item1:before {
+    position: absolute;
+    content: '';
+    top: 12px;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    background: url(../images/spriteb.png) no-repeat -79px -275px;
+}
+
+.item1:hover:before {
+    background: url(../images/spriteb.png) no-repeat -79px -359px;
+}
+
+.item2:before {
+    position: absolute;
+    content: '';
+    top: 12px;
+    left: 10px;
+    width: 17px;
+    height: 22px;
+    background: url(../images/spriteb.png) no-repeat -79px -317px;
+}
+
+.item2:hover:before {
+    background: url(../images/spriteb.png) no-repeat -79px -401px;
+}
+
+.ipt {
+    border: 1px solid #802258;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 350px;
+    padding-left: 20px;
+    height: 45px;
+    line-height: 45px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.ipt:hover {
+    border: 1px solid #50abf2;
+}
+
+span.required {
+    color: #ff0000;
+    position: absolute;
+    right: -10px;
+    top: 15px;
+}
+
+.register_btn {
+    width: 100%;
+    margin: 20px auto;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    background: #216acd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.next-btn,
+.pre-btn {
+    background: #802258;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 3px;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.register_btn:hover,
+.next-btn:hover,
+.pre-btn:hover {
+    background: #447fd0;
+    color: #fff;
+}
+
+.pre-btn {
+    background: #efefef;
+    color: #999;
+}
+
+#step2,
+#step3,
+#step4,
+.ts-unit,
+.so-unit {
+    display: none;
+}
+
+#step4 {
+    width: 400px;
+    text-align: center;
+}
+
+.success-title {
+    color: #4b94f3;
+    font-size: 20px;
+    line-height: 50px;
+    margin-top: 90px;
+    text-align: center;
+}
+
+.success-title img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.success-title span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.success-tip {
+    color: #ccc;
+    margin: 35px 0;
+}
+
+.success-tip span {
+    color: #fb6400;
+    margin: 0 5px;
+}
+
+.success-tip a {
+    color: #0096ff;
+}
+
+.success-btn {
+    width: 140px;
+    height: 46px;
+    background: #802258;
+    line-height: 46px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 89px;
+}
+
+.success-btn a {
+    display: block;
+    color: #fff;
+}
+
+
+/*邮箱注册相关*/
+
+.reg-tab {
+    width: 100%;
+    height: 48px;
+    overflow: hidden;
+    clear: both;
+}
+
+.reg-tab .tab {
+    letter-spacing: 1px;
+    width: 175px;
+    overflow: hidden;
+    position: relative;
+    line-height: 48px;
+    float: left;
+    font-size: 16px;
+    text-align: left;
+    color: #626262;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.reg-tab .tab2 {
+    text-align: right;
+}
+
+.reg-tab .tab.on {
+    position: relative;
+    color: #0096ff;
+}
+
+.reg-tab .tab1.on:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 85px;
+    border-bottom: 2px solid #0096ff;
+}
+
+.reg-tab .tab2.on:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 70px;
+    border-bottom: 2px solid #0096ff;
+}

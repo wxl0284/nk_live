@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#f7f7ff">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="__STATIC__/mui/mui.mini.css">
+    <link rel="stylesheet" href="__STATIC__/mui/mui.picker.css">
+    <link rel="stylesheet" href="__STATIC__/mui/mui.poppicker.css">
+    <link rel="stylesheet" href="__STATIC__/mui/mui.dtpicker.css">
+    <link rel="stylesheet" href="__STATIC__/css/mian.css">
+    <link rel="stylesheet" href="__STATIC__/css/animate.min.css" />
+    <link rel="stylesheet" href="__STATIC__/css/gbox.css" />
+    <title>订单详情</title>
+    <style>
+        .cgxx .cgxx-title {
+            color: #3c6cd5;
+        }
+        
+        .sbxq>ul>li {
+            height: auto;
+        }
+        
+        button {
+            outline: none;
+        }
+        
+        textarea {
+            outline: none;
+        }
+        
+        .hidden_box {
+            width: 100%;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+        
+        .hidden_box>div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .box_window {
+            width: 90%;
+            height: 350px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .box_window>div {
+            width: 90%;
+            height: 92%;
+        }
+        
+        .box_window textarea {
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 80%;
+            opacity: 0.5;
+            line-height: 20px;
+            resize: none;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(236, 236, 236);
+        }
+        
+        .box_window>div>div {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .box_window>div>div button {
+            margin-left: 20px;
+            margin-right: 20px;
+            width: 100px;
+            height: 70%;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(53, 124, 255);
+        }
+        
+        .cgxx-main-one p img {
+            width: 100%;
+        }
+        
+        .sbxq>ul li span {
+            float: right;
+            color: #797a90;
+        }
+        
+        .cgxx .cgxx-title {
+            color: #154dc7;
+        }
+        
+        .cgxx-btn {
+            width: 100%;
+            text-align: center;
+            position: relative !important;
+            bottom: 0px;
+            /* border-radius: 20px; */
+            /* position: ; */
+            /* bottom: 5px; */
+            /* margin-bottom: -44px; */
+            margin-top: 50px;
+            /* top: -25px; */
+        }
+        
+        .cgxx-btn div {
+            width: 50%;
+            height: 40px;
+            float: left;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            /* box-sizing: border-box; */
+            /* margin-top: 28px; */
+            /* bottom: 50px; */
+        }
+        
+        .cgxx-main-one p {
+            min-height: 50px;
+        }
+        
+        .sbxq>ul li:last-child {
+            height: auto;
+        }
+        
+        .sbxq>ul li:last-child div {
+            line-height: 25px;
+            color: #797a90;
+            padding-bottom: 10px;
+        }
+        /* 6-17 */
+        
+        .add617 {
+            display: flex;
+            align-items: center;
+            padding: 13px 13px;
+            border-bottom: 1px solid #F6F5F4;
+            background: #fff;
+        }
+        
+        .add617 label {
+            font-size: 15px;
+            color: #333;
+        }
+        
+        #dateSelect {
+            flex: 1;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .rightImg img {
+            width: 15px;
+            height: auto;
+            margin-left: 5px;
+        }
+        
+        #dateSelect input {
+            width: 100%;
+            flex: 1;
+            padding: 0;
+            height: auto;
+            line-height: initial;
+            margin: 0;
+            text-align: right;
+            border: none;
+            font-size: 15px;
+            color: #333;
+            background: inherit;
+            color: #797a90;
+        }
+        
+        .mui-btn {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: top;
+            cursor: pointer;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            -webkit-transition: all;
+            transition: all;
+            -webkit-transition-timing-function: linear;
+            transition-timing-function: linear;
+            -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+        }
+        
+        .mui-btn-blue,
+        .mui-btn-primary,
+        input[type=submit] {
+            color: #fff;
+            background-color: #007aff;
+            border: 1px solid #007aff;
+        }
+        
+        .cgxx-btn {
+            zoom: 1;
+        }
+        
+        .cgxx-btn::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        
+        .cgxx-btn button {
+            font-size: 14px;
+        }
+        
+        .centermodule ul li {
+            border-bottom: 1px solid black;
+        }
+        
+        .centermodule ul li:last-child {
+            border: none;
+        }
+        
+        .aentermodule ul li:last-child {
+            border: none;
+        }
+        
+        .acentermodule ul li {
+            border-bottom: 1px solid black;
+        }
+        
+        .centermodule,
+        .acentermodule {
+            transform: translate(-50%, -50%)!important;
+            width: 300px!important;
+            margin: 0 auto!important;
+            font-size: 14px!important;
+            /* transform: translateX(-50%); */
+            left: 50%!important;
+        }
+        
+        @media only screen and (max-device-width:320px) {
+            #sad {
+                width: 79%!important;
+                text-align: right;
+            }
+            c {
+                /* width:44%; */
+                display: block;
+            }
+            d {
+                /* width:56%; */
+            }
+        }
+        
+        @media only screen and (min-device-width:321px) {
+            c {
+                /* width:37%; */
+                display: block;
+            }
+            d {
+                /* width:63%; */
+            }
+        }
+        
+        #sad {
+            width: 82%;
+            text-align: right;
+            color: #797a90;
+        }
+        /* 618 */
+        
+        .outWrite {
+            position: fixed;
+            z-index: 998;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            -webkit-transition-duration: 400ms;
+            transition-duration: 400ms;
+            display: none;
+            background: rgba(0, 0, 0, .4);
+        }
+        
+        .writePart {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            background: #fff;
+            border-radius: 10px;
+            width: 300px;
+            overflow: hidden;
+        }
+        
+        .divdiv {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin: 20px 20px;
+            padding: 2px 0;
+            border-bottom: 1px solid #333
+        }
+        
+        .divdiv img {
+            width: 18px;
+            height: auto;
+        }
+        
+        .divdiv input {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            font-size: 14px;
+            border-radius: 0;
+            outline: none;
+            border: none;
+            padding: 0 10px;
+        }
+        
+        .divdiv input::-webkit-input-placeholder {
+            font-size: 14px;
+            color: #BCBCBC;
+        }
+        
+        .writePart p {
+            font-size: 15px;
+            color: #333;
+            padding: 15px 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #333333;
+            width: 86%;
+            margin: 0 auto;
+        }
+        
+        .btnQr {
+            background: #698EF9;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            padding: 8px 0;
+        }
+        
+        #dateSelect2 {
+            width: 70%;
+            float: right;
+        }
+        
+        #dateSelect2 input {
+            display: inline;
+            width: 80%;
+            background: #fff;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sbxq" style="padding-bottom: 30px;">
+        <ul>
+            <li>
+                采购批次号
+                <span>{$purchase.request_no}</span>
+            </li>
+            <li>
+                采购单号
+                <span>{$purchase.purchase_num}</span>
+            </li>
+            <li>
+                采购日期
+                <span>{$purchase.create_time|date='Y-m-d H:i',###}</span>
+            </li>
+            <li>
+                采购员
+                <span>{$purchase.applicant}</span>
+            </li>
+            <li>
+                供货商
+                <span>{$purchase.userid}</span>
+            </li>
+            <li>
+                序号
+                <span>{$purchase.number}</span>
+            </li>
+            <li>
+                物料编码
+                <span>{$purchase.matter}</span>
+            </li>
+            <!-- <li>
+                采购单号
+                <span>{$purchase.purchase_num}</span>
+            </li> -->
+            <li>
+                采购名称
+                <span>{$purchase.purchase_name}</span>
+            </li>
+            <li>
+                规格型号
+                <span>{$purchase.specification}</span>
+            </li>
+            <li>
+                计量单位
+                <span>{$purchase.unit_measure}</span>
+            </li>
+            <li>
+                需求数量
+                <span>{$purchase.quantity_number}</span>
+            </li>
+            <li>
+                库存数量
+                <span>{$purchase.amount_number}</span>
+            </li>
+            <!-- <li>
+                交货时间
+                <span>{$purchase.delivery_time|date="Y-m-d H:i",###}</span>
+            </li> -->
+            <li>
+                投料依据
+                <span>{$purchase.feed_basis}</span>
+            </li>
+            <li>
+                库房备件/泵装数
+                <span>{$purchase.ware_spare}</span>
+            </li>
+            <li>
+                配件数
+                <span>{$purchase.number_access}</span>
+            </li>
+            <li>
+                质量依据标准
+                <span>{$purchase.quantity_standard}</span>
+            </li>
+            <li>
+                交货时间
+                <span style="color: black">{$purchase.supply_commodity|date='Y-m-d',###}</span>
+            </li>
+            {if $purchase.is_finish == 0}
+            <div class="add617">
+                <label>供货时间</label>
+                <!-- <img class="sz" src="__STATIC__/img/sz.png" style="width: 15px;"> -->
+                <div id="dateSelect">
+                    <input style="color: black" type="text" name="delivery_time" disabled="disabled" id="dateSelectInput" placeholder="选择" value='{if condition="$purchase.delivery_time != 0"}{$purchase.delivery_time|date="Y-m-d H:i",###}{/if}'>
+                    <div class="rightImg">
+                        <img src="__STATIC__/img/add617icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+            {/if}
+            <li class="clearfix" style="padding: 5px 13px;">
+                <!-- <p>备注</p> -->
+                备注
+                <span style="word-break: break-all;width:80%;float:right;line-height:50px;text-align: right;">{$purchase.remarks}</span>
+            </li>
+            <li>
+                <p id="tzp" style="">图纸</p> {volist name="purchase.img" id="vo"} {if $vo}
+                <a href="{$vo}">
+                    <img class="myimg" src="{$vo}" alt="" width="100px;">
+                </a>
+                {else/}
+                <span id="tz" style="">无</span> {/if} {/volist}
+
+            </li>
+            {if $purchase.is_finish == 1}
+            <li>
+                完成日期
+                <span>{$purchase.finish_time|date="Y-m-d H:i",###}</span>
+            </li>
+            {/if}
+            <!-- {if $purchase_back}
+            {volist name="purchase_back" id="vo"}
+            <li>
+                退回原因
+                <span>{$vo.back_reason}</span>
+            </li>
+            {/volist}
+            {/if} -->
+            <li>
+                逾期天数
+                <!-- <span>{$purchase.overdue}</span> -->
+                <!-- //韩丙松 - 2019-6-25更改 -->
+                <span>{:get_overdue_time($purchase.supply_commodity)}</span>
+            </li>
+
+
+
+        </ul>
+        <!-- 6-17 时间 -->
+
+
+        <div class="add617">
+            <label>已交数量</label>
+            <div>
+
+                <!-- <img class="sj" src="__STATIC__/img/sj.png" style="width: 15px;"> -->
+
+            </div>
+            <span id="sad">{$purchase.route_number}</span>
+        </div>
+
+        <ul>
+            {volist name="purchase_operation_log" id="vo"}
+            <li style="line-height: 40px;font-size: 12px;">
+                <c> 【{$vo.create_time|date="Y-m-d H:i",###}】</c>
+                <d style="text-align: left;"> {$vo.content} {if condition="$vo.choice_time != 0"} {$vo.choice_time|date="Y-m-d H:i",###} {/if}</d>
+            </li>
+            {/volist}
+        </ul>
+        <!-- <div class="cgxx">
+            <div class="cgxx-title">
+                <span></span> 采购信息
+    </div>
+    <div class="cgxx-main">
+        <div class="cgxx-main-one">
+            {$purchase.content}
+        </div>
+    </div>
+    </div> -->{if $purchase.is_confirm == 0}
+        <div class="cgxx-btn">
+            <input type="hidden" name="id" value="{$purchase.id}">
+            <div>
+                <button class="confirm" data-status="1">确认</button>
+            </div>
+            <div>
+                <button class="return">退回</button>
+            </div>
+        </div>
+        {/if} {if $purchase.is_confirm == 1}
+        <div class="cgxx-btn" style="">
+            <input type="hidden" name="id" value="{$purchase.id}">
+            <div style="width: 50%">
+                <button class="supply">供货</button>
+            </div>
+
+            <div>
+                <button class="keep">提交</button>
+            </div>
+
+        </div>
+        {/if}
+    </div>
+    <!-- 625 输入框的弹窗 -->
+    <div class="outWrite" style="display: none">
+        <div class="writePart">
+            <!-- <p>请填写本次交货数量</p> -->
+            <p>预约供货</p>
+            <span style="margin-top: 10px;display: block;">
+                <span style="margin-left: 21px;color:#666666;"></span>
+            <div id="dateSelect2" style="width: 93%">
+                <input type="text" name="delivery_times" disabled="disabled" id="dateSelectInputDelivery2" placeholder="请选择交货日期">
+                <img id="ima" src="__STATIC__/img/add617icon.png" width="15px">
+            </div>
+            </span>
+            <div class="divdiv">
+                <!-- <img src="__STATIC__/img/writes.jpg" alt=""> -->
+                <input type="text" name="route_number" placeholder="填写交货数量">
+            </div>
+            <div id="delivery_ok" class="btnQr" data-status="1">
+                确认
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cover" style="background: #000;opacity: 0.85;top:0px;left:0px;display: none;right:0px;bottom: 0px;position: fixed;">
+        <div class="centermodule" style="border-radius: 20px;padding: 15px;opacity: 1;background: #fff;top: 50%;position: absolute;transform: translateY(-50%);width: 100%;">
+            <ul>
+                {volist name="purchase_supply" id="vo"}
+                <li style="height: 40px;line-height: 40px">
+                    <span style="float: left">{$vo.create_time|date="Y-m-d H:i",###}进行日期更改</span>
+                    <span style="float: right">{$vo.supply_commodity|date="Y-m-d H:i",###}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="acover" style="background: #000;opacity: 0.85;top:0px;left:0px;display: none;right:0px;bottom: 0px;position: fixed;">
+        <div class="acentermodule" style=" border-radius: 20px;padding: 15px;opacity: 1;background: #fff;top: 50%;position: absolute;transform: translateY(-50%);width: 100%;">
+            <ul>
+                {volist name="purchase_route" id="vo"}
+                <li style="height: 40px;line-height: 40px">
+                    <span style="float: left">{$vo.create_time|date="Y-m-d H:i",###}&nbsp;收到货物</span>
+                    <span style="float: right">{$vo.number}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="hidden_box">
+        <div>
+            <div class="box_window">
+                <div>
+                    <textarea name="reason_reject" id="" cols="30" rows="10">请填写退回原因！</textarea>
+                    <div>
+                        <button class="confirm" data-status="2">确认</button>
+                        <button>关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script src="__STATIC__/js/zepto.min.js"></script>
+<script src="__STATIC__/js/sme.base.zepto.js"></script>
+<script src="__STATIC__/mui/mui.mini.js"></script>
+<script src="__STATIC__/mui/mui.picker.js"></script>
+<script src="__STATIC__/mui/mui.poppicker.js"></script>
+<script src="__STATIC__/mui/mui.dtpicker.js"></script>
+<script src="__STATIC__/js/alert.js"></script>
+<script>
+    $(function() {
+        $("#dateSelect").click(function() {
+            var dtPicker = new mui.DtPicker({
+                type: 'datetime',
+                endDate: new Date(2022, 01, 11)
+            });
+            /*参数：'datetime'-完整日期视图(年月日时分)
+                    'date'--年视图(年月日)
+                    'time' --时间视图(时分)
+                    'month'--月视图(年月)
+                    'hour'--时视图(年月日时)
+            */
+            dtPicker.show(function(selectItems) {
+                console.log(selectItems);
+                var y = selectItems.y.text; //获取选择的年
+                var m = selectItems.m.text; //获取选择的月
+                var d = selectItems.d.text; //获取选择的日
+                var h = selectItems.h.text; //获取选择的时(如果不需要可去掉)
+                var i = selectItems.i.text; //获取选择的分
+                var f = selectItems.type;
+                var date = y + "-" + m + "-" + d + " " + h + ":" + i;
+                $("#dateSelectInput").val(date);
+                /*$(document).on('click',".mui-btn-blue",function () {
+                      alert("确定修改该采购单的供货时间吗？")    
+                      $("#dialog_ok2").click(function () {
+                       $("#dateSelectInput").val(date); 
+                      })
+                   })*/
+
+                console.log(date);
+            })
+        });
+
+        $('.outWrite').on('click', function() {
+            $(this).hide()
+        })
+        $('.writePart').on('click', function(e) {
+            e.stopPropagation()
+        })
+        $("#dateSelect2").click(function() {
+            var dtPicker = new mui.DtPicker({
+                type: 'datetime',
+                endDate: new Date(2022, 01, 11)
+            });
+            /*参数：'datetime'-完整日期视图(年月日时分)
+                    'date'--年视图(年月日)
+                    'time' --时间视图(时分)
+                    'month'--月视图(年月)
+                    'hour'--时视图(年月日时)
+            */
+            dtPicker.show(function(selectItems) {
+                console.log(selectItems.h.text);
+                var y = selectItems.y.text; //获取选择的年
+                var m = selectItems.m.text; //获取选择的月
+                var d = selectItems.d.text; //获取选择的日
+                var h = selectItems.h.text; //获取选择的时(如果不需要可去掉)
+                var i = selectItems.i.text; //获取选择的分
+                var date = y + "-" + m + "-" + d + " " + h + ":" + i;
+                $("#dateSelectInputDelivery2").val(date);
+                console.log(date);
+            })
+        });
+        $("#dateSelectInputDelivery").click(function() {
+            var dtPicker = new mui.DtPicker({
+                type: 'datetime',
+                endDate: new Date(2022, 01, 11)
+            });
+            /*参数：'datetime'-完整日期视图(年月日时分)
+                    'date'--年视图(年月日)
+                    'time' --时间视图(时分)
+                    'month'--月视图(年月)
+                    'hour'--时视图(年月日时)
+            */
+            dtPicker.show(function(selectItems) {
+                console.log(selectItems.h.text);
+                var y = selectItems.y.text; //获取选择的年
+                var m = selectItems.m.text; //获取选择的月
+                var d = selectItems.d.text; //获取选择的日
+                var h = selectItems.h.text; //获取选择的时(如果不需要可去掉)
+                var i = selectItems.i.text; //获取选择的分
+                var date = y + "-" + m + "-" + d + " " + h + ":" + i;
+                $("#dateSelectInputDelivery").val(date);
+                console.log(date);
+            })
+        });
+        $("#dateSelectInputDelivery2").click(function() {
+            var dtPicker = new mui.DtPicker({
+                type: 'datetime',
+                endDate: new Date(2022, 01, 11)
+            });
+            /*参数：'datetime'-完整日期视图(年月日时分)
+                    'date'--年视图(年月日)
+                    'time' --时间视图(时分)
+                    'month'--月视图(年月)
+                    'hour'--时视图(年月日时)
+            */
+            dtPicker.show(function(selectItems) {
+                console.log(selectItems.h.text);
+                var y = selectItems.y.text; //获取选择的年
+                var m = selectItems.m.text; //获取选择的月
+                var d = selectItems.d.text; //获取选择的日
+                var h = selectItems.h.text; //获取选择的时(如果不需要可去掉)
+                var i = selectItems.i.text; //获取选择的分
+                var date = y + "-" + m + "-" + d + " " + h + ":" + i;
+                $("#dateSelectInputDelivery2").val(date);
+                console.log(date);
+            })
+        });
+    })
+</script>
+<script>
+    $(".cgxx-btn").css("position", "initial");
+    $(".cgxx-btn").css("border-radius", "");
+    $(".cgxx-btn").css("bottom", "");
+    $(".cgxx-btn").css("margin-bottom", "");
+    $(".cgxx-btn").css("top", "");
+    var get_this_window_height = $(window).height();
+    var get_this_width = parseInt($("body").css("width"));
+
+    $(".hidden_box").css("height", get_this_window_height + 'px');
+    $(".hidden_box").children().css("height", get_this_window_height + 'px');
+    // $(".cgxx-btn button").eq(1).click(function() {
+    //     $(".hidden_box").css("display", "block");
+    // });
+    $(".return").click(function() {
+        $(".hidden_box").css("display", "block");
+    });
+    $(".box_window button").eq(1).click(function() {
+        $(".box_window").find("textarea").val("请填写返回原因！");
+        $(".hidden_box").css("display", "none");
+    });
+    $(".box_window").find("textarea").focus(function() {
+        $(".box_window").find("textarea").val("");
+    });
+</script>
+<script>
+    $(".confirm").on("click", function() {
+        var id = $("[name='id']").val(),
+            delivery_time = $("[name='delivery_time']").val(),
+            reason_reject = $("[name='reason_reject']").val(),
+            status = $(this).data("status");
+        //status 1-供货商确认 2- 供货商驳回确认
+        if (status == 1) {
+            if (delivery_time == "") {
+                sme.gbox.Error("请填写供货时间！");
+                return false;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "/index/purchase/confirm",
+            data: {
+                id: id,
+                delivery_time: delivery_time,
+                reason_reject: reason_reject,
+                status: status
+            },
+            dataType: "json",
+            success: function(r) {
+                console.log(r);
+                if (r.code == 200) {
+                    sme.gbox.Success(r.msg);
+                    window.location.reload();
+                } else {
+                    sme.gbox.Error("操作失败！");
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+        })
+
+    });
+    //供货与保存
+    $(".supply").on("click", function() {
+        $(".outWrite").css({
+            'display': 'block'
+        });
+        // var id = $("[name='id']").val();
+        // $.ajax({
+        //     type:"POST",
+        //     url:"/index/purchase/supply",
+        //     data:{
+        //         id:id
+        //     },
+        //     dataType:"json",
+        //     success:function(r){
+        //         if(r.code == 200){
+        //             sme.gbox.Success(r.msg);
+        //             window.location.reload();
+        //         }else{
+        //             sme.gbox.Error("供货失败！");
+        //             return false;
+        //         }
+        //     }
+
+        // })
+    });
+    //带S的是交货时间
+    $(".btnQr").on("click", function() {
+            var id = $("[name='id']").val(),
+                delivery_times = $("[name='delivery_times']").val(),
+                route_number = $("[name='route_number']").val(),
+                status = $(this).data("status");
+            $.ajax({
+                type: "POST",
+                url: "/index/purchase/supply",
+                data: {
+                    id: id,
+                    delivery_times: delivery_times,
+                    route_number: route_number,
+                    status: status
+                },
+                dataType: "json",
+                success: function(r) {
+                    console.log(r);
+                    if (r.code == 200) {
+                        sme.gbox.Success(r.msg);
+                        if (status == 1) {
+                            $(".outWrite").hide();
+                            window.location.reload();
+                        }
+                        if (status == 2) {
+                            window.location.href = "/index/purchases/detail/id/" + id;
+                        }
+
+                    } else {
+                        sme.gbox.Error("操作失败！");
+                    }
+                },
+                error: function() {
+                    console.log("error");
+                }
+            })
+
+        })
+        //不带s的是供货时间
+    $(".keep").on("click", function() {
+        var id = $("[name='id']").val(),
+            delivery_time = $("[name='delivery_time']").val();
+        $.ajax({
+            type: "POST",
+            url: "/index/purchase/keep",
+            data: {
+                id: id,
+                delivery_time: delivery_time
+            },
+            dataType: "json",
+            success: function(r) {
+                console.log(r);
+                if (r.code == 200) {
+                    sme.gbox.Success(r.msg);
+                    window.location.reload();
+                } else {
+                    sme.gbox.Error("保存失败！");
+                    return false;
+                }
+            },
+            error: function() {
+                console.log("error");
+            }
+
+        })
+    })
+</script>
+<script>
+    $(".sz").click(function() {
+        $(".cover").css("display", "block");
+        $(".cover").on("click", function() {
+            $(".cover").css("display", "none");
+        })
+    })
+    $(".sj").click(function() {
+        $(".acover").css("display", "block");
+        $(".acover").on("click", function() {
+            $(".acover").css("display", "none");
+        })
+    })
+</script>
+<script>
+    var inputtext = $("#tz").text();
+    if (inputtext == '无') {
+        $("#tzp").css("display", "inline")
+    }
+</script>

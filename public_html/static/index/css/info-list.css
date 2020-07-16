@@ -1,0 +1,112 @@
+﻿body {
+    background: #f4f4f4;
+}
+
+.center_content {
+    margin: 20px auto;
+    width: 1200px;
+    background: #fff;
+    padding: 20px;
+}
+
+.center_content .word {
+    border-bottom: 1px solid #f0f0f0;
+    color: #7a186a;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.center_content .word i {
+    border: 1px solid #7a186a;
+    display: inline-block;
+    height: 13px;
+}
+
+.center_content .word span {
+    padding-left: 15px;
+}
+
+.s-select,
+.s-text {
+    border: 2px solid #7a186a;
+    background: #FDFDFD;
+    height: 32px;
+    line-height: 34px;
+    float: left;
+    padding-left: 10px;
+    text-indent: 0;
+    width: auto;
+}
+
+.s-select {
+    height: 36px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    line-height: inherit;
+    border-right: none;
+    float: left;
+}
+
+.s-text {
+    /*border-left: none;*/
+    /*height:30px;*/
+    min-width: 300px;
+}
+
+.searchForm {
+    overflow: hidden;
+    float: right;
+    margin-top: -8px;
+}
+
+.searchForm .search {
+    border: 2px solid #7a186a;
+    background: #7a186a;
+    height: 36px;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    float: left;
+    padding: 0px 12px;
+    cursor: pointer;
+}
+
+.center_content #elList li {
+    /*list-style: outside;*/
+    /*margin-left: 10px;*/
+    /*padding-left: 5px;*/
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 0;
+}
+
+.center_content #elList li a {
+    margin-bottom: 15px;
+    position: relative;
+    color: #333;
+    display: inline-block;
+    width: 100%;
+    font-weight: normal;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+.center_content #elList li a .txt {
+    display: inline-block;
+    color: #333;
+}
+
+.center_content #elList li:hover .txt {
+    color: #7a186a;
+    border-bottom: 1px solid #7a186a;
+}
+
+.center_content #elList li .time {
+    float: right;
+    color: #959595;
+}
+
+.center_content #elList li .details {
+    color: #adadad;
+    margin-top: 10px;
+}
