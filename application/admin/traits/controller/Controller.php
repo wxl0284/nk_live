@@ -24,7 +24,7 @@ trait Controller
     public function index()
     {
         $model = $this->getModel();
-
+    
         // 列表过滤器，生成查询Map对象
         $map = $this->search($model, [$this->fieldIsDelete => $this::$isdelete]);
 
@@ -41,6 +41,7 @@ trait Controller
 
         // 生成excel表
         $excel = $this->excel;
+
         //生成云图
         // $nephogram = $this->nephogram;
         //导出
