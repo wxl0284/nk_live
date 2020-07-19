@@ -7,22 +7,22 @@
         <div class="select-box" style="width:250px;">
             <?php $cat_list = model('category')->cat_list(0); ?>
             <select name="cat_id" class="select">
-                <option value="">请选择专业分类</option>
+                <option value="">请选择学院分类</option>
                 {$cat_list}
             </select>
         </div>
-        <div class="select-box" style="width:250px;">
+        <!-- <div class="select-box" style="width:250px;">
             <select name="subject_level" class="select">
                 <option value="">请选择项目级别</option>
                 <option value="1" {if $Request.param.subject_level == 1}selected{/if}>认定项目</option>
                 <option value="2" {if $Request.param.subject_level == 2}selected{/if}>其他项目</option>
             </select>
-        </div>
-        <input type="text" class="input-text" style="width:250px" placeholder="项目名称" name="subject_name" value="{$Request.param.subject_name}" >
-        <input type="text" class="input-text" style="width:250px" placeholder="学校名称" name="school_name" value="{$Request.param.school_name}" >
-        <input type="text" class="input-text" style="width:250px" placeholder="负责人姓名" name="person_charge" value="{$Request.param.person_charge}" >
+        </div> -->
+        <input type="text" class="input-text" style="width:250px" placeholder="直播教师姓名" name="person_charge" value="{$Request.param.person_charge}" >
         <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
-        {tp:menu menu="excel" /}
+        <!-- <input type="text" class="input-text" style="width:250px" placeholder="学校名称" name="school_name" value="{$Request.param.school_name}" >
+        <input type="text" class="input-text" style="width:250px" placeholder="负责人姓名" name="person_charge" value="{$Request.param.person_charge}" >
+        {tp:menu menu="excel" /} -->
     </form>
     <div class="cl pd-5 bg-1 bk-gray">
         {if $Think.session.type <> 1}<span class="l">

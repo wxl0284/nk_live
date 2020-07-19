@@ -30,10 +30,34 @@ class Upload extends Controller
         $files = $this->request->file('file');
         $path = ROOT_PATH . 'public_html/tmp/uploads/';
         $data = '';
+
+        $err_msg = '';
+
         foreach ($files as $file) {
-			
+            //验证图片格式和大小
+            $file_info = $file->getInfo();
+
+            if ( !($file_info['type'] == 'image/gif' || $file_info['type'] == 'image/jpg' || $file_info['type'] == 'image/png') )
+            {
+                $err_msg .= '图片格式须为jpg/png/gif';
+            }
+
+            if ( ($file_info['size']/1024) > 150 )
+            {
+                if ( $err_msg )
+                {
+                    $err_msg .= ',图片大小最大为150kb';
+                }else{
+                    $err_msg .= '图片大小最大为150kb';
+                }
+            }
+
+            if ( $err_msg !== '' )
+            {
+                return ajax_return_error($err_msg);
+            }
+			//验证图片格式和大小 结束
             $info = $file->move($path);
-			//halt($info->getSaveName());
 			
             if (!$info) {
                 return ajax_return_error($file->getError());

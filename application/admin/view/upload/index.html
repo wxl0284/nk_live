@@ -80,6 +80,7 @@
 		
         //文件上传的函数
         $('#fileupload').fileupload({
+            
             dataType: 'json',
             singleFileUploads: false,
             dropZone: $('#drag'),
@@ -99,7 +100,8 @@
 				}
                 callback(callbackId,data.result.data.name);
             }
-        });
+        });//fileupload 结束
+
         $('#drag').bind('drop dragover', function (e) {
             e.preventDefault();
         }).on('dragenter', function (e) {

@@ -99,11 +99,32 @@ class Subject extends Controller
     public function add(){
         $controller = $this->request->controller();
         
-        if ($this->request->isAjax()) {
-            // 插入
-            // $data = $this->request->except(['id']);
-            //本地测试用  chu()
+        if ($this->request->isAjax()) {//执行添加
+           
             $data = input('post.');
+            //验证数据
+            if ( !( isset($data['cat_id']) && preg_match('/^([0-9]){1,10}$/', $data['cat_id']) ) )
+            {
+                return ajax_return_adv_error("请选择专业分类！");
+            }
+
+            if ( !( isset($data['subject_name']) && preg_match('/^\S{1,90}$/', $data['subject_name']) ) )
+            {//直播名称
+                return ajax_return_adv_error("直播名称应为30汉字以内！");
+            }
+
+            if ( !( isset($data['person_charge']) && preg_match('/^\S{1,21}$/', $data['person_charge']) ) )
+            {//直播老师姓名
+                return ajax_return_adv_error("直播老师姓名应为7汉字以内！");
+            }
+
+
+            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > time() ) ) )
+            {//直播老师姓名
+                return ajax_return_adv_error("直播开始时间有误");
+            }
+            //验证结束
+
             if($data['subject_brief_video'] && !$data['subject_brief_img']){
                 return ajax_return_adv_error("请上传项目简介封面！");
             } 
@@ -148,7 +169,7 @@ class Subject extends Controller
             }
 
             return ajax_return_adv('添加成功');
-        } else {
+        } else {//显示添加的页面
             return $this->view->fetch(isset($this->template) ? $this->template : 'add');
         }
         
@@ -238,15 +259,32 @@ class Subject extends Controller
         }
     }
 
-    //上传视频
+    //上传简介视频
     public function uploadVideo(){
+        
         $file = $this->request->file('brief_video');
+
+        $info = $file->getInfo();
+
+        if ( $info['type'] !== 'video/mp4' )
+        {
+            return ajax_return_error('简介视频格式须为mp4');
+        }
+
         $data = model('upload_file')->uploadVideo($file);
         return json($data);
     }
-    //上传视频
+    //上传引导视频
     public function uploadVideoLead(){
         $file = request()->file('lead_video');
+
+        $info = $file->getInfo();
+
+        if ( $info['type'] !== 'video/mp4' )
+        {
+            return ajax_return_error('简介视频格式须为mp4');
+        }
+
         $data = model('upload_file')->uploadVideo($file);
         return json($data);
     }
