@@ -118,10 +118,43 @@ class Subject extends Controller
                 return ajax_return_adv_error("直播老师姓名应为7汉字以内！");
             }
 
+            $now = time();
 
-            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > time() ) ) )
-            {//直播老师姓名
+            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > $now ) ) )
+            {//直播开始时间
                 return ajax_return_adv_error("直播开始时间有误");
+            }
+
+            if ( !( isset($data['end_time']) && ( strtotime($data['end_time']) > $now ) ) )
+            {//直播结束时间
+                return ajax_return_adv_error("直播结束时间有误");
+            }
+
+            $start = strtotime($data['start_time']);// 开始的时间戳
+            $end = strtotime($data['end_time']);//结束的时间戳
+
+            $err_msg = '';
+
+            if ( $end <= $start )
+            {
+                $err_msg .= '直播结束时间有误';
+            }
+
+            if ( ($end-$start) < 600 )//直播时长应大于10分钟
+            {
+                if($err_msg)
+                {
+                    $err_msg .= ',直播时长应大于10分钟';
+                }else{
+                    $err_msg .= '直播时长应大于10分钟';
+                }              
+            }
+
+            //查数据表里与当前提交的直播时间有可能冲突的直播(有多个直播或录播教室)
+            $live_not_done = Db::table('tp_subject')->where('start_time', '>=', $data['start_time'])->field('start_time, end_time')->find();
+            if ( $live_not_done )
+            {
+                //检查当前提交的时间：
             }
             //验证结束
 
@@ -130,9 +163,10 @@ class Subject extends Controller
             } 
             if($data['subject_lead_video'] && !$data['subject_lead_img']){
                 return ajax_return_adv_error("请上传项目引导封面！");
-            } 
+            }
+
             $data['teacher_id'] = $_SESSION['think']['auth_id'];
-            
+            //halt($_SESSION['think']['auth_id']);
             // 验证
             if (class_exists($validateClass = Loader::parseClass(Config::get('app.validate_path'), 'validate', $controller))) {
                 $validate = new $validateClass();

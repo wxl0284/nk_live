@@ -1,0 +1,136 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>泰科易VR直播测试</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="blank">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/frontend/css/m_video_s.css?v=20190627002">
+<link type="text/css" rel="stylesheet" charset="utf-8" href="https://www.hosvr.cn/static/js/playerV2/plugin/videoToolBar/style/videobar.css?t=20200318"><script type="text/javascript" src="https://www.hosvr.cn/static/js/playerV2/UtoVRPlayer.js?t=20200318" charset="utf-8"></script><script type="text/javascript" src="https://www.hosvr.cn/static/js/playerV2/plugin/videoToolBar/js/video_toolbar.js?t=20200318" charset="utf-8"></script><script type="text/javascript" src="https://www.hosvr.cn/static/js/playerV2/plugin/hls/hls.js?t=20200318" charset="utf-8"></script><style type="text/css">@keyframes resizeanim { from { opacity: 0; } to { opacity: 0; } } .resize-triggers { animation: 1ms resizeanim; visibility: hidden; opacity: 0; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: ' '; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }</style></head>
+<body>
+<div id="showContent">
+    <div id="showPano"><div name="SceneViewer" style="position: absolute; overflow: hidden; width: 100%; height: 100%; background-color: black; left: 0px; top: 0px; z-index: 0;"><div id="scenePlayDom" tabindex="-1" style="position: absolute; overflow: hidden; height: 100%; width: 100%; outline: currentcolor none medium; user-select: none;"><div id="cubeDom" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"><canvas style="position: absolute; width: 1131px; height: 910px; left: 0px; top: 0px;" width="1131" height="910"></canvas></div></div><div class="resize-triggers"><div class="expand-trigger"><div style="width: 1132px; height: 911px;"></div></div><div class="contract-trigger"></div></div><div id="videoToolbar"><div id="videoBG"><div id="videoTogglePlay" class="floatL floatW    videoPlay"></div><div id="videoScroll" class="      videoScrollTop" style="width: 100%;"><div id="videoScrollBG"></div><div id="videoScrollBG1" style="width: 99.5556%;"></div><div id="videoScrollBG2" style="width: 96.7165%;"></div></div><div id="videoTime" style="margin-left: 0px;">03:37/03:45</div><div id="videoFullScreen" class="floatR floatW  videoFullScreen1"></div><div id="videoViewPortToggle" class="floatR floatW  videoViewPort1"></div></div></div></div></div>
+</div>
+<div class="title_box">
+    <div class="logo_box">
+        <div class="avator_box">
+            <img class="avator_img" src="//cache1.hosvr.cn/app-image/user_avatar/0.png">
+        </div>
+        <div id="affiche">
+            <span class="affiche_text" style="left: -7.727px;">泰科易VR直播测试</span>
+        </div>
+    </div>
+</div>
+<div class="live_view_num" id="online_num">20</div>
+<div id="video_state_tip" class="video_state_tip">
+    <h1 class="video_tip_title_info" id="video_tip_title_info"></h1>
+    <img class="thumbimg" src="http://pili-live-snapshot.hosvr.cn/hosvr-space-001/LQ202003261003118097.jpg">
+    <h4 class="desc">泰科易VR直播测试</h4>
+    <div class="time-long"><span class="radius_bg_info">时长：<span id="view_tm_lengh"></span></span></div>
+    <div class="p-number"><span class="radius_bg_info">观看：<span id="view_p_number">21</span>人</span></div>
+</div>
+<input type="hidden" value="eujpai8q497838pddc86951k04" id="recid">
+<input type="hidden" value="LQ202003261003118097" id="chartgroupid">
+<script src="/frontend/js/jquery.js"></script>
+<script src="/static/js/playerV2/plugin/gyro/gyroHelp.js"></script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/frontend/js/wx.js"></script>
+<script src="/static/js/touch.js"></script>
+<script src="/frontend/js/socket/socket.io.js"></script>
+<script src="/frontend/js/socket/ha.js"></script>
+<script src="/frontend/js/socket/socket.js"></script>
+<script src="/frontend/js/counter.min.js"></script>
+<script language="javascript" type="text/javascript">
+    live_counter("LQ202003261003118097");
+    var playConn;
+    $(function () {
+        playConn = new PlayConn();
+        //视频被管理员禁播
+        playConn.setDisabled(function (data) {
+            $("#video_state_tip").css("display", "block");
+            $("#video_tip_title_info").html(data.msg);
+            $("#view_tm_lengh").html(getDateTime(data.extra));
+        });
+        playConn.setCompleted(function (data) {
+            $("#video_state_tip").css("display", "block");
+            $("#video_tip_title_info").html(data.msg);
+            $("#view_tm_lengh").html(getDateTime(data.extra));
+        });
+        playConn.init({
+            'channel_type': 11,
+            'rec_no': $("#chartgroupid").val(),
+            'reg_id': $("#recid").val()
+        }, function (data) {
+            $("#view_p_number").html(format_view_num(Number("20") + Number(data.last_online_count)));
+        });
+
+        //场景数据配置
+        var sceneData = [
+            {
+                sceneId: "v1",
+                sceneName: "live",
+                sceneFilePath: "https://pili-live-hls.hosvr.cn/hosvr-space-001/LQ202003261003118097.m3u8",
+                sceneType: "Video",
+                isVideoAutoPlay: false
+            }
+        ];
+        //播放器初始化
+        var params = {
+            container: document.getElementById("showPano"),
+            name: "SceneViewer",
+            isGyro: true,
+            isDragAble: true,
+            fullScreenMode: false,
+            dragDirectionMode: true,
+            dragMode: true,
+            scenesArr: sceneData,
+            //浏览器不支持全屏回调
+            fsCallBack: function (status, playObj) {
+                if (self != top) {
+                    top.location.href = window.location.href;
+                }
+            }
+        };
+        initLoad(params);
+    });
+
+    function getDateTime(time) {
+        if (time >= 60 && time <= 3600) {
+            time = parseInt(time / 60) + "分" + time % 60 + "秒";
+        } else {
+            if (time > 3600) {
+                time = parseInt(time / 3600) + "小时" + parseInt(((time % 3600) / 60)) + "分" + time % 60 + "秒";
+            } else {
+                time = time + "秒";
+            }
+        }
+        return time;
+    }
+
+    function format_view_num(num) {
+        if (Number(num) > 10000) {
+            return (num / 1000).toFixed(2) + "万";
+        }
+        return num;
+    }
+
+    var timer = setTimeout(marquee, 1000);
+
+    function marquee() {
+        var scrollWidth = $('#affiche').width();
+        var textWidth = $('.affiche_text').width();
+        var textLength = $('.affiche_text').text().length;
+        if (textLength <= 8) {
+            return;
+        }
+        var i = scrollWidth;
+        setInterval(function () {
+            i--;
+            if (i < -textWidth) {
+                i = scrollWidth;
+            }
+            $('.affiche_text').animate({'left': i + 'px'}, 20);
+        }, 20);
+    }
+</script>
+</body></html>

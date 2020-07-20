@@ -16,6 +16,14 @@ class Live extends Controller
     
     public function index ()
     {
-        create_qr_code();//调用app/common.php中二维码生成的函数
+        $mobile = $this->request->isMobile();
+        //halt($mobile);
+        if ($mobile)
+        {
+            return view('mobile');
+        }
+
+        return view('mobile');
+        //create_qr_code();//调用app/common.php中二维码生成的函数
     }//index 结束
 }
