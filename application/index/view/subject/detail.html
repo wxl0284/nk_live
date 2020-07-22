@@ -2,7 +2,7 @@
 <!--SoftTouchIT SiteC, version:1.0.686-->
 <html>
 <head>
-    <title>项目详情</title>
+    <title>录播详情</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
     <meta name="format-detction" content="telephone=no">
@@ -167,42 +167,9 @@
             opacity:1;
         }
         .ychangevideo2 {
-                    background:rgba(255,255,255,0.5);
-                    opacity:0.6;
-                }
-        /*#dialog_bg {display: none;} 不显示页面遮罩层*/
-        /*登陆后才可做实验弹框样式*/
-        #login_to_test a:hover {background-color: #0096ff; color: #fff;}
-        #login_to_test a {
-            display: inline-block;
-            border: 1px solid #ccc;
-            width: 182px;
-            margin: 10px;
-            font-size: 14px;
-            font-family: Microsoft YaHei;
-            color: #444;
-            padding: 7px 0px;
-            border-radius: 4px;
+            background:rgba(255,255,255,0.5);
+            opacity:0.6;
         }
-        /*校外人士登录注册 弹框样式*/
-        #dialog_content {width:auto;height: auto;}
-        .p_a {position: absolute;}
-        .t_c {text-align: center;}
-        .log_div {width: 49%; top: -0.2%; z-index: 11; font-size: 14px;cursor:pointer;padding: 5px 0;}
-        #outer_div {
-            width: 100%; height: 11%;
-            top: 0;  left: 0; background-color: #fff;  z-index: 10;
-        }
-        .out_active {color:#428bca;border: none;}
-        .out_not_active { color:#444;border-bottom:1px solid #ccc;}
-        #out_logup { left: -0.3%; }
-        #out_login { right: -0.3%; border-left: 1px solid #ccc;}
-        #logup_p {text-align: center;margin-top: -5%;width: 360px;}
-        .ipt {height: 36px;width: 228px;margin-bottom: 14px;border-radius: 4px;border: 1px solid #ccc;}
-        #logup_btn {margin-bottom: 0px;cursor: pointer;}
-        #login_btn {margin-bottom: 0px;cursor: pointer;}
-        #forget_btn {cursor: pointer; position: relative;bottom: -20px;}
-        #set_pasw_btn {cursor:pointer}
     </style>
 </head>
 
@@ -259,133 +226,6 @@
             </div>
         </div>
         {include file="public/footer" /}
-    </div>	
-	
-	<!--大学选择-->
-		<div id="choose-box-wrapper" style='z-index: 9999;'>
-		  <div id="choose-box">
-			<div id="choose-box-title">
-				<span>选择学校</span>
-			</div>
-			<p style="font-size:12px;text-indent:1em;"><span>搜索：</span><input id="searchSchool" type="text" value="搜索学校"/></p>
-			<div id="choose-a-province">
-			</div>
-			<div id="choose-a-school">
-			</div>
-			<div id="choose-box-bottom">
-				<input type="botton" id='close' value="关闭" />
-			</div>
-		  </div>
-	</div>
-
-	<style type="text/css">
-		#choose-box-wrapper{
-			width: 652px;
-			background-color:#000;
-			_filter:alpha(opacity=50);
-			_background-color: rgba(0, 0, 0，1);
-			padding:2px;
-			border-radius:5px;
-			display:none;
-		}
-		#choose-box{
-			border: 1px solid #005EAC;
-			width:650px;
-			background-color:white;
-		}
-		#choose-box-title{
-			background:#3777BC;
-			color: white;
-			padding: 4px 10px 5px;
-			font-size: 14px;
-			font-weight: 700;
-			margin: 0;
-		}
-		#choose-box-title span{
-			font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
-		}
-
-		#choose-a-province, #choose-a-school{
-			margin:5px 8px 10px 8px;
-			border: 1px solid #C3C3C3;
-		}
-		#choose-a-province a{
-			display:inline-block;
-			height: 18px;
-			line-height: 18px;
-			color:#005EAC;
-			text-decoration: none;
-			font-size: 9pt;
-			font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
-			margin:2px 5px;
-			padding: 1px;
-			text-align: center;
-		}
-		#choose-a-province a:hover{
-			text-decoration:underline;
-			cursor:pointer;
-		}
-		#choose-a-province .choosen{
-			background-color: #005EAC;
-			color:white;
-		}
-		
-		#choose-a-school{
-			overflow-x: hidden;
-			overflow-y: auto;
-			height: 200px;
-		}
-		#choose-a-school a{
-			height: 18px;
-			line-height: 18px;
-			color:#005EAC;
-			text-decoration: none;
-			font-size: 9pt;
-			font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
-			float: left;
-			width: 170px;
-			margin: 4px 0px 4px 12px ;
-			padding-left:10px;
-			background:url('__STATIC__/pic/dot.gif') no-repeat 0 9px;
-		}
-		#choose-a-school a:hover{
-			background-color:#005EAC;
-			color:white;
-			cursor:pointer;
-		}
-		
-		#choose-box-bottom{
-			background: #F0F5F8;
-			padding: 8px;
-			text-align: right;
-			border-top: 1px solid #CCC;
-			height:40px;
-		}
-		#choose-box-bottom input{
-			vertical-align: middle;
-			text-align: center;
-			background-color:#005EAC;
-			color:white;
-			border-top: 1px solid #B8D4E8;
-			border-left: 1px solid #B8D4E8;
-			border-right: 1px solid #114680;
-			border-bottom: 1px solid #114680;
-			cursor: pointer;
-			width: 60px;
-			height: 25px;
-			margin-top: 6px;
-			margin-right: 6px;
-		}
-	</style>
-	<script src="__STATIC__/js/chinaUniversityList.js"></script>
-	<script src="__STATIC__/js/chinaUniversitySelect.js"></script>
-	<!--大学选择 结束-->
-	
-	<div id="selectSchool">选择大学 </div>
-	
-    <script>
-        var selectSchool_e = $('#selectSchool');
-        selectSchool_e.click(function () { });
-    </script>
+    </div>
 </body>
 </html>

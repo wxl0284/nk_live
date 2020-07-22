@@ -379,19 +379,19 @@ class Controller
         foreach ($protectField as $v) {
             unset($map[$v]);
         }
-
+    
         if ($paginate) {
             // 分页查询
 
             // 每页数据数量
             $listRows = $this->request->param('numPerPage') ?: Config::get("paginate.list_rows");
-
+            
             $list = $model
                 ->field($field)
                 ->where($map)
                 ->order($order_by)
                 ->paginate($listRows, false, ['query' => $this->request->get()]);
-
+            
             if ($return) {
                 // 返回值
                 return $list;

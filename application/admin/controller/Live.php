@@ -25,6 +25,35 @@ class Live extends Controller
     
     public function index ()
     {
-        echo '123';
+        return $this->fetch('index');
     }//index 结束
+
+    /*
+     show_used_time()：在添加直播时，显示此教室已占用的时间段
+    */
+    
+    public function show_used_time ()
+    {
+        $d = input();
+
+        $data = Db::table('tp_subject')->where('status', 1)->where('start_time', '>', $d['t'])
+                ->field('start_time, end_time')->select();
+
+        if ($data)
+        {
+            $arr = [];
+            foreach ($data as $v)
+            {
+                $t  = date('Y-m-d H:i', $v['start_time']);
+                $t1 = date('H:i', $v['end_time']);
+                $arr[] = $t . "~" . $t1;
+            }
+
+            return json(['code'=>200, 'data'=>$arr]);
+        }else
+        {
+            return json(['code'=>100, 'data'=>'教室空闲']);
+        }
+        
+    }//show_used_time 结束
 }

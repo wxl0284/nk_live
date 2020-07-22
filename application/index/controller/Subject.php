@@ -26,8 +26,9 @@ class Subject extends Wx
     	$where = [];
     	//项目列表
         $subject = Db::name("subject")->where($where)->select();
+        //halt($subject);
         $this->assign("subject",$subject);
-        //专业大类,
+        //学院大类,
         $category = Db::name("category")->where(['parent_id'=>0])->select();
         foreach($category as $key => $val){
         	$category[$key]['catgory_two'] = Db::name("category")->where(['parent_id'=>$val['id']])->select();

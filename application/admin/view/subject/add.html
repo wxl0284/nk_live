@@ -70,6 +70,8 @@
             <div class="formControls col-xs-6 col-sm-6">
                 <input id='vr_start_time' type="text" class="input-text" placeholder="直播开始时间" name="start_time" readonly="readonly">
             </div>
+            <div class="col-xs-1 col-sm-1" style="margin-top:4px;padding:2px;cursor:pointer;width: auto;
+            color: #5a98de;border: 1px solid #5a98de;border-radius: 4px;" id='show_used'>已占用时段</div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
         <div class="row cl">
@@ -140,8 +142,15 @@
         </div>
     </div>
    </form> 
-
 </div>
+<!--显示已占用时段-->
+<style>
+    #used_time {text-align: center;}
+    #used_time p{padding: 3px;}
+</style>
+<div id='used_time' style='display: none;'>
+</div>
+<!--显示已占用时段 over-->
 {/block}
 {block name="script"}
 <script type="text/javascript" src="__LIB__/showdown/1.4.2/showdown.min.js"></script>
@@ -453,6 +462,52 @@ layui.use('laydate', function(){
   });
   
 });
+
+var used_time_e = $('#used_time');//显示占用时段的弹框
+var show_used_e = $('#show_used');//占用时段按钮
+
+show_used_e.click(function () {
+    let timestamp = Date.parse(new Date()) / 1000;
+
+    $.ajax({
+        url:'/admin/live/show_used_time',
+        type:"post",
+        data:{
+            t: timestamp
+        },
+        dataType:'json',
+        success:function (info){
+ 
+            if (info.code==200)
+            {
+                let html = '';
+                let n = info.data.length;
+
+                for(let i=0; i < n; i++)
+                {
+                    html += '<p>' + info.data[i] + '</p>';
+                }
+
+                used_time_e.html(html);
+
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: '已占用的时段',
+                    content: used_time_e,
+                    offset:'t',//顶部正中显示
+                    area: ['300px', '230px'],
+                })
+            }else if(info.code==200)
+            {
+
+            }
+        },//success 结束
+        error:function(info){
+            layer.msg('网络异常', {icon:2});
+        }
+    });//ajax 结束
+})//show_used_e.click 结束
 </script>
 
 {/block}

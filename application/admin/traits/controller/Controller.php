@@ -24,12 +24,12 @@ trait Controller
     public function index()
     {
         $model = $this->getModel();
-    
         // 列表过滤器，生成查询Map对象
         $map = $this->search($model, [$this->fieldIsDelete => $this::$isdelete]);
-
+        
         // 特殊过滤器，后缀是方法名的
         $actionFilter = 'filter' . $this->request->action();
+
         if (method_exists($this, $actionFilter)) {
             $this->$actionFilter($map);
         }
@@ -38,7 +38,7 @@ trait Controller
         if (method_exists($this, 'filter')) {
             $this->filter($map);
         }
-
+     
         // 生成excel表
         $excel = $this->excel;
 
@@ -69,6 +69,7 @@ trait Controller
         //     $this->assign('json_res',$json_res);
         // }
         else {
+            
             $this->datalist($model, $map);
         } 
 

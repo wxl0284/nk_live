@@ -17,11 +17,10 @@ class Subject extends Controller
 
     protected function filter(&$map)
     {
-
         if($_SESSION['think']['type'] == 2){
             $map['teacher_id'] = ["=",$_SESSION['think']['auth_id']];
         }
-        if ($this->request->param("cat_id")) {
+        if ($this->request->param("cat_id")){
             $parent_id = Db::name("category")->where(['id'=>$this->request->param("cat_id")])->value("parent_id");
             if($parent_id == 0){
                 $category = Db::name("category")->where(['parent_id'=>$this->request->param("cat_id")])->select();
@@ -40,15 +39,15 @@ class Subject extends Controller
             }
             
         }
-        if ($this->request->param("subject_level")) {
-            $map['subject_level'] = ["=",$this->request->param("subject_level")];
-        }
+        // if ($this->request->param("subject_level")) {
+        //     $map['subject_level'] = ["=",$this->request->param("subject_level")];
+        // }
         if ($this->request->param("subject_name")) {
             $map['subject_name'] = ["like", "%" . $this->request->param("subject_name") . "%"];
         }
-        if ($this->request->param("school_name")) {
-            $map['school_name'] = ["like", "%" . $this->request->param("school_name") . "%"];
-        }
+        // if ($this->request->param("school_name")) {
+        //     $map['school_name'] = ["like", "%" . $this->request->param("school_name") . "%"];
+        // }
         if ($this->request->param("person_charge")) {
             $map['person_charge'] = ["like", "%" . $this->request->param("person_charge") . "%"];
         }
@@ -87,8 +86,10 @@ class Subject extends Controller
                     $row['person_charge'],
                 ];
             };
+            
             $this->excel['name'] = 'SUBJECT'.date('YmdHis');
         }
+       
         $map['_table'] = 'tp_subject'; // 强制加表名
     }
 
@@ -130,17 +131,17 @@ class Subject extends Controller
                 return ajax_return_adv_error("直播结束时间有误");
             }
 
-            $start = strtotime($data['start_time']);// 开始的时间戳
-            $end = strtotime($data['end_time']);//结束的时间戳
+            $data['start_time'] = strtotime($data['start_time']);// 开始的时间戳
+            $data['end_time'] = strtotime($data['end_time']);//结束的时间戳
 
             $err_msg = '';
 
-            if ( $end <= $start )
+            if ( $data['end_time'] <= $data['start_time'] )
             {
                 $err_msg .= '直播结束时间有误';
             }
 
-            if ( ($end-$start) < 600 )//直播时长应大于10分钟
+            if ( ($data['end_time']-$data['start_time']) < 600 )//直播时长应大于10分钟
             {
                 if($err_msg)
                 {
@@ -150,11 +151,22 @@ class Subject extends Controller
                 }              
             }
 
-            //查数据表里与当前提交的直播时间有可能冲突的直播(有多个直播或录播教室)
+            if ( $err_msg !== '' )
+            {
+                return ajax_return_adv_error($err_msg);
+            }
+
+            //查数据表里与当前提交的直播时间有可能冲突的直播(仅此一个直播教室)
             $live_not_done = Db::table('tp_subject')->where('start_time', '>=', $data['start_time'])->field('start_time, end_time')->find();
+            //$live_not_done = Db::table('tp_subject')->where('id', 66)->field('start_time, end_time')->find();
+            //halt($live_not_done);
             if ( $live_not_done )
             {
-                //检查当前提交的时间：
+                //检查当前提交的时间：如果结束时间早于$live_not_done的开始时间即可
+                if ( $data['end_time']>= $live_not_done['start_time'] )
+                {
+                    return ajax_return_adv_error("直播时间有冲突, 请重新选择时间");
+                }
             }
             //验证结束
 
@@ -166,15 +178,18 @@ class Subject extends Controller
             }
 
             $data['teacher_id'] = $_SESSION['think']['auth_id'];
-            //halt($_SESSION['think']['auth_id']);
+            $data['status'] = 1;//直播: 默认为发布状态
+            
             // 验证
             if (class_exists($validateClass = Loader::parseClass(Config::get('app.validate_path'), 'validate', $controller))) {
+
                 $validate = new $validateClass();
+      
                 if (!$validate->check($data)) {
                     return ajax_return_adv_error($validate->getError());
                 }
             }
-          
+     
             // 写入数据
             
             //获得结束时间
@@ -219,7 +234,74 @@ class Subject extends Controller
         if ($this->request->isAjax()) {
             // 更新
             $data = input('post.');
-			
+     
+            //验证数据
+            if ( !( isset($data['cat_id']) && preg_match('/^([0-9]){1,10}$/', $data['cat_id']) ) )
+            {
+                return ajax_return_adv_error("请选择专业分类！");
+            }
+
+            if ( !( isset($data['subject_name']) && preg_match('/^\S{1,90}$/', $data['subject_name']) ) )
+            {//直播名称
+                return ajax_return_adv_error("直播名称应为30汉字以内！");
+            }
+
+            if ( !( isset($data['person_charge']) && preg_match('/^\S{1,21}$/', $data['person_charge']) ) )
+            {//直播老师姓名
+                return ajax_return_adv_error("直播老师姓名应为7汉字以内！");
+            }
+
+            $now = time();
+
+            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > $now ) ) )
+            {//直播开始时间
+                return ajax_return_adv_error("直播开始时间有误");
+            }
+
+            if ( !( isset($data['end_time']) && ( strtotime($data['end_time']) > $now ) ) )
+            {//直播结束时间
+                return ajax_return_adv_error("直播结束时间有误");
+            }
+
+            $data['start_time'] = strtotime($data['start_time']);// 开始的时间戳
+            $data['end_time'] = strtotime($data['end_time']);//结束的时间戳
+         
+            $err_msg = '';
+
+            if ( $data['end_time'] <= $data['start_time'] )
+            {
+                $err_msg .= '直播结束时间有误';
+            }
+
+            if ( ($data['end_time']-$data['start_time']) < 600 )//直播时长应大于10分钟
+            {
+                if($err_msg)
+                {
+                    $err_msg .= ',直播时长应大于10分钟';
+                }else{
+                    $err_msg .= '直播时长应大于10分钟';
+                }              
+            }
+
+            if ( $err_msg !== '' )
+            {
+                return ajax_return_adv_error($err_msg);
+            }
+
+            //查数据表里与当前提交的直播时间有可能冲突的直播(仅此一个直播教室)
+            $live_not_done = Db::table('tp_subject')->where('start_time', '>=', $data['start_time'])->field('start_time, end_time')->find();
+            //$live_not_done = Db::table('tp_subject')->where('id', 66)->field('start_time, end_time')->find();
+            //halt($live_not_done);
+            if ( $live_not_done )
+            {
+                //检查当前提交的时间：如果结束时间早于$live_not_done的开始时间即可
+                if ( $data['end_time']>= $live_not_done['start_time'] )
+                {
+                    return ajax_return_adv_error("直播时间有冲突, 请重新选择时间");
+                }
+            }
+            //验证结束
+
             // 验证
             if (class_exists($validateClass = Loader::parseClass(Config::get('app.validate_path'), 'validate', $controller))) {
                 $validate = new $validateClass();
@@ -228,8 +310,7 @@ class Subject extends Controller
                 }
             }
 
-            //获得结束时间
-            // $data['end_time'] = $this->getEndTime($data['start_time'],$data['plan_cycle'],$data['plan_type']);
+           
             // 更新数据
             if (
                 class_exists($modelClass = Loader::parseClass(Config::get('app.model_path'), 'model', $this->parseCamelCase($controller)))
@@ -237,14 +318,6 @@ class Subject extends Controller
             ) {
                 // 使用模型更新，可以在模型中定义更高级的操作
                 $model = new $modelClass();
-				
-				 //检查上传的实验zip文件是否与之前的zip文件不用 如果不同表示是新上传了zip文件
-                $old_zip = $model->where('id', $data['id'] )->field('zip_file')->find();
-
-                if ( $old_zip["zip_file"] != $data['zip_file'] ) //新上传了zip文件
-                {
-                    $data['zip_name_file'] = null;
-                }
           
                 $ret = $model->isUpdate(true)->save($data, ['id' => $data['id']]);
                 
@@ -254,15 +327,7 @@ class Subject extends Controller
                 Db::startTrans();
                 try {
                     $model = Db::name($this->parseTable($controller));
-					
-					//检查上传的实验zip文件是否与之前的zip文件不用 如果不同表示是新上传了zip文件
-					$old_zip = $model->where('id', $data['id'] )->field('zip_file')->find();
-
-					if ( $old_zip["zip_file"] != $data['zip_file'] ) //新上传了zip文件
-					{
-						$data['zip_name_file'] = null;
-					}
-                  
+					               
                     $ret = $model->where('id', $data['id'])->update($data);
                     // 提交事务
                     Db::commit();

@@ -35,12 +35,13 @@
     <table class="table table-border table-bordered table-hover table-bg mt-20">
         <thead>
         <tr class="text-c">
-            <th width="">专业大类</th>
-            <th width="">专业分类</th>
-            <th width="">项目级别</th>
-            <th width="">项目名称</th>
-            <th width="">学校名称</th>
-            <th width="">负责人姓名</th>
+            <th width="">学院</th>
+            <th width="">专业</th>
+            <th width="">直播名称</th>
+            <th width="">直播教师</th>
+            <th width="">直播简介</th>
+            <th width="">开始时间</th>
+            <th width="">结束时间</th>
             <th width="">是否发布</th>
             <th width="70">操作</th>
         </tr>
@@ -50,10 +51,11 @@
         <tr class="text-c">
             <td><?php $cat_name = model("subject")->get_cat_parent_name($vo['cat_id']); ?> {$cat_name}</td>
             <td><?php $cat_name = model("subject")->get_cat_name($vo['cat_id']); ?> {$cat_name}</td>
-            <td>{if $vo.subject_level == 1}认定项目{else}其他项目{/if}</td>
             <td>{$vo.subject_name|high_light=$Request.param.subject_name}</td>
-            <td>{$vo.school_name|high_light=$Request.param.school_name}</td>
             <td>{$vo.person_charge|high_light=$Request.param.person_charge}</td>
+            <td>{$vo.subject_brief|high_light=$Request.param.subject_brief}</td>
+            <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
             <td>{if $vo.status == 1}已发布{elseif $vo.status == 2}已撤销{else}未发布{/if}</td>
             <td class="f-14">
                 
@@ -77,9 +79,7 @@
                 
                 {/if}
                 <br>
-                {if $Think.session.type <> 1}
-                <a title="团队成员" href="javascript:;" onclick="layer_open('团队成员','/admin/team_major/index/subject_id/{$vo.id}.html')" style="text-decoration:none;background: #5A98DE" class="label label-danger radius ml-5">团队成员</a>
-                
+                {if $Think.session.type <> 1}                               
                 {tp:menu menu='sedit' /}
                 <a href="javascript:;" onclick="del_forever(this,{$vo.id},'/admin/subject/deleteforever.html')" class="label label-danger radius ml-5">删除</a>
                 {/if}
