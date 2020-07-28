@@ -14,7 +14,7 @@ class Live extends Controller
     index() 根据用户端为手机、还是pc分别显示不同的页面
     */
     
-    public function index ()
+    /*public function index ()
     {
         $mobile = $this->request->isMobile();
         //halt($mobile);
@@ -25,5 +25,16 @@ class Live extends Controller
 
         return view('mobile');
         //create_qr_code();//调用app/common.php中二维码生成的函数
+    }//index 结束*/
+
+    /*
+    index() 显示直播列表页面
+    */
+    
+    public function index ()
+    {
+        $info = Session::get('real_name');
+        $this->assign('info', $info);
+        return view('live');        
     }//index 结束
 }

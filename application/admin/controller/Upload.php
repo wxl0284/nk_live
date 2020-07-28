@@ -37,7 +37,7 @@ class Upload extends Controller
             //验证图片格式和大小
             $file_info = $file->getInfo();
 
-            if ( !($file_info['type'] == 'image/gif' || $file_info['type'] == 'image/jpg' || $file_info['type'] == 'image/png') )
+            if ( !($file_info['type'] == 'image/gif' || $file_info['type'] == 'image/jpg' || $file_info['type'] == 'image/png' || $file_info['type'] == 'image/jpeg') )
             {
                 $err_msg .= '图片格式须为jpg/png/gif';
             }

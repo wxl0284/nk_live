@@ -37,9 +37,12 @@
         <tr class="text-c">
             <th width="">学院</th>
             <th width="">专业</th>
-            <th width="">录播名称</th>
-            <th width="">录播教师</th>
-            <th width="">录播简介</th>
+            <th width="">直播名称</th>
+            <th width="">直播教师</th>
+            <th width="">直播简介</th>
+            <th width="">开始时间</th>
+            <th width="">结束时间</th>
+            <th width="">是否发布</th>
             <th width="70">操作</th>
         </tr>
         </thead>
@@ -51,6 +54,9 @@
             <td>{$vo.subject_name|high_light=$Request.param.subject_name}</td>
             <td>{$vo.person_charge|high_light=$Request.param.person_charge}</td>
             <td>{$vo.subject_brief|high_light=$Request.param.subject_brief}</td>
+            <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
+            <td>{if $vo.status == 1}已发布{elseif $vo.status == 2}已撤销{else}未发布{/if}</td>
             <td class="f-14">
                 
                 {if $Think.session.type <> 2}
@@ -72,7 +78,7 @@
                     {/if}
                 
                 {/if}
-                <br><!--只能显示自己提交的录播数据-->
+                <br>
                 {if $Think.session.type <> 1}                              
                 {tp:menu menu='sedit' /}
                 <a href="javascript:;" onclick="del_forever(this,{$vo.id},'/admin/subject/deleteforever.html')" class="label label-danger radius ml-5">删除</a>

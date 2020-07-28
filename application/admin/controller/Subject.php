@@ -103,82 +103,37 @@ class Subject extends Controller
         if ($this->request->isAjax()) {//执行添加
            
             $data = input('post.');
+       
             //验证数据
             if ( !( isset($data['cat_id']) && preg_match('/^([0-9]){1,10}$/', $data['cat_id']) ) )
             {
-                return ajax_return_adv_error("请选择专业分类！");
+                return ajax_return_adv_error("请选择学院专业！");
             }
 
             if ( !( isset($data['subject_name']) && preg_match('/^\S{1,90}$/', $data['subject_name']) ) )
             {//直播名称
-                return ajax_return_adv_error("直播名称应为30汉字以内！");
+                return ajax_return_adv_error("录播名称应为30汉字以内！");
             }
 
             if ( !( isset($data['person_charge']) && preg_match('/^\S{1,21}$/', $data['person_charge']) ) )
             {//直播老师姓名
-                return ajax_return_adv_error("直播老师姓名应为7汉字以内！");
+                return ajax_return_adv_error("录播老师姓名应为7汉字以内！");
             }
 
-            $now = time();
-
-            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > $now ) ) )
-            {//直播开始时间
-                return ajax_return_adv_error("直播开始时间有误");
-            }
-
-            if ( !( isset($data['end_time']) && ( strtotime($data['end_time']) > $now ) ) )
-            {//直播结束时间
-                return ajax_return_adv_error("直播结束时间有误");
-            }
-
-            $data['start_time'] = strtotime($data['start_time']);// 开始的时间戳
-            $data['end_time'] = strtotime($data['end_time']);//结束的时间戳
-
-            $err_msg = '';
-
-            if ( $data['end_time'] <= $data['start_time'] )
-            {
-                $err_msg .= '直播结束时间有误';
-            }
-
-            if ( ($data['end_time']-$data['start_time']) < 600 )//直播时长应大于10分钟
-            {
-                if($err_msg)
-                {
-                    $err_msg .= ',直播时长应大于10分钟';
-                }else{
-                    $err_msg .= '直播时长应大于10分钟';
-                }              
-            }
-
-            if ( $err_msg !== '' )
-            {
-                return ajax_return_adv_error($err_msg);
-            }
-
-            //查数据表里与当前提交的直播时间有可能冲突的直播(仅此一个直播教室)
-            $live_not_done = Db::table('tp_subject')->where('start_time', '>=', $data['start_time'])->field('start_time, end_time')->find();
-            //$live_not_done = Db::table('tp_subject')->where('id', 66)->field('start_time, end_time')->find();
-            //halt($live_not_done);
-            if ( $live_not_done )
-            {
-                //检查当前提交的时间：如果结束时间早于$live_not_done的开始时间即可
-                if ( $data['end_time']>= $live_not_done['start_time'] )
-                {
-                    return ajax_return_adv_error("直播时间有冲突, 请重新选择时间");
-                }
-            }
             //验证结束
 
-            if($data['subject_brief_video'] && !$data['subject_brief_img']){
-                return ajax_return_adv_error("请上传项目简介封面！");
-            } 
-            if($data['subject_lead_video'] && !$data['subject_lead_img']){
-                return ajax_return_adv_error("请上传项目引导封面！");
+            if( !(isset($data['subject_brief_video']) && !empty($data['subject_brief_video'])) )
+            {
+                return ajax_return_adv_error("请上传录播视频！");
             }
 
+            if( !(isset($data['equip_pic']) && !empty($data['equip_pic'])) )
+            {
+                return ajax_return_adv_error("请上传录播封面图！");
+            } 
+
             $data['teacher_id'] = $_SESSION['think']['auth_id'];
-            $data['status'] = 1;//直播: 默认为发布状态
+            $data['status'] = 1;//录播: 默认为发布状态
             
             // 验证
             if (class_exists($validateClass = Loader::parseClass(Config::get('app.validate_path'), 'validate', $controller))) {
@@ -243,63 +198,14 @@ class Subject extends Controller
 
             if ( !( isset($data['subject_name']) && preg_match('/^\S{1,90}$/', $data['subject_name']) ) )
             {//直播名称
-                return ajax_return_adv_error("直播名称应为30汉字以内！");
+                return ajax_return_adv_error("录播名称应为30汉字以内！");
             }
 
             if ( !( isset($data['person_charge']) && preg_match('/^\S{1,21}$/', $data['person_charge']) ) )
             {//直播老师姓名
-                return ajax_return_adv_error("直播老师姓名应为7汉字以内！");
+                return ajax_return_adv_error("录播老师姓名应为7汉字以内！");
             }
-
-            $now = time();
-
-            if ( !( isset($data['start_time']) && ( strtotime($data['start_time']) > $now ) ) )
-            {//直播开始时间
-                return ajax_return_adv_error("直播开始时间有误");
-            }
-
-            if ( !( isset($data['end_time']) && ( strtotime($data['end_time']) > $now ) ) )
-            {//直播结束时间
-                return ajax_return_adv_error("直播结束时间有误");
-            }
-
-            $data['start_time'] = strtotime($data['start_time']);// 开始的时间戳
-            $data['end_time'] = strtotime($data['end_time']);//结束的时间戳
-         
-            $err_msg = '';
-
-            if ( $data['end_time'] <= $data['start_time'] )
-            {
-                $err_msg .= '直播结束时间有误';
-            }
-
-            if ( ($data['end_time']-$data['start_time']) < 600 )//直播时长应大于10分钟
-            {
-                if($err_msg)
-                {
-                    $err_msg .= ',直播时长应大于10分钟';
-                }else{
-                    $err_msg .= '直播时长应大于10分钟';
-                }              
-            }
-
-            if ( $err_msg !== '' )
-            {
-                return ajax_return_adv_error($err_msg);
-            }
-
-            //查数据表里与当前提交的直播时间有可能冲突的直播(仅此一个直播教室)
-            $live_not_done = Db::table('tp_subject')->where('start_time', '>=', $data['start_time'])->field('start_time, end_time')->find();
-            //$live_not_done = Db::table('tp_subject')->where('id', 66)->field('start_time, end_time')->find();
-            //halt($live_not_done);
-            if ( $live_not_done )
-            {
-                //检查当前提交的时间：如果结束时间早于$live_not_done的开始时间即可
-                if ( $data['end_time']>= $live_not_done['start_time'] )
-                {
-                    return ajax_return_adv_error("直播时间有冲突, 请重新选择时间");
-                }
-            }
+            
             //验证结束
 
             // 验证
@@ -310,7 +216,6 @@ class Subject extends Controller
                 }
             }
 
-           
             // 更新数据
             if (
                 class_exists($modelClass = Loader::parseClass(Config::get('app.model_path'), 'model', $this->parseCamelCase($controller)))
@@ -370,9 +275,10 @@ class Subject extends Controller
             return ajax_return_error('简介视频格式须为mp4');
         }
 
-        $data = model('upload_file')->uploadVideo($file);
+        $data = model('upload_file')->uploadVideo($file);//调用app/common/model/UploadFile.php
         return json($data);
     }
+
     //上传引导视频
     public function uploadVideoLead(){
         $file = request()->file('lead_video');
@@ -387,12 +293,14 @@ class Subject extends Controller
         $data = model('upload_file')->uploadVideo($file);
         return json($data);
     }
+
     //上传视频
     public function uploadVideoReport(){
         $file = request()->file('report_video');
         $data = model('upload_file')->uploadFile($file);
         return json($data);
     }
+
     //上传Zip
     public function uploadZip(){
         $file = $this->request->file('file');
@@ -413,6 +321,7 @@ class Subject extends Controller
         return ['code'=>0,'msg'=>"上传成功！",'data'=>$data];
 
     }
+
     public function imports(){
 
             $file = $this->request->file('file');
@@ -462,6 +371,7 @@ class Subject extends Controller
             return ajax_return([],'成功');    
        
     }
+
     //截图
     public function capture(){
         if($this->request->isAjax()){

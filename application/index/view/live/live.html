@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>VR直播录播</title>
+<title>VR直播列表</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 <meta name="format-detction" content="telephone=no">
@@ -11,7 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-<!-- <meta content="虚拟仿真,实验,国家虚拟仿真实验教学项目,国家虚拟仿真实验教学项目共享服务平台,本科,实验空间,ilab,ilab-x" name="keywords"> -->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <script src="__STATIC__/js/core.js"></script>
 <script src="__STATIC__/js/sha256.js"></script>
@@ -42,36 +41,18 @@
 </head>
 <body>
 <div id="layout" style="position: relative;">
-    {include file="public/header" /}
+    {include file="public/live_header" /}
     <div id="menu">
     </div>
     <div id="center">
         <div id="content" class="content">
             <div class="center_content">
-                <div class="top" style="background: url('{$equip_pic}') no-repeat bottom;">
+                <div class="top">
                     <div class="slogan-text">
-                        <span>教育改变人生</span><span>网络改变教育</span>
+                        <span>教育改变人生</span>
                     </div>
                     <div class="topbox">
                         <div class="picbox" id="imgList">
-                        </div>
-                    </div>
-                </div>
-                <div class="news2">
-                    <div class="news2-wrapper" id="newList">
-                        <div class="news2-box">
-                            <div class="title">
-                                <span class="notice"><i></i>通知公告</span><a href="/index/article/index?article_cat=1" class="more">更多<i class="iconfont" style="font-size:13px;">>></i></a>
-                            </div>
-                            <ul class="news2-list" id="newList1">
-                            </ul>
-                        </div>
-                        <div class="news2-box right-box">
-                            <div class="title">
-                                <span class="news"><i></i>新闻资讯</span><a href="/index/article/index?article_cat=2" class="more">更多<i class="iconfont" style="font-size:13px;">>></i></a>
-                            </div>
-                            <ul class="news2-list" id="newList2">
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -79,7 +60,6 @@
         </div>
     </div>
     {include file="public/footer" /}
-    <!-- <script src="__STATIC__/js/bdhm.js"></script> -->
 </div>
 </body>
 </html>
