@@ -68,6 +68,7 @@ class Tp extends Taglib
             (is_array($tag['url']) ? $tag['url'] : explode(',', $tag['url'])) :
             [];
         $parseStr = '';
+        //halt($tag);
         foreach ($menu as $k => $m) {
             $m = strtolower($m);
             $url = isset($urlArr[$k]) && $urlArr[$k] ? $urlArr[$k] : (substr($m, 0, 1) == 's' ? substr($m, 1) : $m);

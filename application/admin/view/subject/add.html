@@ -2,16 +2,10 @@
 {block name="content"}
 
 <div class="page-container">
-   <!-- <ul class="nav nav-tabs" role="tablist" id="myTab">
+   <ul class="nav nav-tabs" role="tablist" id="myTab">
       <li class="li1 active"><a href="#general" role="tab" data-toggle="tab">通用信息</a></li>
-       <li class="li2"><a href="#detail" role="tab" data-toggle="tab">项目团队</a></li>
-      <li class="li3"><a href="#message" role="tab" data-toggle="tab">项目描述</a></li>
-      <li class="li4"><a href="#property" role="tab" data-toggle="tab">网络要求</a></li>
-      <li class="li5"><a href="#album" role="tab" data-toggle="tab">技术架构</a></li>
-      <li class="li6"><a href="#link" role="tab" data-toggle="tab">项目特色</a></li>
-      <li class="li7"><a href="#parts" role="tab" data-toggle="tab">服务计划</a></li>
-      <li class="li8"><a href="#project" role="tab" data-toggle="tab">项目申报</a></li> 
-    </ul>-->
+      <li class="li2"><a href="#detail" role="tab" data-toggle="tab">授课教师介绍</a></li>
+    </ul>
     <style>
         .nav {
             display: inline-block;
@@ -50,7 +44,13 @@
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
-      
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>学院名称：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学院名称" name="school_name" datatype="*" nullmsg="请填写学院名称">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>录播名称：</label>
             <div class="formControls col-xs-6 col-sm-6">
@@ -101,7 +101,140 @@
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
-    </div>
+    </div><!--表单第一部分-->
+
+    <div class="form form-horizontal form2">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">性别：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="sex" class="select" datatype="*" nullmsg="请选择性别">
+                        <option value="0">请选择性别</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">出生年月：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="出生年月（例：1992-02-02）" name="birth_day" nullmsg="请填写出生年月">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学历：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学历" name="educate" nullmsg="请填写学历">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学位：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="学位" name="junior_college" nullmsg="请填写学位">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">专业技术职务：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="专业技术职务" name="skill_work" nullmsg="请填写专业技术职务">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">行政职务：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="行政职务" name="administration_work" nullmsg="请填写行政职务">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">院系：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="院系" name="college"  nullmsg="请填写院系">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">邮编：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="邮编" name="postal_code" nullmsg="请填写邮编">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">地址：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="地址" name="address" nullmsg="请填写地址">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        {if $Think.session.type <> 2}
+        <!-- <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">项目发布：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="status" class="select" datatype="*" nullmsg="">
+                        <option value="0">未发布</option>
+                        <option value="1">已发布</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div> -->
+        {/if}
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">电话：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="电话" name="phone" nullmsg="请填写电话">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">手机：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="手机" name="mobile" nullmsg="请填写手机">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">邮箱：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" placeholder="邮箱" name="email" nullmsg="请填写邮箱">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">教学研究情况：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="teach_reseatch" name="teach_reseatch" type="text/plain" style="height:400px"><?php if(!empty($vo['teach_reseatch'])) {echo htmlspecialchars_decode($vo['teach_reseatch']);} ;?></script>
+                    </div>
+                    <div id="markdown_teach_reseatch" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">学术研究情况：</label>
+            <div class="formControls col-xs-9 col-sm-9">
+                <div class="page-container">
+                    <div>
+                        <script id="academic_research" name="academic_research" type="text/plain" style="height:400px"><?php if(!empty($vo['academic_research'])) {echo htmlspecialchars_decode($vo['academic_research']);} ;?></script>
+                    </div>
+                    <div id="markdown_academic_research" class="mt-20"></div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+       
+    </div><!--授课教师信息结束-->
+
     <div class="row cl">
         <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
             <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
@@ -114,10 +247,10 @@
 {/block}
 {block name="script"}
 <script type="text/javascript" src="__LIB__/showdown/1.4.2/showdown.min.js"></script>
-<!-- <script>window.UEDITOR_HOME_URL = '__LIB__/ueditor/1.4.3/'</script>
+<script>window.UEDITOR_HOME_URL = '__LIB__/ueditor/1.4.3/'</script>
 <script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/ueditor.all.min.js"> </script>
-<script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script> -->
+<script type="text/javascript" charset="utf-8" src="__LIB__/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
 <script type="text/javascript" src="__LIB__/uploads/vendor/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="__LIB__/uploads/jquery.iframe-transport.js"></script>
@@ -142,12 +275,26 @@
             }
         });
         
-        // $(".li1").on('click', function() {
-        //     $(".form1").addClass("myform").siblings().removeClass("myform");
-        // })
-        // $(".li2").on('click', function() {
-        //     $(".form2").addClass("myform").siblings().removeClass("myform");
-        // })        
+        $(".li1").on('click', function() {
+            $(".form1").addClass("myform").siblings().removeClass("myform");
+        })
+        $(".li2").on('click', function() {
+            $(".form2").addClass("myform").siblings().removeClass("myform");
+        })
+
+        var ue = UE.getEditor('teach_reseatch',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+            text      = $("#markdown_tpl").html();
+        $("#markdown_teach_reseatch").html(converter.makeHtml(text)); 
+
+        var ue = UE.getEditor('academic_research',{
+            serverUrl:'{:\\think\\Url::build("Ueditor/index")}'
+        });
+        var converter = new showdown.Converter(),
+            text      = $("#markdown_tpl").html();
+        $("#markdown_academic_research").html(converter.makeHtml(text));    
     })
 
     function show_img(){

@@ -103,14 +103,14 @@ X.sub("init", function() {
         res += '<li>' + ("对应专业：" + (item.cat_name || "")) + '</li>';
         res += '<li>' + ("学校：" + (item.school_name || "")) + '</li>';
         res += '<li>' + ("负责人：" + (item.person_charge || ""))+ '</li>';
-        res += '<li>' + ("试用账号：" + (item.trial_account || "")) + '</li>';
-        res += '<li>' + ("试用密码：" + (item.trial_pass || "")) + '</li>';
+        //res += '<li>' + ("试用账号：" + (item.trial_account || "")) + '</li>';
+        //res += '<li>' + ("试用密码：" + (item.trial_pass || "")) + '</li>';
         res += '</ul>';
         res += '<div class="details-page-info-description">';
         res += '<p>' +  (sb_substr(item.subject_brief) || "") + '</p>';
         res += '</div>';
         res += '<div class="details-page-info-btns">';
-        res += '<button type="button" class="btn btn-primary details-page-info-do-btn" id="doBtn" onclick="X.pub(\'goTolink\',\'http://vschemlabsalen.hunnu.edu.cn\')"></button>';
+        //res += '<button type="button" class="btn btn-primary details-page-info-do-btn" id="doBtn" onclick="X.pub(\'goTolink\',\'http://vschemlabsalen.hunnu.edu.cn\')"></button>';
         if(item.collect_s == 0){
             res += '<button type="button" class="btn btn-white btn-opacity" id="collectionBtn"><img src="/static/index/pic/collection.png" style="vertical-align:middle;"><span style="vertical-align:middle;">&nbsp;收藏</span></button>';
             //res += '<button type="button" class="btn btn-white btn-opacity" id="collectionBtn" style="background-image: url(/static/index/pic/collection.png);"><i class="iconfont"></i></button>';
@@ -826,8 +826,8 @@ X.sub("init", function() {
 
     var category = category || "0";
 
-    function initTabNav() {
-        var div = '';
+    function initTabNav() {//显示记录详情页的中部数据导航栏
+        /*var div = '';
         div += '<button type="button" data-category="0" class="btn btn-default ' + ((category === "0") ? "active" : "") + '">项目团队</button>';
         div += '<button type="button" data-category="1" class="btn btn-default ' + ((category === "1") ? "active" : "") + '">项目描述</button>';
         div += '<button type="button" data-category="4" class="btn btn-default ' + ((category === "4") ? "active" : "") + '">网络要求</button>';
@@ -836,7 +836,7 @@ X.sub("init", function() {
         div += '<button type="button" data-category="3" class="btn btn-default ' + ((category === "3") ? "active" : "") + '">服务计划</button>';
         div += '<button type="button" data-category="7" class="btn btn-default ' + ((category === "7") ? "active" : "") + '">项目申报</button>';
         div += '<button type="button" id="more_citizen" data-category="6" class="btn btn-default ' + ((category === "6") ? "active" : "") + '">更多评论</button>';
-        $('#tabNav').html(div);
+        $('#tabNav').html(div);*/
         checkLoadedInfo();
     }
 
@@ -1030,10 +1030,10 @@ X.sub("init", function() {
         }
         div += '</table>';
         div += '<p class="part-title">教学研究情况</p>';
-        div += '<div class="part-content"><p class="fangsong">（主持的教学研究课题（含课题名称、来源、年限，不超过5项）；作为第一署名人在国内外公开发行的刊物上发表的教学研究论文（含题目、刊物名称、时间，不超过10项）；获得的教学表彰/奖励（不超过5项））</p>' + (inChargeInfo.teach_reseatch || "暂无内容") + '</div>';
+        div += '<div class="part-content">' + (inChargeInfo.teach_reseatch || "暂无内容") + '</div>';
         div += '<p class="part-title">学术研究情况</p>';
-        div += '<div class="part-content"><p class="fangsong">（近五年来承担的学术研究课题（含课题名称、来源、年限、本人所起作用，不超过5项）；在国内外公开发行刊物上发表的学术论文（含题目、刊物名称、署名次序与时间，不超过5项）；获得的学术研究表彰/奖励（含奖项名称、授予单位、署名次序、时间，不超过5项））</p>' + (inChargeInfo.academic_research || "暂无内容") + '</div>';
-        div += '<p class="part-title">实验教学项目教学服务团队情况</p>';
+        div += '<div class="part-content">' + (inChargeInfo.academic_research || "暂无内容") + '</div>';
+        /*div += '<p class="part-title">实验教学项目教学服务团队情况</p>';
         div += '<div class="part-table-responsive">';
         div += '<table class="part-table" id="mainTable"></table>';
         div += '</div>';
@@ -1049,7 +1049,8 @@ X.sub("init", function() {
         div += '</p>';
         div += '<p class="fangsong">注：1.教学服务团队成员所在单位需如实填写，可与负责人不在同一单位。</p>';
         div += '<p class="fangsong" style="margin-left:2em;">2.教学服务团队须有在线教学服务人员和技术支持人员，请在备注中说明。</p>';
-        div += '</div>';
+        */
+       div += '</div>';
         $('#detailsPageInfo').html(div);
         getMainMember();
     }
@@ -1098,8 +1099,8 @@ X.sub("init", function() {
         $('#mainTable').html(divTh + main + div);
         resp.limit = limit;
         resp.evt = "gotoMainMemberPage";
-        resp.ele = X("pagination3", true);
-        X.pub('pagination', resp);
+        //resp.ele = X("pagination3", true);
+        //X.pub('pagination', resp);
         getOtherMember();
     }
 
@@ -1145,8 +1146,8 @@ X.sub("init", function() {
         $('#otherTable').html(div);
         resp.limit = limit;
         resp.evt = "gotoOtherMemberPage";
-        resp.ele = X("pagination4", true);
-        X.pub('pagination', resp);
+        //resp.ele = X("pagination4", true);
+        //X.pub('pagination', resp);
         onTabLoaded();
     }
 

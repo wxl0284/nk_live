@@ -73,6 +73,7 @@
             <th width="">直播授课教师</th>
             <th width="">开始时间</th>
             <th width="">结束时间</th>
+            <th width="">封面图片</th>
             <th width="70">操作</th>
         </tr>
         </thead>
@@ -85,37 +86,34 @@
                 <td>{$vo.teacher}</td>
                 <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td>
                 <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
+                <td><img src="{$vo.live_pic ?? ''}" alt='图片未能显示' style='width:5vw'></td>
                 <td class="f-14">
                     
                     {if $Think.session.type <> 2}
                         {if condition="$vo.status == 0 || $vo.status == 2"}
-                        <a href="javascript:;" onclick="is_publish({$vo.id},1)" class="label label-danger radius ml-5">发布</a>
+                        <!-- <a href="javascript:;" onclick="is_publish({$vo.id},1)" class="label label-danger radius ml-5">发布</a> -->
                         {/if}
                         {if condition="$vo.status == 1"}
-                        <a href="javascript:;" onclick="is_publish({$vo.id},2)" class="label label-danger radius ml-5">撤销</a>
+                        <!-- <a href="javascript:;" onclick="is_publish({$vo.id},2)" class="label label-danger radius ml-5">撤销</a> -->
                         {/if}
                     {else}
                         {if condition="$vo.status == 0"}
-                        <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">未发布</span>
+                        <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">未发布</span> -->
                         {/if}
                         {if condition="$vo.status == 1"}
-                        <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已发布</span>
+                        <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已发布</span> -->
                         {/if}
                         {if condition="$vo.status == 2"}
-                        <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已撤销</span>
+                        <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已撤销</span> -->
                         {/if}
                     
                     {/if}
-                    <br>
+                    <!-- <br> -->
                     {if $Think.session.type <> 1} <!--教师 type为2；admin的type为1-->                          
-                    {tp:menu menu='sedit' /}
-                    <a href="javascript:;" onclick="del_forever(this,{$vo.id},'/admin/subject/deleteforever.html')" class="label label-danger radius ml-5">删除</a>
+                    <a title="编辑" href="javascript:;" onclick="layer_open('编辑','/admin/live/edit/id/{$vo.id}.html')" style="text-decoration:none" class="ml-5"><i class="Hui-iconfont">编辑</i></a>
+                    <!-- <a href="javascript:;" onclick="del_forever(this,{$vo.id},'/admin/live/delete_forever.html')" class="label label-danger radius ml-5">删除</a> -->
+                    <a href="javascript:;" class="label label-danger radius ml-5 delete" live_id={$vo.id}>删除</a>
                     {/if}
-                    <br/>
-                    {if $Think.session.type <> 2}<!--教务人员 type为1-->
-                    <a title="查看" href="javascript:;" onclick="layer_open('查看','/admin/subject/info/id/{$vo.id}.html')" style="text-decoration:none" class="ml-5"><i class="Hui-iconfont">查看</i></a>
-                    {/if}
-                    
                 </td>
             </tr>
         {/volist}       
@@ -183,7 +181,42 @@
             //return false 开启该代码可禁止点击该按钮关闭
           }
         });
-    }
+    }//is_publish 结束
+
+    $('.delete').on('click', function(){
+        let id = $(this).attr('live_id');
+        
+        layer.confirm(
+            '真的要删除么？删后不可恢复', 
+            {
+                btn: ['删除','取消']
+            },
+            function (){
+                $.ajax({
+                    url:"/admin/live/delete_forever",
+                    type:"post",
+                    data:{ id:id },
+                    dataType:'json',
+                    success:function(info){
+                        if ( info.code == 200 )
+                        {
+                            layer.msg(info.msg, {icon:1});
+                            window.location.reload();
+                        }else if( info.code == 100 )
+                        {
+                            layer.msg(info.msg, {icon:2});
+                        }
+                    },
+                    error:function(res){
+                        layer.msg('网络异常,请重新操作', {icon:2});
+                    }
+                })//ajax结束
+            },//删除结束
+            function (){
+                //啥都不做
+            }//取消
+        )//lay.confirm结束
+    })//删除 直播信息结束
 </script>
 </body>
 </html>

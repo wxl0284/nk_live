@@ -103,7 +103,7 @@ class Subject extends Controller
         if ($this->request->isAjax()) {//执行添加
            
             $data = input('post.');
-       
+            
             //验证数据
             if ( !( isset($data['cat_id']) && preg_match('/^([0-9]){1,10}$/', $data['cat_id']) ) )
             {
@@ -130,10 +130,18 @@ class Subject extends Controller
             if( !(isset($data['equip_pic']) && !empty($data['equip_pic'])) )
             {
                 return ajax_return_adv_error("请上传录播封面图！");
-            } 
+            }
+
+            /*/检查录播视频名称是否重复
+            $video_name = Db::table('tp_subject')->where('subject_name', $data['subject_name'])->field('subject_name')->find();
+            if ( $video_name )
+            {
+                return ajax_return_adv_error("录播视频名称已存在！");
+            }*/
 
             $data['teacher_id'] = $_SESSION['think']['auth_id'];
             $data['status'] = 1;//录播: 默认为发布状态
+            $data['subject_level'] = 1;//默认为1，此字段不给值，在前端页面会查询不到也就不显示
             
             // 验证
             if (class_exists($validateClass = Loader::parseClass(Config::get('app.validate_path'), 'validate', $controller))) {
@@ -189,7 +197,7 @@ class Subject extends Controller
         if ($this->request->isAjax()) {
             // 更新
             $data = input('post.');
-     
+            //halt($data);
             //验证数据
             if ( !( isset($data['cat_id']) && preg_match('/^([0-9]){1,10}$/', $data['cat_id']) ) )
             {

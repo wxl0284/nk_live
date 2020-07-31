@@ -40,7 +40,7 @@ class Subject extends Wx
         $this->assign("declare",json_encode($declare));
         $equip_pic = Db::name("banner")->where(['type'=>2])->value("equip_pic");
         $this->assign("equip_pic",$equip_pic);
-
+        
         return $this->fetch();
     }
 
@@ -76,9 +76,6 @@ class Subject extends Wx
     		return json(['code'=>200,'result'=>$result]);
     	}
     }
-
-    
-
 
 
     //专业分类
@@ -162,20 +159,17 @@ class Subject extends Wx
             $order = 'desc';
         }
 
-
         //排序
         //最新
         if($get['sortby'] == 'pubSeq' || $get['sortby'] == 'proLevel'){
             
             $sql = "select ss.* from tp_subject ss where $where $wherel order by ss.create_time ".$order." limit ".$get['start'].",".$get['limit'];
         }
-
     
         //评分
         if($get['sortby'] == 'intScore'){
             $sql = "select * from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where $wherel order by o_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
             // $sql = "select ss.* from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where order by ss.o_cnt ".$order.",ss.id asc limit ".$get['start'].",".$get['limit'];
-
         }
         //收藏
         if($get['sortby'] == 'collectionCount'){
@@ -186,15 +180,8 @@ class Subject extends Wx
         if($get['sortby'] == 'upCount'){
             $sql = "select * from (select s.*, COALESCE(l.cnt,0) l_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_like group by subject_id) l on s.id = l.subject_id) ss where $where $wherel order by l_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit']; 
         }
-        // echo("<pre>");
-        // print_r($sql);
-        
-        $subject = Db::query($sql);
-        // echo("<pre>");
-        // print_r($subject);
-        // exit;
-
-         
+           
+        $subject = Db::query($sql);         
       
     	//项目列表
        
@@ -229,7 +216,7 @@ class Subject extends Wx
 		);
         return json(['code'=>200,'result'=>$result]);
 
-    }
+    }//subject_list 结束
 
     public function aa(){
         $where = "1=1";

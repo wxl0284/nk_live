@@ -55,31 +55,33 @@
                 
                 {if $Think.session.type <> 2}
                     {if condition="$vo.status == 0 || $vo.status == 2"}
-                      <a href="javascript:;" onclick="is_publish({$vo.id},1)" class="label label-danger radius ml-5">发布</a>
+                      <!-- <a href="javascript:;" onclick="is_publish({$vo.id},1)" class="label label-danger radius ml-5">发布</a> -->
                     {/if}
                     {if condition="$vo.status == 1"}
-                      <a href="javascript:;" onclick="is_publish({$vo.id},2)" class="label label-danger radius ml-5">撤销</a>
+                      <!-- <a href="javascript:;" onclick="is_publish({$vo.id},2)" class="label label-danger radius ml-5">撤销</a> -->
                     {/if}
                 {else}
                     {if condition="$vo.status == 0"}
-                      <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">未发布</span>
+                      <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">未发布</span> -->
                     {/if}
                     {if condition="$vo.status == 1"}
-                      <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已发布</span>
+                      <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已发布</span> -->
                     {/if}
                     {if condition="$vo.status == 2"}
-                      <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已撤销</span>
+                      <!-- <span class="label label-danger radius ml-5" style="background-color: #aaaaaa;color: white;border-radius: 3px;margin-left: 5px;">已撤销</span> -->
                     {/if}
                 
                 {/if}
-                <br><!--只能显示自己提交的录播数据-->
+                <!--<br>只能显示自己提交的录播数据-->
                 {if $Think.session.type <> 1}                              
                 {tp:menu menu='sedit' /}
                 <a href="javascript:;" onclick="del_forever(this,{$vo.id},'/admin/subject/deleteforever.html')" class="label label-danger radius ml-5">删除</a>
-                {/if}
-                <br/>
-                {if $Think.session.type <> 2}
+                <br>
                 <a title="查看" href="javascript:;" onclick="layer_open('查看','/admin/subject/info/id/{$vo.id}.html')" style="text-decoration:none" class="ml-5"><i class="Hui-iconfont">查看</i></a>
+                {/if}
+                <br>
+                {if $Think.session.type <> 2}
+                <!-- <a title="查看" href="javascript:;" onclick="layer_open('查看','/admin/subject/info/id/{$vo.id}.html')" style="text-decoration:none" class="ml-5"><i class="Hui-iconfont">查看</i></a> -->
                 {/if}
                 
             </td>
