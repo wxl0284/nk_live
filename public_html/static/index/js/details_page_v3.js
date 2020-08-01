@@ -134,14 +134,13 @@ X.sub("init", function() {
 
         // 判断项目视频是否加工完
         function checkVideo(type) {
-           //console.log(type);
+
             var dom = $("#video01");
             var res2 = '<video id="videoPlayer" class="video-js vjs-default-skin vjs-big-play-centered video-player details-page-thumb-video" controls="controls" preload="none">';
-
-
             if(type == 1 || type == 3){
                 res2 += '<source src="' + item.subject_brief_video + '" type="video/mp4" />';
-                var poster = item.subject_brief_img;
+                //var poster = item.subject_brief_img;
+                var poster = item.equip_pic;
             }
             if(type == 2 || type == 4){
                 res2 += '<source src="' + item.subject_lead_video + '" type="video/mp4" />';
@@ -166,7 +165,7 @@ X.sub("init", function() {
                 controlBar: true,
                 loadingSpinner: true,
                 preload: 'none',
-                poster: "/"+poster
+                poster: poster
             };
             var videoPlayer = videojs.getPlayers()["videoPlayer"];
             if (videoPlayer) {
@@ -177,15 +176,29 @@ X.sub("init", function() {
             var player = videojs('videoPlayer', options, function() {
                 this.volume(0.5);
             });
-        }
+        }//checkVideo 结束
+        //显示录播视频--------
         var ycv;
-        $(".ychangevideo").on("click",function(){
+        ycv=1;
+        if(item.subject_brief_video)
+        {
+            checkVideo(1);
+        }
+        //$("#videoPlayer2").addClass("myvideo_hidden").siblings().removeClass("myvideo_hidden");
+        $("#videoPlayer").addClass("myvideo_visible").siblings().removeClass("myvideo_visible");
+        $(".ychangevideo").css({
+            "background":"rgba(255,255,255,0.6)",
+            "opacity":"1"
+        })
+        //显示录播视频--------结束
+
+       /* $(".ychangevideo").on("click",function(){
+            页面原来的代码
             ycv=1;
             if(item.subject_lead_img && item.subject_lead_video){
                 checkVideo(1);
             }
             $("#videoPlayer2").addClass("myvideo_hidden").siblings().removeClass("myvideo_hidden");
-            // $(this).addClass("myvideo_hidden").siblings().removeClass("myvideo_hidden");
             $("#videoPlayer").addClass("myvideo_visible").siblings().removeClass("myvideo_visible");
             $("#changeVideo").addClass("myvideo_visible").siblings().removeClass("myvideo_visible");
             $(this).css({
@@ -196,7 +209,9 @@ X.sub("init", function() {
                 "background":"rgba(255,255,255,0.5)",
                 "opacity":"0.6"
             })
-        })
+        })*/
+
+        /*页面原来代码
         $(".ychangevideo2").on("click",function(){
             ycv=2;
             checkVideo(2);
@@ -215,7 +230,7 @@ X.sub("init", function() {
                 "background":"rgba(255,255,255,0.5)",
                 "opacity":"0.6"
             })
-        })
+        })*/
 
 
         if(item.subject_brief_img && item.subject_brief_video && (item.subject_lead_img && item.subject_lead_video)){

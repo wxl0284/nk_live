@@ -99,7 +99,7 @@ class Subject extends Wx
 
     public function subject_list(){
     	$get = $this->request->get();
-       
+       //halt()
     	$where = "status=1";
     	//专业大类，专业分类
     	if($get['specialtySubject2']){
@@ -121,7 +121,7 @@ class Subject extends Wx
     		
     	}
     	//项目级别
-        $wherel = "";
+        /*$wherel = "";
         if($get['queryProLevel']){
             $wherel = " AND ss.subject_level = '".$get['queryProLevel']."'";
         }else{
@@ -134,9 +134,10 @@ class Subject extends Wx
         //申报年份
         if($get['declareYear']){
             $where .= " AND ss.declare_year = '".$get['declareYear']."'";
-        }
+        }*/
+
         //搜索
-         //项目名称
+         //视频名称
         if($get['title']){
             $title = $get['title'];
             $where .= " AND ss.subject_name like '%{$title}%'";
@@ -152,6 +153,11 @@ class Subject extends Wx
             $incharge = $get['incharge'];
             $where .= " AND ss.person_charge like '%{$incharge}%'";
         }
+        //课程名称
+        if($get['curriculum']){
+            $curriculum = $get['curriculum'];
+            $where .= " AND ss.curriculum like '%{$curriculum}%'";
+        } 
 
         if($get['reverse'] == 'true'){
             $order = 'asc';
@@ -162,23 +168,24 @@ class Subject extends Wx
         //排序
         //最新
         if($get['sortby'] == 'pubSeq' || $get['sortby'] == 'proLevel'){
-            
-            $sql = "select ss.* from tp_subject ss where $where $wherel order by ss.create_time ".$order." limit ".$get['start'].",".$get['limit'];
+            //原来代码 $sql = "select ss.* from tp_subject ss where $where $wherel order by ss.create_time ".$order." limit ".$get['start'].",".$get['limit'];
+            $sql = "select ss.* from tp_subject ss where $where order by ss.create_time ".$order." limit ".$get['start'].",".$get['limit'];
         }
     
         //评分
         if($get['sortby'] == 'intScore'){
-            $sql = "select * from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where $wherel order by o_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
-            // $sql = "select ss.* from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where order by ss.o_cnt ".$order.",ss.id asc limit ".$get['start'].",".$get['limit'];
+            //原来代码$sql = "select * from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where $wherel order by o_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
+            $sql = "select * from (select s.*, COALESCE(o.cnt,0) o_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_score group by subject_id) o on s.id = o.subject_id) ss where $where order by o_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
         }
         //收藏
         if($get['sortby'] == 'collectionCount'){
-            $sql = "select * from (select s.*, COALESCE(c.cnt,0) c_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_collect group by subject_id) c on s.id = c.subject_id) ss where $where $wherel order by c_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
-
+           //原来代码 $sql = "select * from (select s.*, COALESCE(c.cnt,0) c_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_collect group by subject_id) c on s.id = c.subject_id) ss where $where $wherel order by c_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
+           $sql = "select * from (select s.*, COALESCE(c.cnt,0) c_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_collect group by subject_id) c on s.id = c.subject_id) ss where $where order by c_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit'];
         }
         //点赞
         if($get['sortby'] == 'upCount'){
-            $sql = "select * from (select s.*, COALESCE(l.cnt,0) l_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_like group by subject_id) l on s.id = l.subject_id) ss where $where $wherel order by l_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit']; 
+            //原来代码$sql = "select * from (select s.*, COALESCE(l.cnt,0) l_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_like group by subject_id) l on s.id = l.subject_id) ss where $where $wherel order by l_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit']; 
+            $sql = "select * from (select s.*, COALESCE(l.cnt,0) l_cnt from tp_subject s left join (select count(id) as cnt,subject_id from tp_subject_like group by subject_id) l on s.id = l.subject_id) ss where $where order by l_cnt ".$order.",id asc limit ".$get['start'].",".$get['limit']; 
         }
            
         $subject = Db::query($sql);         

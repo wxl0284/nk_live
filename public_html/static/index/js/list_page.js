@@ -16,7 +16,7 @@ X.sub("init", function() {
     var subject02 = ""; //专业类
     var subject03 = ""; //专业
     var kg = 0;
-    var qt1 = "&title=0&schoolTitle=0&incharge=0";//搜索
+    var qt1 = "&title=0&schoolTitle=0&incharge=0&curriculum=0";//搜索
     var qt2 = "&specialtySubject=0";//专业大类
     var qt3 = "&specialtySubject2=0";//专业分类
     var qt5 = "&sortby=proLevel"; //排序
@@ -60,22 +60,28 @@ X.sub("init", function() {
         $(".proLevel li[data=" + X.qs.proLevel + "]").addClass("on").siblings().removeClass("on");
     }
     if (X.qs.title) {
-        //项目名称
+        //录播名称
         qt1 = "&title=" + decodeURIComponent(X.qs.title);
         var f = X('searchSection');
         f.title.value = decodeURIComponent(X.qs.title);
     }
     if (X.qs.schoolTitle) {
-        //学校名称
+        //学院名称
         qt1 = "&schoolTitle=" + decodeURIComponent(X.qs.schoolTitle);
         var f = X('searchSection');
         f.schoolTitle.value = decodeURIComponent(X.qs.schoolTitle);
     }
     if (X.qs.incharge) {
-        //负责人姓名
+        //授课教师
         qt1 = "&incharge=" + decodeURIComponent(X.qs.incharge);
         var f = X('searchSection');
         f.incharge.value = decodeURIComponent(X.qs.incharge);
+    }
+    if (X.qs.curriculum) {
+        //授课教师
+        qt1 = "&curriculum=" + decodeURIComponent(X.qs.curriculum);
+        var f = X('searchSection');
+        f.curriculum.value = decodeURIComponent(X.qs.curriculum);
     }
 
     // 设置搜索表单
@@ -97,9 +103,10 @@ X.sub("init", function() {
         div += '<div class="title">专业：</div>';
         div += '<div class="classify"></div>';
         div += '</div>';
-        div += '<div class="sort clearfix">';
+        /*div += '<div class="sort clearfix">';
+        项目级别div
         div += '<div class="sub-sort">';
-        div += '<div class="title">项目级别：</div>';
+        div += '<div class="title">项目级别1：</div>';
         div += '<div class="proLevel">';
         div += '<ul class="clearfix">';
         div += '<li data="all" class="on">全部</li>';
@@ -107,7 +114,8 @@ X.sub("init", function() {
         div += '<li data="2">其他项目</li>';
         div += '</ul>';
         div += '</div>';
-        div += '</div>';
+        div += '</div>'*/;
+        /*获奖年份div
         div += '<div class="sub-sort">';
         div += '<div class="title">获奖年份：</div>';
         div += '<div class="prizeYear">';
@@ -118,7 +126,8 @@ X.sub("init", function() {
         }
         div += '</ul>';
         div += '</div>';
-        div += '</div>';
+        div += '</div>';*/
+        /*申报年份 div
         div += '<div class="sub-sort">';
         div += '<div class="title">申报年份：</div>';
         div += '<div class="declareYear">';
@@ -130,13 +139,15 @@ X.sub("init", function() {
         div += '</ul>';
         div += '</div>';
         div += '</div>';
-        div += '</div>';
+        
+        div += '</div>';*/
         div += '<div class="sort clearfix">';
         div += '<div class="title">关键词：</div>';
         div += '<div class="edit">';
-        div += '<input type="text" name="title" placeholder="项目名称" />';
         div += '<input type="text" name="schoolTitle" placeholder="学院名称"/>';
-        div += '<input type="text" name="incharge" class="school-title" placeholder="负责人姓名" />';
+        div += '<input type="text" name="incharge" class="school-title" placeholder="授课教师" />';
+        div += '<input type="text" name="title" placeholder="视频名称" />';
+        div += '<input type="text" name="curriculum" placeholder="课程名称" />';
         // div += '<span class="search"></span>';
         div += '<button type="submit" class="s-btn search">搜索</button>';
         div += '</div>';
@@ -393,16 +404,25 @@ X.sub("init", function() {
         }else{
             qt1 += '&title=0';
         }
+
         if (f.schoolTitle.value !== ' ' && f.schoolTitle.value !== '') {
             qt1 += '&schoolTitle=' + f.schoolTitle.value;
         }else{
             qt1 += '&schoolTitle=0';
         }
+
         if (f.incharge.value !== ' ' && f.incharge.value !== '') {
             qt1 += '&incharge=' + f.incharge.value;
         }else{
             qt1 += '&incharge=0';
         }
+
+        if (f.curriculum.value !== ' ' && f.curriculum.value !== '') {
+            qt1 += '&curriculum=' + f.curriculum.value;
+        }else{
+            qt1 += '&curriculum=0';
+        }
+
         start = 0;
         loadContent();
     });
