@@ -1,0 +1,37 @@
+body { position: relative; min-height: 100vh }
+
+.subjects-box { overflow: scroll; height: 50vh }/*导航栏hover 学科列表样式 否则会显示不全*/
+
+.p_r { position: relative;}
+
+.p_a { position: absolute;}
+
+#live_list {border:1px solid red; margin: 9vh 0; 
+    background-color: #f6f7f9;}
+
+.live_div {width:62.5%; margin: 0 auto 1vh auto;
+    border:1px solid blue; padding: 1vh 1vh;
+    height: 17vh; position: relative;}
+
+.live_info {width:78%;display: inline-block; border: 1px solid pink;
+    position: absolute; top: 14%; left: 22%;}
+
+.live_info p { margin-bottom: 6px; }
+
+.live_div img {width:238px; height: 135px; margin-top: 10px;}
+
+.live_name { font-size: 21px; color: #404040;}
+
+.info_name { font-size: 14px; color: #a1a1a1;}
+
+.info_data { font-size: 14px; color: #404040;}
+
+.live_brief { border: 1px solid blue; width: 90%;
+    display: -webkit-box; -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; overflow: hidden;
+    position: absolute;
+    left: 7.8%;  top: 4%; }
+
+.brief_p {height: 4vh;}
+
+#south { position: absolute; width: 100%; bottom: 0px;}

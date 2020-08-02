@@ -245,7 +245,10 @@ class Subject extends Wx
         return $cates;
     }
 
-    public function detail(){
+    /*
+    detail_xx():原函数名为detail()，是ilab中判断用户是否来自国家平台的方法
+    */
+    public function detail_xx(){
         $id = $this->request->get("id");
 
         //检查用户是否从国家平台登录后过来的
@@ -345,6 +348,17 @@ class Subject extends Wx
 
         return $return;
     }//user_from_country () 结束
+
+    public function detail(){
+        $id = $this->request->get("id");
+        
+        $data = array(
+            "subject_id" => $id,
+            "create_time" => time()
+        );
+        Db::name("subject_browse")->insert($data);
+        return $this->fetch();
+    }
 
     public function detail_up(){
         $date = $this->request->get();

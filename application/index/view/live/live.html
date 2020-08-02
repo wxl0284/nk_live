@@ -36,6 +36,7 @@
 <script src="__STATIC__/js/header_v4.js"></script>
 <link rel="stylesheet" href="__STATIC__/css/footer_v4.css">
 <link rel="stylesheet" href="__STATIC__/css/index4.css">
+<link rel="stylesheet" href="__STATIC__/css/live_list.css"><!--直播列表页样式-->
 <script src="__STATIC__/js/session4.js"></script>
 <!-- <script src="__STATIC__/js/index4.js"></script> -->
 </head>
@@ -43,28 +44,51 @@
 <div id="layout" style="position: relative;">
     {include file="public/live_header" /}
     
-    <div>直播内容主体
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-        <div>直播内容</div>
-    </div>
-    <div id="south">
-        <div id="footer">
-            <div class="bottom">
+    <div id='live_list'><!--直播列表-->
+        <div class="live_div">
+            <img class='' src="__STATIC__/images/ns2.png" alt="封面图片">
+            <div class="live_info">
+                <p class="live_name">南卡大学金融课南卡大学金融课</p>
+                <p><span class="info_name">主讲老师：</span><span class="info_data">王老师</span></p>
+                <p class="p_r brief_p">
+                    <span class="info_name">课程简介：</span>
+                    <span class="info_data live_brief">
+                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
+                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
+                    </span>
+                </p>
                 <p>
-                    <span style="display:block">{//$system.address} {//$system.record_no} {//$system.copyright} {//$system.company_name}</span>
+                    <span class="info_name">直播时间：</span><span class="info_data">2020-07-02 12:00:00</span>
                 </p>
             </div>
         </div>
-    </div>
+        <div class="live_div">
+            <img class='' src="__STATIC__/images/ns2.png" alt="封面图片">
+            <div class="live_info">
+                <p class="live_name">南卡大学金融课南卡大学金融课</p>
+                <p><span class="info_name">主讲老师：</span><span class="info_data">王老师</span></p>
+                <p class="p_r brief_p">
+                    <span class="info_name">课程简介：</span>
+                    <span class="info_data live_brief">
+                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
+                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
+                    </span>
+                </p>
+                <p>
+                    <span class="info_name">直播时间：</span><span class="info_data">2020-07-02 12:00:00</span>
+                </p>
+            </div>
+        </div>
+    </div><!--直播列表 结束-->
 </div><!--id=layout 结束-->
+<div id="south">
+    <div id="footer">
+        <div class="bottom">
+            <p>
+                <span style="display:block">{//$system.address} {//$system.record_no} {//$system.copyright} {//$system.company_name}</span>
+            </p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
