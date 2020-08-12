@@ -193,17 +193,4 @@ X.sub("init", function() {
         isUseSpan: true
     });
 
-
-
-
-    var href = location.pathname;
-    var nav_a = $('#menu li.nav_item a');
-   
-    nav_a.each(function () {   
-        if ( href == $(this).attr('href') )
-        {
-            $(this).css('color', '#50abf2');
-        }
-    })
-
 });
