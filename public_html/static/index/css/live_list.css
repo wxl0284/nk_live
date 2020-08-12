@@ -6,32 +6,62 @@ body { position: relative; min-height: 100vh }
 
 .p_a { position: absolute;}
 
-#live_list {border:1px solid red; margin: 9vh 0; 
-    background-color: #f6f7f9;}
+#live_list { margin-top: 9vh; background-color: #f6f7f9; padding:2vh 0 0.9vh 0; min-height:81.3vh}
 
-.live_div {width:62.5%; margin: 0 auto 1vh auto;
-    border:1px solid blue; padding: 1vh 1vh;
-    height: 17vh; position: relative;}
+.live_div {width:62.5%; margin: 0 auto; background-color: #fff;
+     padding: 1vh 1vh; height: 17vh; position: relative;}
 
-.live_info {width:78%;display: inline-block; border: 1px solid pink;
-    position: absolute; top: 14%; left: 22%;}
+.live_info {width:74.3%;display: inline-block; 
+    position: absolute; top: 22%; left: 25%;}
 
-.live_info p { margin-bottom: 6px; }
+.live_info p { margin-bottom: 2px;}
 
-.live_div img {width:238px; height: 135px; margin-top: 10px;}
+.live_img {width:238px; height: 135px; margin-top: 10px; margin-left: 1.1vw;
+    border: 1px solid black;border-radius: 4px;}
 
-.live_name { font-size: 21px; color: #404040;}
+.live_name { font-size: 18px; color: #404040;}
 
-.info_name { font-size: 14px; color: #a1a1a1;}
+.info_name { font-size: 14px; color: #999;}
 
 .info_data { font-size: 14px; color: #404040;}
 
-.live_brief { border: 1px solid blue; width: 90%;
-    display: -webkit-box; -webkit-box-orient: vertical;
+.live_brief { width: 84%; display: -webkit-box;
+     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; overflow: hidden;
-    position: absolute;
-    left: 7.8%;  top: 4%; }
+    position: absolute; top: 4%; }
 
 .brief_p {height: 4vh;}
 
-#south { position: absolute; width: 100%; bottom: 0px;}
+.qrcode { width: 110px; height: 110px;
+    position: absolute; right: 1.8vw; top:44px; border: 1px solid #c1c1c1;}
+
+#south { position: absolute; width: 100%; bottom: -1.5vh;}
+
+.page-bootstrap { text-align: center; margin: 10px 0;}
+
+.page-bootstrap li { display: inline-block; }
+
+.page-bootstrap li a, .page-bootstrap li span { 
+    color:#666;
+    border: 1px solid #ccc;
+    width: 30px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    display: inline-block;
+    margin: 3px;}
+
+.page-bootstrap li.active span {
+    background: #5a98de;
+    color: #fff;
+}
+
+.page-bootstrap li.disabled span {
+    background: #e0e0e0;
+}
+
+.live_ing_img { position: relative; top:3px; }
+
+.live_time_p { margin-top:6px; }
+
+hr { width: 61vw; position: relative; top: -0.7vh; z-index: 100; z-index: 100; left: 0.7vw;}

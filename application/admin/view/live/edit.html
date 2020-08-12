@@ -32,7 +32,7 @@
             <?php $cat_list = model('category')->cat_list(0,$vo['category'],true); ?>
             <div class="formControls col-xs-6 col-sm-6">
                 <div class="select-box">
-                    <select name="cat_id" class="select" datatype="*" nullmsg="请选择学院专业">
+                    <select name="category" class="select" datatype="*" nullmsg="请选择学院专业">
                         <option value="0">请选择学院专业</option>
                         {$cat_list}
                     </select>

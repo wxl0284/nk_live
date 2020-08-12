@@ -36,6 +36,7 @@
 <script src="__STATIC__/js/header_v4.js"></script>
 <link rel="stylesheet" href="__STATIC__/css/footer_v4.css">
 <link rel="stylesheet" href="__STATIC__/css/index4.css">
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/h-ui/css/H-ui.min.css"/> -->
 <link rel="stylesheet" href="__STATIC__/css/live_list.css"><!--直播列表页样式-->
 <script src="__STATIC__/js/session4.js"></script>
 <!-- <script src="__STATIC__/js/index4.js"></script> -->
@@ -45,50 +46,76 @@
     {include file="public/live_header" /}
     
     <div id='live_list'><!--直播列表-->
-        <div class="live_div">
-            <img class='' src="__STATIC__/images/ns2.png" alt="封面图片">
-            <div class="live_info">
-                <p class="live_name">南卡大学金融课南卡大学金融课</p>
-                <p><span class="info_name">主讲老师：</span><span class="info_data">王老师</span></p>
-                <p class="p_r brief_p">
-                    <span class="info_name">课程简介：</span>
-                    <span class="info_data live_brief">
-                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
-                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
-                    </span>
-                </p>
-                <p>
-                    <span class="info_name">直播时间：</span><span class="info_data">2020-07-02 12:00:00</span>
-                </p>
-            </div>
-        </div>
-        <div class="live_div">
-            <img class='' src="__STATIC__/images/ns2.png" alt="封面图片">
-            <div class="live_info">
-                <p class="live_name">南卡大学金融课南卡大学金融课</p>
-                <p><span class="info_name">主讲老师：</span><span class="info_data">王老师</span></p>
-                <p class="p_r brief_p">
-                    <span class="info_name">课程简介：</span>
-                    <span class="info_data live_brief">
-                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
-                        金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。金融很重要，好好学。
-                    </span>
-                </p>
-                <p>
-                    <span class="info_name">直播时间：</span><span class="info_data">2020-07-02 12:00:00</span>
-                </p>
-            </div>
-        </div>
-    </div><!--直播列表 结束-->
+        {if condition="$have_live == 1"}
+          {volist name="list" id="vo" key='i'}
+                <div class="live_div">
+                    <a href='{:url("admin/live/watch_live", ["time" => $vo.start_time])}' end_time="{$vo.end_time}" class='live_a'>
+                    <img class='live_img' src="{$vo.live_pic}" alt="封面图片"><img src='{$vo.live_qrcode}' class="qrcode">
+                    <div class="live_info">
+                        <p class="live_name">{$vo.live_name}</p>
+                        <p><span class="info_name">主讲老师：</span><span class="info_data">{$vo.teacher}</span></p>
+                        <p class="p_r brief_p">
+                            <!-- <span class="info_name">课程简介：</span> -->
+                            <span class="info_data live_brief">
+                                <span class="info_name">课程简介：</span>
+                                {$vo.live_brief}
+                            </span>
+                        </p>
+                        <p class='live_time_p'>
+                            <span class="info_name">直播时间：</span><span class="info_data live_ing" start_time="{$vo.start_time}">{$vo.start_time|date="Y-m-d H:i:s",###}</span>
+                        </p>
+                    </div>
+                    {if condition="$i < count($list) && $i >= 1"}<hr>{/if}
+                    </a>
+                </div>
+         {/volist}
+      <div class="page-bootstrap">{$list->render()}</div>
+      {elseif condition="$have_live == 0"/} <span style="text-align:center;display:inherit;font-size:20px;color:#666">暂未查到直播数据</span>
+    {/if}
+</div><!--直播列表 结束-->
 </div><!--id=layout 结束-->
 <div id="south">
     <div id="footer">
         <div class="bottom">
             <p>
-                <span style="display:block">{//$system.address} {//$system.record_no} {//$system.copyright} {//$system.company_name}</span>
+                <span style="display:block"><?php echo config('footer_info'); ?></span>
             </p>
         </div>
     </div>
 </div>
+<script>
+    //每5秒 检查直播列表中的第一个是否已开始直播
+    function live_is_start()
+    {
+        let live_ing_e = $('.live_ing');//直播开始时间的元素
+        let live_a_e = $('.live_a');//直播列表元素
+        let n = live_ing_e.length;
+        if ( n > 0 )
+        {
+            let t = Date.parse(new Date()) / 1000; //当前的时间戳
+            let e0 = live_ing_e.eq(0);
+            let e1 = live_a_e.eq(0);
+            let t1 = e0.attr('start_time');//直播列表中第一个
+            let t2 = e1.attr('end_time');//直播的结束时间戳
+ 
+            if ( t >= t2 )
+            {
+                e1.remove();                
+            }
+            
+            //显示直播开始
+            if ( t >= t1 )
+            {
+                e0.html('<img class="live_ing_img" src="/static/index/images/live_ing.png">');//显示正在直播
+            }
+
+        }else{
+            clearInterval(interval);
+        }
+    }//live_is_start 结束
+
+    var interval = setInterval(live_is_start, 5000);
+
+</script>
 </body>
 </html>

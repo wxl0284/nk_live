@@ -33,8 +33,26 @@ class Live extends Controller
     
     public function index ()
     {
-        $info = Session::get('real_name');
-        $this->assign('info', $info);
+        //$info = Session::get('real_name');
+        //$this->assign('info', $info);
+
+        //查出在当前时间 直播还未结束的直播
+        $data = Db::table('tp_live')
+            ->where('status', 1)
+            ->where('end_time', '>', time()+30)//查询半分钟后就结束的直播
+            ->field('live_name, live_brief, start_time, end_time, teacher, live_pic, live_qrcode')
+            ->order('start_time', 'asc')
+            ->paginate( 4 );
+
+        $num = count($data);
+
+        if ($num > 0)
+        {
+            $this->assign(['list' => $data, 'have_live' => 1]);
+        }else{
+            $this->assign(['have_live' => 0]);
+        }
+
         return view('live');        
     }//index 结束
 }

@@ -278,18 +278,27 @@ function _addAttributeToArray (array &$a, $name, $v)
 
 /*
  create_qr_code() 二维码生成
+ $domain：网站域名
+ $dir: 此直播的二维码图片存放的目录
+ $live_time: 此直播开始的时间戳
 */
 
-function create_qr_code ()
+function create_qr_code ($domain, $dir, $live_time)
 {
     vendor("phpqrcode.phpqrcode");
-    $url ='http://www.baidu.com';
-    $outfile=ROOT_PATH."public/qrcode2/".time().'.jpg';//必须先建立一个文件夹，才可以把二维码存进去
+
+    //$domain = $this->request->domain(); //http://nk360_live.com
+    $url = '/admin/live/watch_live/time/';
+
+    $live_url = $domain . $url . $live_time . '.html';
+
+    $png_dir = "." . $dir . $live_time . '.png';
+
     $level = 'L';//二维码容错率，默认L(7%)、M(15%)、Q(25%)、H(30%)
     $size =4;//二维码默认大小
     $QRcode = new \QRcode();
-    ob_start();
-    $QRcode->png($url, $outfile, $level, $size, 2);
-    ob_end_clean();
-    //return time();
+    //ob_start();
+    $QRcode->png($live_url, $png_dir, $level, $size, 2);
+    //ob_end_clean();
+
 }//create_qr_code 结束

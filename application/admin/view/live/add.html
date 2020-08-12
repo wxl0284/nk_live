@@ -85,9 +85,10 @@
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>直播简介：</label>
             <div class="formControls col-xs-6 col-sm-6">
-                <textarea class="textarea" placeholder="" name="live_brief" datatype="s10-80" nullmsg="请填写直播简介"></textarea>
+                <textarea id="max100" class="textarea" placeholder="必填, 须输入10~100个字符" name="live_brief" datatype="s10-100" nullmsg="请填写直播简介"></textarea>
             </div>
             <div class="col-xs-3 col-sm-3"></div>
+            <span id='max100_tip' style='display: none;margin-left:1.5%;color:#ef392b;font-size:12px;'>xxxxxx</span>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>封面图：</label>
@@ -302,9 +303,6 @@
         }
     });
 
-</script>
-
-<script>
 function screen(status){
     if(status == 1){
         $("#subject_brief_img").hide();
@@ -476,6 +474,42 @@ show_used_e.click(function () {
         }
     });//ajax 结束
 })//show_used_e.click 结束
+
+//直播简介 输入至80字符时提示
+var max100_tip = $('#max100_tip');
+var max100 = $('#max100');
+
+$('button[type="submit"]').click(function () {
+    let n = $.trim( max100.val() ).length;
+    //let msg = '';
+
+    if ( n < 10 )
+    {
+        max100_tip.html('字符不能少于10个').css('display', '');
+    }else if( n > 100 )
+    {
+        max100_tip.html('字符已超出' + (n-100) +'个').css('display', '');
+    }else if( n > 10 && n < 100 )
+    {
+        max100_tip.html('').css('display', 'none');
+    }
+
+})
+
+max100.keyup(function () {
+    let n = $.trim( max100.val() ).length;
+
+    if ( n > 80 && n <= 100 )
+    {
+        max100_tip.html('还可以输入' + (100-n) +'个字').css('display', '');
+    }else if ( n > 100)
+    {
+        max100_tip.html('字符已超出' + (n-100) +'个').css('display', '');
+    }else if( n > 10 && n < 100 )
+    {
+        max100_tip.html('').css('display', 'none');
+    }
+})
 </script>
 
 {/block}

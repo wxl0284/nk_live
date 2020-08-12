@@ -75,11 +75,64 @@ X.sub("init", function() {
             var resp = JSON.parse(respText);
             resp = resp.result;
             var res = '';
+            let h = location.pathname;
+
             for(var m=0;m<resp.length;m++){
+                
                 if(m == 1){
-                    res += '<li class="nav_item" id="subsLink"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a><ul class="subjects-box"></ul></li>';
+                    if ( h == '/index/subject/index' )
+                    {
+                        res += '<li class="nav_item" id="subsLink"><a style="color:#50abf2" href="'+resp[m].link_url+'">'+resp[m].name+'</a><ul class="subjects-box"></ul></li>';
+                    }else
+                    {
+                        res += '<li class="nav_item" id="subsLink"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a><ul class="subjects-box"></ul></li>';
+                    }
+                    
                 }else{
-                    res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                                        
+                    if( h == '/index/live/index' )
+                    {
+                        if ( resp[m].link_url == h )
+                        {
+                            res += '<li class="nav_item"><a style="color:#50abf2" href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }else
+                        {
+                            res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }                        
+                    }
+                    
+                    if( h == '/index/article/about' )
+                    {
+                        if ( resp[m].link_url == h )
+                        {
+                            res += '<li class="nav_item"><a style="color:#50abf2" href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }else
+                        {
+                            res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }
+                    }
+
+                    if( h == '/' )
+                    {
+                        if ( resp[m].link_url == h )
+                        {
+                            res += '<li class="nav_item"><a style="color:#50abf2" href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }else
+                        {
+                            res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                        }  
+                    }
+
+                    if( h == '/index/subject/index' )
+                    {
+                        res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                    }
+                    
+                    if( h == '/index/article/detail' )
+                    {
+                        res += '<li class="nav_item"><a href="'+resp[m].link_url+'">'+resp[m].name+'</a></li>';
+                    }
+
                 }
             }
             $("#menu").html(res);
@@ -88,19 +141,6 @@ X.sub("init", function() {
             checkLang();
             onSubjectContent();
         })
-
-        // res += '<li class="nav_item"><a href="/">首页</a></li>';
-        // res += '<li class="nav_item" id="subsLink">';
-        // res += '<a href="/index/subject/index">学科分类</a>';
-        // res += '<ul class="subjects-box"></ul>';
-        // res += '</li>';
-        // res += '<li class="nav_item"><a href="/index/article/intro">项目介绍</a></li>';
-        // res += '<li class="nav_item"><a href="/index/article/about">关于我们</a></li>';
-        // $("#menu").html(res);
-        // $(".nav").find(".changeLang").remove();
-        // $(".nav-right").prepend(div);
-        // checkLang();
-        // onSubjectContent();
     }
 
     function onSubjectContent() {
@@ -154,5 +194,16 @@ X.sub("init", function() {
     });
 
 
+
+
+    var href = location.pathname;
+    var nav_a = $('#menu li.nav_item a');
+   
+    nav_a.each(function () {   
+        if ( href == $(this).attr('href') )
+        {
+            $(this).css('color', '#50abf2');
+        }
+    })
 
 });
