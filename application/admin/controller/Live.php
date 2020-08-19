@@ -36,8 +36,9 @@ class Live extends Controller
             ->where($where)
             ->field('L.id, L.live_name, L.live_brief, L.start_time, L.end_time, L.teacher, L.status, L.live_pic, c.cat_name')
             ->order('id', 'desc')
-            ->paginate( config('paginate.list_rows') );
-            //->paginate(config('paginate.list_rows'), false, ['query' => $this->request->get()]);
+            //->paginate( config('paginate.list_rows') );
+            //->paginate(6, false, ['query' => $this->request->get()]);
+            ->paginate(6);
         
         $this->assign([
             'list'  => $data,
